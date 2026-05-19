@@ -43,7 +43,8 @@ def main() -> None:
     scores = data[args.score].astype(float).to_numpy()
     fpr, tpr, recall, precision = curve_points(labels, scores)
     order = np.argsort(fpr)
-    roc_auc = float(np.trapz(tpr[order], fpr[order]))
+    trapezoid = getattr(np, "trapezoid", None) or np.trapz
+    roc_auc = float(trapezoid(tpr[order], fpr[order]))
 
     fig, axes = plt.subplots(1, 2, figsize=(6.4, 3.1), constrained_layout=True)
     axes[0].plot(fpr, tpr, color="#0072B2", linewidth=1.6)
