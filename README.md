@@ -8,6 +8,18 @@ Scientific Figure Skills for Codex turns figure work into a managed, auditable p
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.6.0-blue.svg)](VERSION)
 
+## About
+
+**Scientific Figure Skills for Codex** is an open-source Codex skill suite developed and maintained by [Enes Gul](https://github.com/enesgul23).
+
+The project was created to fill a gap in AI-assisted research workflows: while large language models can help write code and text, they lack structured, auditable support for the full lifecycle of scientific figures — from vague intent, through data inspection and renderer selection, to reproducible exports and journal-readiness checks.
+
+This suite treats figures as evidence-bearing artifacts rather than decorative outputs. It is designed for researchers, technical authors, and Codex users who need figures that are statistically honest, reproducible, and traceable.
+
+**Current version:** `0.6.0` · **License:** MIT · **Repository:** [github.com/enesgul23/scientific-figure-skills-codex](https://github.com/enesgul23/scientific-figure-skills-codex)
+
+If you use this suite in academic work, please cite the repository metadata in [`CITATION.cff`](CITATION.cff).
+
 ## Why This Exists
 
 Scientific figures are not just graphics. They are evidence-bearing artifacts.
