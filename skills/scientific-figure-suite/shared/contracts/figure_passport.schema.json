@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Figure Passport",
+  "type": "object",
+  "required": ["figure_passport"],
+  "properties": {
+    "figure_passport": {
+      "type": "object",
+      "anyOf": [
+        {
+          "required": ["artifact_id", "artifact_type", "version_label", "source_workflow", "created_at", "inputs_used", "status_tags"]
+        },
+        {
+          "required": ["schema_version", "figures"]
+        }
+      ],
+      "properties": {
+        "artifact_id": {"type": "string"},
+        "artifact_type": {"type": "string"},
+        "version_label": {"type": "string"},
+        "source_workflow": {"type": "string"},
+        "source_agent": {"type": "string"},
+        "created_at": {"type": "string"},
+        "inputs_used": {"type": "array"},
+        "status_tags": {"type": "object"},
+        "repro_lock": {"type": ["object", "null"]},
+        "schema_version": {"type": "string"},
+        "figures": {"type": "array"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,12 @@
+{
+  "figure_set_manifest": {
+    "schema_version": "0.6.0",
+    "project_id": "project-id",
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "updated_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "figures": [],
+    "style_consistency_status": "NOT_RUN",
+    "readiness_status": "NOT_RUN",
+    "unresolved_requirements": []
+  }
+}

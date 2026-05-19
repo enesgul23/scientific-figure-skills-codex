@@ -1,0 +1,17 @@
+{
+  "journal_targets": {
+    "targets": [
+      {
+        "journal": "unspecified",
+        "status": "UNVERIFIED",
+        "guideline_source": "unknown",
+        "checked_at": null,
+        "preferred_formats": [],
+        "unresolved_requirements": [
+          "Current official figure guidelines have not been checked."
+        ],
+        "notes": []
+      }
+    ]
+  }
+}

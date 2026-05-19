@@ -1,0 +1,18 @@
+{
+  "author_visual_style_profile": {
+    "status": "NONE",
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "updated_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "source_summary": "No user-approved visual style samples have been analyzed.",
+    "preferences": {
+      "palette": null,
+      "typography": null,
+      "layout_grammar": null,
+      "annotation_style": null,
+      "data_density": null,
+      "uncertainty_display": null
+    },
+    "conflicts": [],
+    "application_policy": "Soft preference below truth, reproducibility, accessibility, and journal requirements."
+  }
+}

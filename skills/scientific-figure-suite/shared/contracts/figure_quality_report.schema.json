@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Figure Quality Report",
+  "type": "object",
+  "required": ["figure_quality_report"],
+  "properties": {
+    "figure_quality_report": {
+      "type": "object",
+      "required": ["figure_id", "target_journal", "style_status", "data_status", "overall_integrity_status", "gate_results"],
+      "properties": {
+        "figure_id": {"type": "string"},
+        "target_journal": {"type": "string"},
+        "style_status": {"enum": ["VERIFIED", "ESTIMATED", "UNVERIFIED"]},
+        "data_status": {"enum": ["PROVIDED", "INFERRED", "MISSING", "MOCKUP"]},
+        "overall_integrity_status": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL"]},
+        "gate_results": {"type": "array"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

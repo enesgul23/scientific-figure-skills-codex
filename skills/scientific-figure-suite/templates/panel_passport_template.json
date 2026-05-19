@@ -1,0 +1,17 @@
+{
+  "panel_id": "a",
+  "purpose": "Panel-specific scientific purpose.",
+  "data_source": "dataset:example",
+  "claim_refs": [],
+  "script_ref": null,
+  "outputs": [],
+  "status_tags": {
+    "DATA_STATUS": "MISSING",
+    "STYLE_STATUS": "UNVERIFIED",
+    "REPRODUCIBILITY_STATUS": "PARTIAL",
+    "INTEGRITY_STATUS": "PASS_WITH_WARNINGS"
+  },
+  "repro_lock": null,
+  "stale": false,
+  "stale_reasons": []
+}

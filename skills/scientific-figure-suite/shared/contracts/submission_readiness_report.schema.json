@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Submission Readiness Report",
+  "type": "object",
+  "required": ["submission_readiness_report"],
+  "properties": {
+    "submission_readiness_report": {
+      "type": "object",
+      "required": ["created_at", "project_id", "result", "gate_results", "blockers", "warnings"],
+      "properties": {
+        "created_at": {"type": "string"},
+        "project_id": {"type": "string"},
+        "result": {"enum": ["READY", "READY_WITH_WARNINGS", "BLOCKED", "NOT_RUN"]},
+        "gate_results": {"type": "array"},
+        "blockers": {"type": "array"},
+        "warnings": {"type": "array"},
+        "journal_waiver_used": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

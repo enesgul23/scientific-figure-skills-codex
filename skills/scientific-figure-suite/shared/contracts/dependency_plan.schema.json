@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scientific Figure Dependency Plan",
+  "type": "object",
+  "required": ["dependency_plan"],
+  "properties": {
+    "dependency_plan": {
+      "type": "object",
+      "required": [
+        "created_at",
+        "selected_stack",
+        "required_libraries",
+        "recommended_libraries",
+        "optional_libraries",
+        "blocked_libraries",
+        "install_commands",
+        "import_checks",
+        "selection_rationale",
+        "fallback_renderer",
+        "reproducibility_notes"
+      ],
+      "properties": {
+        "created_at": {"type": "string"},
+        "chart_type": {"type": ["string", "null"]},
+        "selected_stack": {"type": "array", "items": {"type": "string"}},
+        "required_libraries": {"type": "array", "items": {"type": "string"}},
+        "recommended_libraries": {"type": "array", "items": {"type": "string"}},
+        "optional_libraries": {"type": "array", "items": {"type": "string"}},
+        "blocked_libraries": {"type": "array", "items": {"type": "object"}},
+        "install_commands": {"type": "array", "items": {"type": "string"}},
+        "import_checks": {"type": "array", "items": {"type": "object"}},
+        "selection_rationale": {"type": "array", "items": {"type": "string"}},
+        "fallback_renderer": {"type": ["string", "null"]},
+        "reproducibility_notes": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

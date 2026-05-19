@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Submission Manifest",
+  "type": "object",
+  "required": ["submission_manifest"],
+  "properties": {
+    "submission_manifest": {
+      "type": "object",
+      "required": ["figure_id", "created_at", "files", "data_sources", "code_sources", "style_status", "data_status", "quality_report", "caption", "alt_text", "visual_claim_ledger"],
+      "properties": {
+        "figure_id": {"type": "string"},
+        "created_at": {"type": "string"},
+        "files": {"type": "array"},
+        "data_sources": {"type": "array"},
+        "code_sources": {"type": "array"},
+        "style_status": {"enum": ["VERIFIED", "ESTIMATED", "UNVERIFIED"]},
+        "data_status": {"enum": ["PROVIDED", "INFERRED", "MISSING", "MOCKUP"]},
+        "quality_report": {"type": "string"},
+        "caption": {"type": "string"},
+        "alt_text": {"type": "string"},
+        "visual_claim_ledger": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

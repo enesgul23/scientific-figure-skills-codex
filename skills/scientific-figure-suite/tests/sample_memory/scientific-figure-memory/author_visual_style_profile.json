@@ -1,0 +1,15 @@
+{
+  "author_visual_style_profile": {
+    "application_policy": "Soft preference below truth, reproducibility, accessibility, and journal requirements.",
+    "conflicts": [],
+    "created_at": "2026-05-19T16:30:00Z",
+    "preferences": {
+      "annotation_style": "direct labels where possible",
+      "data_density": "moderately dense",
+      "palette": "colorblind-safe with restrained accent color"
+    },
+    "source_summary": "Fixture profile; no real user style samples.",
+    "status": "PARTIAL",
+    "updated_at": "2026-05-19T16:30:00Z"
+  }
+}

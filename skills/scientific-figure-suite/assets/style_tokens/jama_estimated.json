@@ -1,0 +1,35 @@
+{
+  "profile_name": "jama_estimated",
+  "status": "UNVERIFIED",
+  "requires_live_verification": true,
+  "font": {
+    "preferred": [],
+    "fallback": ["Arial", "Helvetica", "DejaVu Sans"]
+  },
+  "accessibility": {
+    "minimum_font_size_pt": 6,
+    "colorblind_safe": true,
+    "palette": {
+      "categorical": ["#0072B2", "#D55E00", "#009E73", "#CC79A7", "#E69F00"],
+      "sequential": "viridis",
+      "diverging": "cividis"
+    }
+  },
+  "text_size_pt": {
+    "minimum": 6,
+    "preferred_min": 7,
+    "preferred_max": 9
+  },
+  "export": {
+    "vector": ["pdf", "svg", "eps"],
+    "raster": ["tiff", "png"],
+    "min_dpi": 300
+  },
+  "unresolved_requirements": [
+    "current_official_dimensions",
+    "accepted_formats",
+    "resolution_rules",
+    "font_rules",
+    "caption_rules"
+  ]
+}

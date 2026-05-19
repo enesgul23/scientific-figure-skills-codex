@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Figure Intake",
+  "type": "object",
+  "required": ["figure_intake"],
+  "properties": {
+    "figure_intake": {
+      "type": "object",
+      "required": ["goal", "target_journal", "data_status", "style_status", "figure_type_candidates", "selected_workflow_chain", "missing_inputs", "risk_flags"],
+      "properties": {
+        "goal": {"type": "string"},
+        "target_journal": {"type": "object"},
+        "data_status": {"enum": ["PROVIDED", "INFERRED", "MISSING", "MOCKUP"]},
+        "style_status": {"enum": ["VERIFIED", "ESTIMATED", "UNVERIFIED"]},
+        "figure_type_candidates": {"type": "array"},
+        "selected_workflow_chain": {"type": "array", "items": {"type": "string"}},
+        "missing_inputs": {"type": "array"},
+        "risk_flags": {"type": "array"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

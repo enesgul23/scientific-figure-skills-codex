@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cross Figure Consistency Report",
+  "type": "object",
+  "required": ["cross_figure_consistency_report"],
+  "properties": {
+    "cross_figure_consistency_report": {
+      "type": "object",
+      "required": ["created_at", "project_id", "result", "checks", "blocking_issues", "warnings"],
+      "properties": {
+        "created_at": {"type": "string"},
+        "project_id": {"type": "string"},
+        "result": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL"]},
+        "checks": {"type": "array"},
+        "blocking_issues": {"type": "array"},
+        "warnings": {"type": "array"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

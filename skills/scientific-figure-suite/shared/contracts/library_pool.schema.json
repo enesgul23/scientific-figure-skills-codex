@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scientific Figure Library Pool",
+  "type": "object",
+  "required": ["library_pool"],
+  "properties": {
+    "library_pool": {
+      "type": "object",
+      "required": ["schema_version", "selection_policy", "libraries"],
+      "properties": {
+        "schema_version": {"type": "string"},
+        "selection_policy": {"type": "object"},
+        "libraries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "library_id",
+              "package_name",
+              "import_names",
+              "pip_name",
+              "conda_name",
+              "category",
+              "domains",
+              "chart_families",
+              "data_formats",
+              "output_formats",
+              "capabilities",
+              "limitations",
+              "publication_grade",
+              "install_risk",
+              "system_dependencies",
+              "selection_priority",
+              "fallbacks",
+              "import_probe"
+            ],
+            "properties": {
+              "library_id": {"type": "string"},
+              "package_name": {"type": "string"},
+              "import_names": {"type": "array", "items": {"type": "string"}},
+              "pip_name": {"type": "string"},
+              "conda_name": {"type": "string"},
+              "category": {"type": "string"},
+              "domains": {"type": "array", "items": {"type": "string"}},
+              "chart_families": {"type": "array", "items": {"type": "string"}},
+              "data_formats": {"type": "array", "items": {"type": "string"}},
+              "output_formats": {"type": "array", "items": {"type": "string"}},
+              "capabilities": {"type": "array", "items": {"type": "string"}},
+              "limitations": {"type": "array", "items": {"type": "string"}},
+              "publication_grade": {"enum": ["PRIMARY", "SUPPORT", "EXPLORATORY", "SPECIALIST"]},
+              "install_risk": {"enum": ["LOW", "MEDIUM", "HIGH"]},
+              "system_dependencies": {"type": "array", "items": {"type": "string"}},
+              "selection_priority": {"type": "number"},
+              "fallbacks": {"type": "array", "items": {"type": "string"}},
+              "import_probe": {"type": "object"}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

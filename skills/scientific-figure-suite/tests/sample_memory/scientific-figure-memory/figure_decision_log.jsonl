@@ -1,0 +1,1 @@
+{"figure_decision":{"actor":"memory_fixture","artifact_refs":["figure_intake.yaml"],"created_at":"2026-05-19T16:30:00Z","decision":"Use a design-only fixture until current journal guidance is verified.","decision_type":"scoping","figure_id":"fig_01","rationale":"Sample memory is not a real submission package."}}

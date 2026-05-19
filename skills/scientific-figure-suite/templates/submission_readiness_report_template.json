@@ -1,0 +1,11 @@
+{
+  "submission_readiness_report": {
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "project_id": "project-id",
+    "result": "NOT_RUN",
+    "gate_results": [],
+    "blockers": [],
+    "warnings": [],
+    "journal_waiver_used": false
+  }
+}

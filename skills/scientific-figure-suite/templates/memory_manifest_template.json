@@ -1,0 +1,41 @@
+{
+  "memory_manifest": {
+    "schema_version": "0.6.0",
+    "project_id": "project-id",
+    "memory_level": "RESEARCH_GRADE",
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "updated_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "active_figure_id": null,
+    "current_stage": null,
+    "pipeline_state": {
+      "active_stage": null,
+      "completed_stages": [],
+      "blocked_stages": [],
+      "last_artifacts": [],
+      "next_actions": [],
+      "readiness_summary": "NOT_RUN"
+    },
+    "validation_status": "NOT_RUN",
+    "unresolved_requirements": [],
+    "files": {
+      "project_profile": "project_profile.json",
+      "journal_targets": "journal_targets.json",
+      "figure_passport": "figure_passport.json",
+      "figure_set_manifest": "figure_set_manifest.json",
+      "submission_package_index": "submission_package_index.json",
+      "visual_claim_ledger": "visual_claim_ledger.jsonl",
+      "dataset_registry": "dataset_registry.json",
+      "quality_audit_history": "quality_audit_history.jsonl",
+      "revision_boundary_ledger": "revision_boundary_ledger.jsonl",
+      "journal_guideline_verification": "journal_guideline_verification.jsonl",
+      "visual_audit_artifact": "visual_audit_artifact.jsonl",
+      "cross_figure_consistency_history": "cross_figure_consistency_history.jsonl",
+      "submission_readiness_history": "submission_readiness_history.jsonl",
+      "figure_decision_log": "figure_decision_log.jsonl",
+      "visual_regression_history": "visual_regression_history.jsonl",
+      "dependency_plan_history": "dependency_plan_history.jsonl",
+      "external_data_plan_history": "external_data_plan_history.jsonl",
+      "author_visual_style_profile": "author_visual_style_profile.json"
+    }
+  }
+}

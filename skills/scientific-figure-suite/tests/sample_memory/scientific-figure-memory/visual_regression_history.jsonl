@@ -1,0 +1,1 @@
+{"visual_regression_report":{"baseline_dir":null,"blockers":[],"created_at":"2026-05-19T16:30:00Z","figure_id":"fig_01","files":[],"result":"PASS_WITH_WARNINGS","warnings":["Fixture does not include real rendered image files."]}}

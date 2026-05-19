@@ -1,0 +1,19 @@
+journal_style:
+  target: Nature
+  guideline_source: stored_estimate
+  status: ESTIMATED
+  checked_at: ""
+  applied_decisions:
+    figure_size: "double-column estimated profile"
+    font: "Arial or Helvetica"
+    panel_labels: "lowercase bold upright"
+    export_formats: [pdf, svg, png]
+    resolution: "300 dpi minimum for raster review output"
+    color_space: "RGB estimate"
+  unresolved_requirements:
+    - "Current official Nature artwork guidance not checked in this task."
+  allowed_language: "Nature-inspired estimated profile"
+  forbidden_language:
+    - "Nature-compliant"
+    - "submission-ready for Nature"
+  compliance_statement: "This is a Nature-inspired estimated profile pending current guideline verification."

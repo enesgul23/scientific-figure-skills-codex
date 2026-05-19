@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Figure Spec",
+  "type": "object",
+  "required": ["figure_id", "figure_type", "data_status", "target_journal", "export"],
+  "properties": {
+    "figure_id": {"type": "string"},
+    "figure_type": {"type": "string"},
+    "data_status": {"enum": ["PROVIDED", "INFERRED", "MISSING", "MOCKUP"]},
+    "target_journal": {
+      "type": "object",
+      "required": ["name", "style_status"],
+      "properties": {
+        "name": {"type": "string"},
+        "style_status": {"enum": ["VERIFIED", "ESTIMATED", "UNVERIFIED"]}
+      },
+      "additionalProperties": true
+    },
+    "panels": {"type": "array"},
+    "axes": {"type": "object"},
+    "data_sources": {"type": "array"},
+    "code_sources": {"type": "array"},
+    "export": {
+      "type": "object",
+      "required": ["formats"],
+      "properties": {
+        "formats": {"type": "array", "items": {"type": "string"}},
+        "dpi": {"type": "integer"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

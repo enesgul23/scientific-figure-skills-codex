@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Repro Lock",
+  "type": "object",
+  "required": ["created_at", "hash_algorithm", "data_hashes", "code_hashes", "output_hashes", "render_command", "environment_note"],
+  "properties": {
+    "created_at": {"type": "string"},
+    "hash_algorithm": {"enum": ["sha256"]},
+    "data_hashes": {"type": "object"},
+    "code_hashes": {"type": "object"},
+    "output_hashes": {"type": "object"},
+    "render_command": {"type": ["string", "null"]},
+    "environment_note": {"type": ["string", "null"]},
+    "audit_status": {"enum": ["PASS", "STALE", "MISSING", "NOT_RUN"]}
+  },
+  "additionalProperties": true
+}

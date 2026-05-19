@@ -1,0 +1,23 @@
+{
+  "dataset_registry": {
+    "datasets": [
+      {
+        "dataset_id": "dataset-id",
+        "path": "data/input.csv",
+        "columns": {},
+        "units": {},
+        "preprocessing": null,
+        "missing_values": null,
+        "last_validated": null,
+        "source_type": "user_provided",
+        "source_url": null,
+        "license": null,
+        "citation": null,
+        "downloaded_at": null,
+        "sha256": null,
+        "usage_role": "none",
+        "contamination_risk": "none"
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "project_profile": {
+    "project_id": "project-id",
+    "field": "unspecified",
+    "preferred_language": "English",
+    "target_journals": [],
+    "figure_style": "minimal, high-density, journal-ready",
+    "color_policy": "colorblind-safe",
+    "default_export": ["pdf", "svg", "png"],
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "updated_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "notes": []
+  }
+}

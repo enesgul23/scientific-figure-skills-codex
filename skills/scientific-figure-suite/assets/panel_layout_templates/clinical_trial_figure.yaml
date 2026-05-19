@@ -1,0 +1,15 @@
+layout_name: clinical_trial_figure
+status: template
+canvas:
+  width_mm: 180
+  height_mm: 140
+required_annotations:
+  - denominators
+  - endpoint_definitions
+  - confidence_intervals
+  - follow_up_window
+panel_options:
+  - consort_flow
+  - forest_plot
+  - adverse_event_summary
+  - kaplan_meier

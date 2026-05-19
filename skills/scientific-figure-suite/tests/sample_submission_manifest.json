@@ -1,0 +1,29 @@
+{
+  "submission_manifest": {
+    "figure_id": "figure_01",
+    "created_at": "2026-05-19T16:30:00Z",
+    "files": [
+      "figure_01_spec.yaml",
+      "figure_01_caption.md",
+      "figure_01_alt_text.md",
+      "figure_01_quality_report.md"
+    ],
+    "data_sources": [
+      "data/predictions.csv"
+    ],
+    "code_sources": [
+      "analysis/scripts/draw_figure_01.py"
+    ],
+    "caption": "figure_01_caption.md",
+    "alt_text": "figure_01_alt_text.md",
+    "visual_claim_ledger": "figure_01_visual_claim_ledger.yaml",
+    "quality_report": "figure_01_quality_report.md",
+    "style_status": "ESTIMATED",
+    "data_status": "PROVIDED",
+    "reproducibility_status": "CODED",
+    "environment_note": "Python, matplotlib, pandas; exact lockfile pending.",
+    "unresolved_requirements": [
+      "Current target journal guidance not verified."
+    ]
+  }
+}

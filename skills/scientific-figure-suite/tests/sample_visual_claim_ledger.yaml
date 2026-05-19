@@ -1,0 +1,27 @@
+visual_claim_ledger:
+  figure_id: figure_01
+  generated_at: "2026-05-19"
+  data_status: PROVIDED
+  claims:
+    - id: C1
+      claim_text: "Predicted discharge is compared with observed discharge."
+      claim_type: predictive
+      visual_element: "panel a observed-vs-predicted scatter"
+      data_source: "predictions.csv columns observed,predicted"
+      computation_source: "draw_figure_01.py"
+      support_status: supported
+      uncertainty_shown: false
+      caption_alignment: aligned
+      risk_level: low
+      required_fix: ""
+    - id: C2
+      claim_text: "Residual structure should be inspected before claiming generalization."
+      claim_type: methodological
+      visual_element: "panel b residual plot"
+      data_source: "predictions.csv columns observed,predicted"
+      computation_source: "draw_figure_01.py"
+      support_status: supported
+      uncertainty_shown: not_applicable
+      caption_alignment: aligned
+      risk_level: low
+      required_fix: ""

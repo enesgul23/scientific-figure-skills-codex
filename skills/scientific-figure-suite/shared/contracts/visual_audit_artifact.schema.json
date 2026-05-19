@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Visual Audit Artifact",
+  "type": "object",
+  "required": ["created_at", "figure_id", "path", "sha256", "format", "result"],
+  "properties": {
+    "created_at": {"type": "string"},
+    "figure_id": {"type": "string"},
+    "panel_id": {"type": ["string", "null"]},
+    "path": {"type": "string"},
+    "sha256": {"type": "string"},
+    "format": {"type": "string"},
+    "byte_size": {"type": "integer"},
+    "width_px": {"type": ["integer", "null"]},
+    "height_px": {"type": ["integer", "null"]},
+    "result": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL", "NOT_VERIFIABLE"]},
+    "gate_summary": {"type": "array"},
+    "notes": {"type": "array"}
+  },
+  "additionalProperties": true
+}

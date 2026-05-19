@@ -1,0 +1,14 @@
+{
+  "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "figure_id": "fig_01",
+  "panel_id": null,
+  "path": "figures/output/fig_01.pdf",
+  "sha256": "",
+  "format": "pdf",
+  "byte_size": 0,
+  "width_px": null,
+  "height_px": null,
+  "result": "NOT_VERIFIABLE",
+  "gate_summary": [],
+  "notes": []
+}

@@ -1,0 +1,38 @@
+{
+  "figure_set_manifest": {
+    "created_at": "2026-05-19T16:30:00Z",
+    "figures": [
+      {
+        "claim_refs": [
+          "claim:c01"
+        ],
+        "current_version": "v1",
+        "dataset_refs": [
+          "dataset:flood_events_v2"
+        ],
+        "figure_id": "fig_01",
+        "journal_profile": "Nature Water",
+        "outputs": [
+          "figures/output/fig_01_v1.pdf"
+        ],
+        "panel_count": 1,
+        "purpose": "Compare observed and predicted discharge.",
+        "stale": false,
+        "status_tags": {
+          "DATA_STATUS": "PROVIDED",
+          "INTEGRITY_STATUS": "PASS_WITH_WARNINGS",
+          "REPRODUCIBILITY_STATUS": "CODED",
+          "STYLE_STATUS": "UNVERIFIED"
+        },
+        "title": "Observed and predicted discharge",
+        "unresolved_requirements": []
+      }
+    ],
+    "project_id": "flood-gnn-paper-2026",
+    "readiness_status": "NOT_RUN",
+    "schema_version": "0.6.0",
+    "style_consistency_status": "NOT_RUN",
+    "unresolved_requirements": [],
+    "updated_at": "2026-05-19T16:30:00Z"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Dataset Registry",
+  "type": "object",
+  "required": ["dataset_registry"],
+  "properties": {
+    "dataset_registry": {
+      "type": "object",
+      "required": ["datasets"],
+      "properties": {
+        "datasets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["dataset_id", "path", "columns", "last_validated"],
+            "properties": {
+              "dataset_id": {"type": "string"},
+              "path": {"type": "string"},
+              "columns": {"type": "object"},
+              "units": {"type": "object"},
+              "preprocessing": {"type": ["string", "null"]},
+              "missing_values": {"type": ["string", "null"]},
+              "last_validated": {"type": ["string", "null"]},
+              "source_type": {"enum": ["user_provided", "generated", "external_planned", "external_downloaded"]},
+              "source_url": {"type": ["string", "null"]},
+              "license": {"type": ["string", "null"]},
+              "citation": {"type": ["string", "null"]},
+              "downloaded_at": {"type": ["string", "null"]},
+              "sha256": {"type": ["string", "null"]},
+              "usage_role": {"enum": ["contextual", "evidentiary", "benchmark", "annotation", "none"]},
+              "contamination_risk": {"enum": ["none", "low", "medium", "high", "unknown"]}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

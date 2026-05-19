@@ -1,0 +1,308 @@
+{
+  "name": "scientific-figure-suite",
+  "display_name": "Scientific Figure Suite",
+  "adapter_version": "0.6.0",
+  "kind": "codex_skill",
+  "entrypoint": "SKILL.md",
+  "internal_workflows": [
+    "intake-design",
+    "statistical-plots",
+    "model-performance",
+    "clinical-biomedical",
+    "geospatial-maps",
+    "omics-bioinformatics",
+    "multipanel-composer",
+    "schematic-mechanism",
+    "graphical-abstract",
+    "journal-style-translator",
+    "caption-alttext",
+    "figure-auditor",
+    "export-packager"
+  ],
+  "commands": [
+    "fig-plan",
+    "fig-scope",
+    "fig-audit",
+    "fig-caption",
+    "fig-export",
+    "fig-model-performance",
+    "fig-graphical-abstract",
+    "fig-style",
+    "fig-full",
+    "fig-init-memory",
+    "fig-load-memory",
+    "fig-update-memory",
+    "fig-summarize-memory",
+    "fig-forget-memory",
+    "fig-validate-memory",
+    "fig-resume-project",
+    "fig-migrate-memory",
+    "fig-audit-repro-lock",
+    "fig-verify-journal",
+    "fig-audit-visual-artifact",
+    "fig-build-figure-set",
+    "fig-audit-figure-set",
+    "fig-build-submission-package",
+    "fig-audit-readiness",
+    "fig-status",
+    "fig-render-template",
+    "fig-audit-render",
+    "fig-plan-libraries",
+    "fig-probe-environment",
+    "fig-select-render-stack",
+    "fig-plan-external-data"
+  ],
+  "shared_protocols": [
+    "status_taxonomy",
+    "handoff_schemas",
+    "figure_quality_gates",
+    "visual_claim_protocol",
+    "journal_verification_protocol",
+    "reproducibility_protocol",
+    "figure_pipeline_state_machine",
+    "failure_recovery_protocol",
+    "mode_registry",
+    "accessibility_protocol",
+    "image_integrity_protocol",
+    "domain_router_matrix",
+    "review_rubrics",
+    "mode_spectrum",
+    "compliance_checkpoint_protocol",
+    "artifact_reproducibility_pattern",
+    "ground_truth_isolation_pattern",
+    "cross_model_verification",
+    "figure_memory_protocol",
+    "figure_passport_reset_boundary",
+    "visual_style_profile_protocol",
+    "submission_memory_runtime",
+    "figure_set_submission_runtime",
+    "external_data_decision_protocol"
+  ],
+  "root_guides": [
+    "MODE_REGISTRY.md",
+    "POSITIONING.md"
+  ],
+  "docs": [
+    "ARCHITECTURE.md",
+    "VALIDATION.md"
+  ],
+  "shared_agents": [
+    "compliance_agent",
+    "memory_curator_agent"
+  ],
+  "shared_contracts": [
+    "figure_intake.schema.json",
+    "figure_spec.schema.json",
+    "visual_claim_ledger.schema.json",
+    "journal_style_report.schema.json",
+    "caption_package.schema.json",
+    "figure_quality_report.schema.json",
+    "submission_manifest.schema.json",
+    "figure_passport.schema.json",
+    "memory_manifest.schema.json",
+    "project_profile.schema.json",
+    "journal_targets.schema.json",
+    "dataset_registry.schema.json",
+    "author_visual_style_profile.schema.json",
+    "revision_boundary_entry.schema.json",
+    "quality_audit_entry.schema.json",
+    "panel_passport.schema.json",
+    "repro_lock.schema.json",
+    "journal_guideline_verification_entry.schema.json",
+    "visual_audit_artifact.schema.json",
+    "figure_set_manifest.schema.json",
+    "submission_package_index.schema.json",
+    "cross_figure_consistency_report.schema.json",
+    "submission_readiness_report.schema.json",
+    "style_token.schema.json",
+    "visual_regression_report.schema.json",
+    "library_pool.schema.json",
+    "dependency_plan.schema.json",
+    "data_acquisition_plan.schema.json"
+  ],
+  "templates": [
+    "figure_intake_template",
+    "figure_spec_template",
+    "visual_claim_ledger_template",
+    "journal_style_report_template",
+    "figure_quality_report_template",
+    "caption_alt_text_template",
+    "submission_manifest_template",
+    "model_performance_package_template",
+    "graphical_abstract_plan_template",
+    "memory_manifest_template",
+    "project_profile_template",
+    "journal_targets_template",
+    "dataset_registry_template",
+    "author_visual_style_profile_template",
+    "revision_boundary_entry_template",
+    "panel_passport_template",
+    "repro_lock_template",
+    "journal_guideline_verification_entry_template",
+    "visual_audit_artifact_template",
+    "figure_set_manifest_template",
+    "submission_package_index_template",
+    "cross_figure_consistency_report_template",
+    "submission_readiness_report_template",
+    "visual_regression_report_template",
+    "dependency_plan_template",
+    "data_acquisition_plan_template"
+  ],
+  "render_templates": [
+    "parity_scatter.py",
+    "calibration_plot.py",
+    "residual_diagnostic_panel.py",
+    "forest_plot.py",
+    "volcano_plot.py",
+    "heatmap.py",
+    "survival_plot.py",
+    "geospatial_map.py",
+    "multipanel_composer.py",
+    "roc_pr_curve.py",
+    "bland_altman_plot.py",
+    "dose_response_curve.py",
+    "time_series_band.py",
+    "raincloud_plot.py"
+  ],
+  "examples": [
+    "model_performance_flood_forecasting",
+    "clinical_forest_plot",
+    "geospatial_flood_map",
+    "omics_volcano_heatmap",
+    "graphical_abstract_design_only",
+    "figure_audit_failure_case"
+  ],
+  "validation_scripts": [
+    "validate_skill.py",
+    "validate_figure_spec.py",
+    "validate_visual_claim_ledger.py",
+    "validate_handoff_artifact.py",
+    "validate_contracts.py",
+    "validate_memory.py",
+    "audit_accessibility.py",
+    "audit_journal_profile.py",
+    "audit_export_files.py",
+    "audit_reproducibility.py",
+    "audit_repro_lock.py",
+    "audit_journal_verification.py",
+    "audit_visual_artifact.py",
+    "migrate_memory.py",
+    "build_figure_set_manifest.py",
+    "audit_figure_set_consistency.py",
+    "build_submission_package_index.py",
+    "audit_submission_readiness.py",
+    "validate_style_tokens.py",
+    "validate_render_template_registry.py",
+    "audit_render_quality.py",
+    "render_from_registry.py",
+    "validate_library_pool.py",
+    "probe_python_environment.py",
+    "inspect_dataset.py",
+    "select_library_stack.py",
+    "build_dependency_plan.py",
+    "plan_external_data.py",
+    "validate_data_acquisition_plan.py"
+  ],
+  "memory_scripts": [
+    "_memory.py",
+    "append_visual_claim.py",
+    "init_memory.py",
+    "update_dataset_registry.py",
+    "update_figure_passport.py",
+    "summarize_memory.py",
+    "forget_memory.py",
+    "resume_figure_project.py",
+    "append_figure_decision.py",
+    "build_pipeline_dashboard.py",
+    "build_dependency_plan.py",
+    "plan_external_data.py"
+  ],
+  "canonical_agents": {
+    "intake-design": [
+      "figure_intake_agent",
+      "scientific_message_agent"
+    ],
+    "statistical-plots": [
+      "chart_selection_agent",
+      "statistical_honesty_agent"
+    ],
+    "model-performance": [
+      "performance_diagnostic_agent",
+      "validation_split_agent",
+      "uncertainty_calibration_agent"
+    ],
+    "clinical-biomedical": [
+      "clinical_reporting_agent",
+      "denominator_endpoint_agent"
+    ],
+    "geospatial-maps": [
+      "spatial_integrity_agent",
+      "cartographic_design_agent"
+    ],
+    "omics-bioinformatics": [
+      "omics_threshold_agent",
+      "bioinformatics_visual_agent"
+    ],
+    "multipanel-composer": [
+      "layout_architect_agent",
+      "panel_consistency_agent"
+    ],
+    "schematic-mechanism": [
+      "mechanism_claim_agent"
+    ],
+    "graphical-abstract": [
+      "visual_narrative_agent",
+      "evidence_boundary_agent"
+    ],
+    "journal-style-translator": [
+      "journal_policy_agent",
+      "style_token_agent"
+    ],
+    "caption-alttext": [
+      "caption_integrity_agent",
+      "alt_text_agent"
+    ],
+    "figure-auditor": [
+      "visual_integrity_reviewer_agent",
+      "statistical_reviewer_agent",
+      "accessibility_reviewer_agent"
+    ],
+    "export-packager": [
+      "export_manifest_agent",
+      "reproducibility_packager_agent"
+    ]
+  },
+  "status": "library-intelligence-runtime",
+  "memory_policy": {
+    "default_location": ".codex/scientific-figure-memory",
+    "storage_boundary": "project_local_only",
+    "installed_skill_memory": "forbidden",
+    "append_only_ledgers": [
+      "visual_claim_ledger.jsonl",
+      "quality_audit_history.jsonl",
+      "revision_boundary_ledger.jsonl",
+      "journal_guideline_verification.jsonl",
+      "visual_audit_artifact.jsonl",
+      "cross_figure_consistency_history.jsonl",
+      "submission_readiness_history.jsonl",
+      "figure_decision_log.jsonl",
+      "visual_regression_history.jsonl",
+      "dependency_plan_history.jsonl",
+      "external_data_plan_history.jsonl"
+    ],
+    "style_memory": "optional_user_approved"
+  },
+  "journal_compliance_policy": "verified_only_with_current_official_or_user_provided_guidelines",
+  "data_policy": "no_data_fabrication",
+  "runtime_notes": [
+    "Command aliases are prompt recipes under commands/ and are not native Codex slash commands.",
+    "Workflow agent wording is adapted into inline role-prompt usage unless the user explicitly requests parallel Codex subagents.",
+    "Stored journal profiles are estimates until current official or user-provided guidelines are checked in the active task.",
+    "Data-derived figure outputs require supplied data or runnable code; missing data outputs must be marked NON_DATA_MOCKUP.",
+    "Underspecified figure requests route to fig-scope/intake-design before rendering.",
+    "Renderer registry entries must validate before registry-based rendering.",
+    "Visual regression audits are render-quality checks, not proof of scientific correctness.",
+    "Library pool selection is plan-only and must not install packages automatically.",
+    "External data acquisition is plan-only unless the user explicitly approves download with complete provenance."
+  ]
+}

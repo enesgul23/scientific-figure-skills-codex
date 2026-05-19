@@ -1,0 +1,23 @@
+caption_package:
+  figure_id: figure_01
+  caption_title: "Model agreement and error diagnostics for flood forecasting."
+  caption_body: "Panel a compares observed and predicted discharge values. Panel b shows residual structure by predicted discharge. Panel c summarizes model metrics when supplied. Panel d is reserved for uncertainty or calibration diagnostics when interval or probability outputs are available."
+  panel_legend:
+    - "a, Observed-vs-predicted parity plot."
+    - "b, Residual diagnostic plot."
+    - "c, Metric comparison panel."
+    - "d, Uncertainty or calibration panel."
+  notes:
+    - "No numeric metrics are reported because data are not supplied in this fixture."
+  in_text_reference: "Figure 1 summarizes planned model-performance diagnostics."
+  short_alt_text: "Planned four-panel model-performance figure for flood forecasting diagnostics."
+  extended_alt_text: "The planned figure contains parity, residual, metric comparison, and uncertainty or calibration panels. It is a design-only fixture because raw data are not supplied."
+  claim_alignment_summary:
+    supported_claims:
+      - "The figure is a planned diagnostic layout."
+    unsupported_claims_removed:
+      - "No model superiority claim is made."
+  missing_details:
+    - observed and predicted values
+    - split labels
+    - uncertainty intervals

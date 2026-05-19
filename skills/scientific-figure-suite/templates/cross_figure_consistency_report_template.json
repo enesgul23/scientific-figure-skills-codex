@@ -1,0 +1,10 @@
+{
+  "cross_figure_consistency_report": {
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "project_id": "project-id",
+    "result": "PASS_WITH_WARNINGS",
+    "checks": [],
+    "blocking_issues": [],
+    "warnings": []
+  }
+}

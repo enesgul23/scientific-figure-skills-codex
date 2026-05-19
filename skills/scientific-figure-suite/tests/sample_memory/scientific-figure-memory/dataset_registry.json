@@ -1,0 +1,22 @@
+{
+  "dataset_registry": {
+    "datasets": [
+      {
+        "columns": {
+          "q_obs": "observed discharge",
+          "q_pred": "predicted discharge",
+          "time": "timestamp"
+        },
+        "dataset_id": "flood_events_v2",
+        "last_validated": "2026-05-19",
+        "missing_values": "not checked in fixture",
+        "path": "data/flood_events_v2.csv",
+        "preprocessing": "fixture metadata only",
+        "units": {
+          "q_obs": "m3/s",
+          "q_pred": "m3/s"
+        }
+      }
+    ]
+  }
+}

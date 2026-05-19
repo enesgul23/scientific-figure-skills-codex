@@ -1,0 +1,48 @@
+{
+  "memory_manifest": {
+    "active_figure_id": "fig_01",
+    "created_at": "2026-05-19T16:30:00Z",
+    "current_stage": "figure-auditor",
+    "files": {
+      "author_visual_style_profile": "author_visual_style_profile.json",
+      "cross_figure_consistency_history": "cross_figure_consistency_history.jsonl",
+      "dataset_registry": "dataset_registry.json",
+      "figure_decision_log": "figure_decision_log.jsonl",
+      "figure_passport": "figure_passport.json",
+      "figure_set_manifest": "figure_set_manifest.json",
+      "dependency_plan_history": "dependency_plan_history.jsonl",
+      "external_data_plan_history": "external_data_plan_history.jsonl",
+      "journal_targets": "journal_targets.json",
+      "project_profile": "project_profile.json",
+      "quality_audit_history": "quality_audit_history.jsonl",
+      "revision_boundary_ledger": "revision_boundary_ledger.jsonl",
+      "journal_guideline_verification": "journal_guideline_verification.jsonl",
+      "submission_package_index": "submission_package_index.json",
+      "submission_readiness_history": "submission_readiness_history.jsonl",
+      "visual_audit_artifact": "visual_audit_artifact.jsonl",
+      "visual_regression_history": "visual_regression_history.jsonl",
+      "visual_claim_ledger": "visual_claim_ledger.jsonl"
+    },
+    "memory_level": "RESEARCH_GRADE",
+    "pipeline_state": {
+      "active_stage": "figure-auditor",
+      "blocked_stages": [],
+      "completed_stages": [
+        "INTAKE",
+        "DOMAIN_DESIGN"
+      ],
+      "last_artifacts": [],
+      "next_actions": [
+        "Verify current target journal guidance before submission."
+      ],
+      "readiness_summary": "NOT_RUN"
+    },
+    "project_id": "flood-gnn-paper-2026",
+    "schema_version": "0.6.0",
+    "unresolved_requirements": [
+      "Current target journal figure guidance has not been verified."
+    ],
+    "updated_at": "2026-05-19T16:30:00Z",
+    "validation_status": "NOT_RUN"
+  }
+}

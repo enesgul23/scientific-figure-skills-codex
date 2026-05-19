@@ -1,0 +1,21 @@
+figure_id: figure_01
+figure_type: model_performance_multipanel
+data_status: PROVIDED
+target_journal:
+  name: Nature
+  style_status: ESTIMATED
+  guideline_source: stored_estimate
+  unresolved_requirements:
+    - current official Nature artwork guidance not checked in this task
+axes:
+  x:
+    label: Observed discharge
+    units: "m3/s"
+  y:
+    label: Predicted discharge
+    units: "m3/s"
+export:
+  formats: [pdf, svg, png]
+  dpi: 300
+caption: figure_01_caption.md
+alt_text: figure_01_alt_text.md

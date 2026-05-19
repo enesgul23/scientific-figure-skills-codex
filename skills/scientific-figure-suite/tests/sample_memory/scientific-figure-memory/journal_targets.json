@@ -1,0 +1,17 @@
+{
+  "journal_targets": {
+    "targets": [
+      {
+        "checked_at": null,
+        "guideline_source": "unknown",
+        "journal": "Nature Water",
+        "notes": [],
+        "preferred_formats": [],
+        "status": "UNVERIFIED",
+        "unresolved_requirements": [
+          "Current official Nature Water figure guidelines have not been checked."
+        ]
+      }
+    ]
+  }
+}

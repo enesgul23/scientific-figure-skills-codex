@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Journal Guideline Verification Entry",
+  "type": "object",
+  "required": ["created_at", "journal", "source_type", "status", "source_ref", "requirements"],
+  "properties": {
+    "created_at": {"type": "string"},
+    "journal": {"type": "string"},
+    "source_type": {"enum": ["live_official", "user_provided", "stored_estimate", "unknown"]},
+    "status": {"enum": ["VERIFIED", "ESTIMATED", "UNVERIFIED"]},
+    "source_ref": {"type": ["string", "null"]},
+    "requirements": {"type": "object"},
+    "checked_by": {"type": ["string", "null"]},
+    "notes": {"type": "array"}
+  },
+  "additionalProperties": true
+}

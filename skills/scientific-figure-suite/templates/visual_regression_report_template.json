@@ -1,0 +1,25 @@
+{
+  "visual_regression_report": {
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "figure_id": "fig_01",
+    "result": "PASS",
+    "files": [
+      {
+        "path": "figures/output/fig_01.png",
+        "format": "png",
+        "exists": true,
+        "sha256": "sha256",
+        "byte_size": 0,
+        "width_px": 0,
+        "height_px": 0,
+        "pixel_variance": 0.0,
+        "svg_text_present": null,
+        "baseline_status": "NOT_RUN",
+        "notes": []
+      }
+    ],
+    "blockers": [],
+    "warnings": [],
+    "baseline_dir": null
+  }
+}

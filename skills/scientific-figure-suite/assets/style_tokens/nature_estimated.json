@@ -1,0 +1,44 @@
+{
+  "profile_name": "nature_estimated",
+  "status": "ESTIMATED",
+  "requires_live_verification": true,
+  "figure_width_mm": {
+    "single": 89,
+    "one_and_half_min": 120,
+    "one_and_half_max": 136,
+    "double": 183
+  },
+  "page_depth_mm": 247,
+  "font": {
+    "preferred": ["Helvetica", "Arial"],
+    "fallback": ["DejaVu Sans"]
+  },
+  "accessibility": {
+    "minimum_font_size_pt": 5,
+    "colorblind_safe": true,
+    "palette": {
+      "categorical": ["#0072B2", "#D55E00", "#009E73", "#CC79A7", "#E69F00"],
+      "sequential": "viridis",
+      "diverging": "cividis"
+    }
+  },
+  "text_size_pt": {
+    "panel_label": 8,
+    "other_min": 5,
+    "other_max": 7
+  },
+  "line_weight_pt": {
+    "min": 0.25,
+    "max": 1.0
+  },
+  "export": {
+    "vector": ["pdf", "svg", "eps"],
+    "raster": ["tiff", "png"],
+    "photo_dpi_min": 300,
+    "photo_dpi_max": 600
+  },
+  "color_space": {
+    "preferred": "RGB",
+    "acceptable": ["CMYK"]
+  }
+}

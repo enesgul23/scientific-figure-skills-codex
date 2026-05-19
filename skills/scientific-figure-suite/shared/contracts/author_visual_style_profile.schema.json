@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Author Visual Style Profile",
+  "type": "object",
+  "required": ["author_visual_style_profile"],
+  "properties": {
+    "author_visual_style_profile": {
+      "type": "object",
+      "required": ["status", "created_at", "source_summary", "preferences", "conflicts"],
+      "properties": {
+        "status": {"enum": ["NONE", "PARTIAL", "USER_APPROVED", "STALE", "FORGOTTEN"]},
+        "created_at": {"type": "string"},
+        "updated_at": {"type": "string"},
+        "source_summary": {"type": "string"},
+        "preferences": {"type": "object"},
+        "conflicts": {"type": "array"},
+        "application_policy": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

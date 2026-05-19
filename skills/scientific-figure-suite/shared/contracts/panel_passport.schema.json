@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Panel Passport",
+  "type": "object",
+  "required": ["panel_id", "purpose", "data_source", "claim_refs", "outputs", "status_tags"],
+  "properties": {
+    "panel_id": {"type": "string"},
+    "purpose": {"type": "string"},
+    "data_source": {"type": ["string", "null"]},
+    "claim_refs": {"type": "array", "items": {"type": "string"}},
+    "script_ref": {"type": ["string", "null"]},
+    "outputs": {"type": "array", "items": {"type": "string"}},
+    "status_tags": {"type": "object"},
+    "repro_lock": {"type": ["object", "null"]},
+    "stale": {"type": "boolean"},
+    "stale_reasons": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": true
+}

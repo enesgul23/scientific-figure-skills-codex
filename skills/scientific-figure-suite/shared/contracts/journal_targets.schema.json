@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Journal Targets Memory",
+  "type": "object",
+  "required": ["journal_targets"],
+  "properties": {
+    "journal_targets": {
+      "type": "object",
+      "required": ["targets"],
+      "properties": {
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["journal", "status", "guideline_source", "unresolved_requirements"],
+            "properties": {
+              "journal": {"type": "string"},
+              "status": {"enum": ["VERIFIED", "ESTIMATED", "UNVERIFIED"]},
+              "guideline_source": {"enum": ["live_official", "user_provided", "stored_estimate", "unknown"]},
+              "checked_at": {"type": ["string", "null"]},
+              "preferred_formats": {"type": "array"},
+              "unresolved_requirements": {"type": "array"}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

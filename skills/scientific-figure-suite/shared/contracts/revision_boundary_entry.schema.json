@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Revision Boundary Ledger Entry",
+  "type": "object",
+  "required": ["kind", "created_at"],
+  "properties": {
+    "kind": {"enum": ["boundary", "resume", "forget"]},
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{12}$"},
+    "hash_mode": {"enum": ["SFS_CANONICAL_V1"]},
+    "created_at": {"type": "string"},
+    "figure_id": {"type": ["string", "null"]},
+    "from_version": {"type": ["string", "null"]},
+    "to_version": {"type": ["string", "null"]},
+    "completed_stage": {"type": ["string", "null"]},
+    "next_stage": {"type": ["string", "null"]},
+    "reason": {"type": ["string", "null"]},
+    "artifact_refs": {"type": "array"},
+    "verification_status": {"enum": ["VERIFIED", "STALE", "UNVERIFIED"]},
+    "consumes_hash": {"type": "string", "pattern": "^[0-9a-f]{12}$"}
+  },
+  "additionalProperties": true
+}

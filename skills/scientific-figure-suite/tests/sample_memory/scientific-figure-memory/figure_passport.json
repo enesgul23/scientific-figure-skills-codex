@@ -1,0 +1,72 @@
+{
+  "figure_passport": {
+    "figures": [
+      {
+        "chart_type": "observed-predicted parity scatter",
+        "claim_refs": [
+          "claim:c01"
+        ],
+        "created_at": "2026-05-19T16:30:00Z",
+        "current_version": "v1",
+        "dataset_refs": [
+          "dataset:flood_events_v2"
+        ],
+        "figure_id": "fig_01",
+        "journal_profile": "Nature Water",
+        "purpose": "Compare observed and predicted discharge.",
+        "panels": [
+          {
+            "claim_refs": [
+              "claim:c01"
+            ],
+            "data_source": "dataset:flood_events_v2",
+            "outputs": [
+              "figures/output/fig_01_v1.pdf"
+            ],
+            "panel_id": "a",
+            "purpose": "Observed-predicted agreement.",
+            "repro_lock": null,
+            "script_ref": "figures/scripts/fig_01.py",
+            "stale": false,
+            "stale_reasons": [],
+            "status_tags": {
+              "DATA_STATUS": "PROVIDED",
+              "INTEGRITY_STATUS": "PASS_WITH_WARNINGS",
+              "REPRODUCIBILITY_STATUS": "CODED",
+              "STYLE_STATUS": "UNVERIFIED"
+            }
+          }
+        ],
+        "status_tags": {
+          "DATA_STATUS": "PROVIDED",
+          "INTEGRITY_STATUS": "PASS_WITH_WARNINGS",
+          "REPRODUCIBILITY_STATUS": "CODED",
+          "STYLE_STATUS": "UNVERIFIED"
+        },
+        "title": "Observed and predicted discharge",
+        "updated_at": "2026-05-19T16:30:00Z",
+        "versions": [
+          {
+            "created_at": "2026-05-19T16:30:00Z",
+            "notes": "Fixture version.",
+            "outputs": [
+              "figures/output/fig_01_v1.pdf",
+              "figures/output/fig_01_v1.svg",
+              "figures/output/fig_01_v1.png"
+            ],
+            "script": "figures/scripts/fig_01.py",
+            "status_tags": {
+              "DATA_STATUS": "PROVIDED",
+              "INTEGRITY_STATUS": "PASS_WITH_WARNINGS",
+              "REPRODUCIBILITY_STATUS": "CODED",
+              "STYLE_STATUS": "UNVERIFIED"
+            },
+            "version": "v1"
+          }
+        ]
+      }
+    ],
+    "schema_version": "0.6.0",
+    "updated_at": "2026-05-19T16:30:00Z"
+  }
+}

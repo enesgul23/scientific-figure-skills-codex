@@ -1,0 +1,17 @@
+{
+  "kind": "boundary",
+  "hash": "000000000000",
+  "hash_mode": "SFS_CANONICAL_V1",
+  "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "figure_id": "fig_01",
+  "from_version": "v1",
+  "to_version": "v2",
+  "completed_stage": "figure-auditor",
+  "next_stage": "export-packager",
+  "reason": "Checkpoint created before continuing in a fresh session.",
+  "artifact_refs": [
+    "figure_passport.json",
+    "quality_audit_history.jsonl"
+  ],
+  "verification_status": "UNVERIFIED"
+}

@@ -1,0 +1,20 @@
+layout_name: four_panel_grid
+status: template
+canvas:
+  width_mm: 180
+  height_mm: 130
+grid:
+  rows: 2
+  columns: 2
+panels:
+  - id: a
+    role: primary
+  - id: b
+    role: diagnostic
+  - id: c
+    role: comparator
+  - id: d
+    role: summary
+legend:
+  placement: bottom
+  shared: true

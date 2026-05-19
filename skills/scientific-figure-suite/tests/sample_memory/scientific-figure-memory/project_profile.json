@@ -1,0 +1,20 @@
+{
+  "project_profile": {
+    "color_policy": "colorblind-safe",
+    "created_at": "2026-05-19T16:30:00Z",
+    "default_export": [
+      "pdf",
+      "svg",
+      "png"
+    ],
+    "field": "hydrology / hydro-AI",
+    "figure_style": "minimal, high-density, journal-ready",
+    "notes": [],
+    "preferred_language": "English",
+    "project_id": "flood-gnn-paper-2026",
+    "target_journals": [
+      "Nature Water"
+    ],
+    "updated_at": "2026-05-19T16:30:00Z"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Journal Style Report",
+  "type": "object",
+  "required": ["journal_style"],
+  "properties": {
+    "journal_style": {
+      "type": "object",
+      "required": ["target", "guideline_source", "status", "applied_decisions", "unresolved_requirements", "compliance_statement"],
+      "properties": {
+        "target": {"type": "string"},
+        "guideline_source": {"type": "string"},
+        "status": {"enum": ["VERIFIED", "ESTIMATED", "UNVERIFIED"]},
+        "applied_decisions": {"type": "object"},
+        "unresolved_requirements": {"type": "array"},
+        "compliance_statement": {"type": "string"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

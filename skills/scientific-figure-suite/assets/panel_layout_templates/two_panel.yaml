@@ -1,0 +1,18 @@
+layout_name: two_panel
+status: template
+canvas:
+  width_mm: 180
+  height_mm: 85
+grid:
+  rows: 1
+  columns: 2
+panels:
+  - id: a
+    role: primary
+    width_fraction: 0.5
+  - id: b
+    role: secondary
+    width_fraction: 0.5
+legend:
+  placement: bottom
+  shared: true

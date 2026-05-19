@@ -1,0 +1,18 @@
+layout_name: nature_double_column_estimated
+status: ESTIMATED
+requires_live_verification: true
+canvas:
+  width_mm: 183
+  height_mm: 130
+grid:
+  rows: flexible
+  columns: flexible
+panel_labels:
+  case: lowercase
+  weight: bold
+  position: upper_left
+legend:
+  placement: compact_unused_space_or_bottom
+export:
+  vector: [pdf, svg]
+  raster_review: png

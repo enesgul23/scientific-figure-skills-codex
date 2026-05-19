@@ -1,0 +1,33 @@
+figure_intake:
+  goal: "Plan a model-performance figure for three flood forecasting models."
+  target_journal:
+    name: Nature
+    article_type: research_article
+    style_status: ESTIMATED
+    guideline_source: stored_estimate
+  target_audience: "hydrology and AI reviewers"
+  data_status: MISSING
+  style_status: ESTIMATED
+  reproducibility_status: DESIGN_ONLY
+  export_status: NEEDS_RENDER
+  integrity_status: PASS_WITH_WARNINGS
+  figure_type_candidates:
+    - type: model_performance_multipanel
+      rationale: "The user asked for parity, residual, metric, and uncertainty diagnostics."
+      required_data:
+        - observed values
+        - predicted values
+        - model names
+        - split labels
+  selected_workflow_chain:
+    - intake-design
+    - model-performance
+    - multipanel-composer
+    - journal-style-translator
+    - caption-alttext
+    - figure-auditor
+  missing_inputs:
+    - "Prediction table with observed, predicted, model, and split columns."
+  risk_flags:
+    - "Do not invent NSE, KGE, RMSE, or uncertainty intervals."
+  next_step: "Request data table before rendering."

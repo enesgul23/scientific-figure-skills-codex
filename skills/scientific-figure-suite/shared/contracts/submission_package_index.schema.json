@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Submission Package Index",
+  "type": "object",
+  "required": ["submission_package_index"],
+  "properties": {
+    "submission_package_index": {
+      "type": "object",
+      "required": ["schema_version", "project_id", "created_at", "updated_at", "files", "index_status"],
+      "properties": {
+        "schema_version": {"type": "string"},
+        "project_id": {"type": "string"},
+        "created_at": {"type": "string"},
+        "updated_at": {"type": "string"},
+        "package_root": {"type": ["string", "null"]},
+        "files": {"type": "array"},
+        "index_status": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL", "NOT_RUN"]}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

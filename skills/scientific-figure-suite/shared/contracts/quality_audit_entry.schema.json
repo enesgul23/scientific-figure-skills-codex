@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quality Audit History Entry",
+  "type": "object",
+  "required": ["created_at", "figure_id", "gate", "result"],
+  "properties": {
+    "created_at": {"type": "string"},
+    "figure_id": {"type": "string"},
+    "figure_version": {"type": ["string", "null"]},
+    "gate": {"type": "string"},
+    "result": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL", "NOT_APPLICABLE", "NOT_VERIFIABLE"]},
+    "evidence": {"type": ["string", "null"]},
+    "required_fix": {"type": ["string", "null"]},
+    "reviewer": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

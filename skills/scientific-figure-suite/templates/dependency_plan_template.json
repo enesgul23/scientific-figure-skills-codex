@@ -1,0 +1,18 @@
+{
+  "dependency_plan": {
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "chart_type": null,
+    "selected_stack": [],
+    "required_libraries": [],
+    "recommended_libraries": [],
+    "optional_libraries": [],
+    "blocked_libraries": [],
+    "install_commands": [],
+    "import_checks": [],
+    "selection_rationale": [],
+    "fallback_renderer": null,
+    "reproducibility_notes": [
+      "This is an install plan only. Do not install packages without explicit user approval."
+    ]
+  }
+}

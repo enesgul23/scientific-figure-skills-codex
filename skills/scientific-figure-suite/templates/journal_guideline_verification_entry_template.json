@@ -1,0 +1,16 @@
+{
+  "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "journal": "Target Journal",
+  "source_type": "unknown",
+  "status": "UNVERIFIED",
+  "source_ref": null,
+  "requirements": {
+    "figure_size": null,
+    "formats": [],
+    "resolution": null,
+    "color_space": null,
+    "font": null
+  },
+  "checked_by": "scientific-figure-suite",
+  "notes": []
+}

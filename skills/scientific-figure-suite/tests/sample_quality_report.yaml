@@ -1,0 +1,25 @@
+figure_quality_report:
+  figure_id: figure_01
+  target_journal: Nature
+  style_status: ESTIMATED
+  data_status: MISSING
+  overall_integrity_status: PASS_WITH_WARNINGS
+  gate_results:
+    - gate: G1 Data provenance
+      result: PASS_WITH_WARNINGS
+      evidence: "Data are explicitly missing."
+      required_fix: "Provide prediction table before rendering."
+    - gate: G8 Journal style status
+      result: PASS_WITH_WARNINGS
+      evidence: "Stored Nature estimate used."
+      required_fix: "Verify current official guidance before submission."
+    - gate: G10 Reproducibility
+      result: PASS_WITH_WARNINGS
+      evidence: "Design-only fixture."
+      required_fix: "Provide data and code for final package."
+  blocking_issues: []
+  required_fixes_before_submission:
+    - "Provide data and rerunnable figure code."
+    - "Verify target journal guidance."
+  optional_improvements:
+    - "Add domain-shift diagnostic if basin metadata are available."

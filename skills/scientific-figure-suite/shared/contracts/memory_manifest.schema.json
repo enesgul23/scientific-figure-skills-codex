@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Figure Memory Manifest",
+  "type": "object",
+  "required": ["memory_manifest"],
+  "properties": {
+    "memory_manifest": {
+      "type": "object",
+      "required": ["schema_version", "project_id", "memory_level", "created_at", "updated_at", "active_figure_id", "pipeline_state", "validation_status"],
+      "properties": {
+        "schema_version": {"type": "string"},
+        "project_id": {"type": "string"},
+        "memory_level": {"enum": ["LIGHTWEIGHT", "RESEARCH_GRADE", "SUBMISSION_GRADE"]},
+        "created_at": {"type": "string"},
+        "updated_at": {"type": "string"},
+        "active_figure_id": {"type": ["string", "null"]},
+        "current_stage": {"type": ["string", "null"]},
+        "pipeline_state": {
+          "type": "object",
+          "required": ["active_stage", "completed_stages", "blocked_stages", "last_artifacts", "next_actions", "readiness_summary"],
+          "properties": {
+            "active_stage": {"type": ["string", "null"]},
+            "completed_stages": {"type": "array"},
+            "blocked_stages": {"type": "array"},
+            "last_artifacts": {"type": "array"},
+            "next_actions": {"type": "array"},
+            "readiness_summary": {"enum": ["READY", "READY_WITH_WARNINGS", "BLOCKED", "NOT_RUN"]}
+          },
+          "additionalProperties": true
+        },
+        "validation_status": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL", "NOT_RUN"]},
+        "unresolved_requirements": {"type": "array"},
+        "files": {"type": "object"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

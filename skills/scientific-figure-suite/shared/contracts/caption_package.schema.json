@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Caption Package",
+  "type": "object",
+  "required": ["caption_package"],
+  "properties": {
+    "caption_package": {
+      "type": "object",
+      "required": ["figure_id", "caption_title", "caption_body", "panel_legend", "notes", "short_alt_text", "extended_alt_text", "claim_alignment_summary"],
+      "properties": {
+        "figure_id": {"type": "string"},
+        "caption_title": {"type": "string"},
+        "caption_body": {"type": "string"},
+        "panel_legend": {"type": "array"},
+        "notes": {"type": "array"},
+        "short_alt_text": {"type": "string"},
+        "extended_alt_text": {"type": "string"},
+        "claim_alignment_summary": {"type": "object"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

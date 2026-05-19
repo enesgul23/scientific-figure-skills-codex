@@ -1,0 +1,5 @@
+PyYAML>=6.0
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+Pillow>=10.0

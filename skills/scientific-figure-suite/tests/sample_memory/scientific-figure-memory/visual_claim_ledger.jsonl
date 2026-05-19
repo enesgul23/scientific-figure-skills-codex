@@ -1,0 +1,1 @@
+{"caption_alignment":"aligned","claim_id":"claim:c01","claim_text":"The model predictions track observed discharge in the validation set.","data_source":"dataset:flood_events_v2","figure_id":"fig_01","risk_level":"medium","support_status":"supported","visual_element":"parity scatter and 1:1 line"}

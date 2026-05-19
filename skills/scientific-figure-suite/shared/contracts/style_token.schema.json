@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scientific Figure Style Token",
+  "type": "object",
+  "required": ["profile_name", "status", "requires_live_verification", "font", "accessibility", "export"],
+  "properties": {
+    "profile_name": {"type": "string"},
+    "status": {"enum": ["VERIFIED", "ESTIMATED", "UNVERIFIED"]},
+    "requires_live_verification": {"type": "boolean"},
+    "font": {"type": "object"},
+    "accessibility": {
+      "type": "object",
+      "required": ["minimum_font_size_pt", "colorblind_safe", "palette"],
+      "properties": {
+        "minimum_font_size_pt": {"type": "number", "minimum": 5},
+        "colorblind_safe": {"type": "boolean"},
+        "palette": {"type": "object"}
+      },
+      "additionalProperties": true
+    },
+    "export": {"type": "object"},
+    "unresolved_requirements": {"type": "array"}
+  },
+  "additionalProperties": true
+}

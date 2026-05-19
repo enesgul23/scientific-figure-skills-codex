@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Figure Set Manifest",
+  "type": "object",
+  "required": ["figure_set_manifest"],
+  "properties": {
+    "figure_set_manifest": {
+      "type": "object",
+      "required": ["schema_version", "project_id", "created_at", "updated_at", "figures", "style_consistency_status", "readiness_status"],
+      "properties": {
+        "schema_version": {"type": "string"},
+        "project_id": {"type": "string"},
+        "created_at": {"type": "string"},
+        "updated_at": {"type": "string"},
+        "figures": {"type": "array"},
+        "style_consistency_status": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL", "NOT_RUN"]},
+        "readiness_status": {"enum": ["READY", "READY_WITH_WARNINGS", "BLOCKED", "NOT_RUN"]},
+        "unresolved_requirements": {"type": "array"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Visual Regression Report",
+  "type": "object",
+  "required": ["visual_regression_report"],
+  "properties": {
+    "visual_regression_report": {
+      "type": "object",
+      "required": ["created_at", "figure_id", "result", "files", "blockers", "warnings"],
+      "properties": {
+        "created_at": {"type": "string"},
+        "figure_id": {"type": "string"},
+        "result": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL"]},
+        "files": {"type": "array"},
+        "blockers": {"type": "array"},
+        "warnings": {"type": "array"},
+        "baseline_dir": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

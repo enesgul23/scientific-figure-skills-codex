@@ -1,0 +1,12 @@
+{
+  "data_acquisition_plan": {
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "chart_type": null,
+    "decision": "NOT_REQUIRED",
+    "approval_required": false,
+    "download_allowed": false,
+    "items": [],
+    "risks": [],
+    "blockers": []
+  }
+}
