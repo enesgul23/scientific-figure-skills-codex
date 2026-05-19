@@ -13,6 +13,7 @@ adding command aliases, workflow modes, or validator expectations.
 | `registry-render` | Balanced | Registry-selected template render and manifest | High | `fig-render-template` |
 | `audit` | Fidelity | Quality report with gates and fixes | Medium | `fig-audit`, "review/check this figure" |
 | `render-audit` | Fidelity | Visual QA and regression sanity report | Medium | `fig-audit-render` |
+| `multipanel-layout-audit` | Fidelity | Optical-grid, colorbar, semantic color, and direct-label layout audit | High | `fig-audit-multipanel-layout` |
 | `caption` | Fidelity | Caption, note, in-text reference, alt text | Medium | `fig-caption`, "write caption" |
 | `style` | Fidelity | Journal style report and token decisions | Medium | `fig-style`, "Nature-style", "journal-ready" |
 | `export` | Fidelity | Export package and manifest | Low | `fig-export`, "PDF/SVG/TIFF package" |
@@ -47,6 +48,8 @@ adding command aliases, workflow modes, or validator expectations.
 - `external-data-planning` must not download data automatically and must record source, license, citation, role, and contamination risk when external data are proposed.
 - `audit` can run on partial materials, but unverifiable gates must stay visible.
 - `render-audit` checks output-file quality only; it does not prove scientific correctness.
+- `multipanel-layout-audit` must not accept automatic layout alone when colorbars
+  or direct labels create spacing/collision risks.
 - `style` can be `VERIFIED` only with current official or user-provided guidance.
 - `full` must include `figure-auditor` before `export-packager`.
 - Memory modes must use project-local `.codex/scientific-figure-memory/` files and must not store project memory in the installed skill folder.
@@ -56,6 +59,6 @@ adding command aliases, workflow modes, or validator expectations.
 
 | Spectrum | Modes |
 |---|---|
-| Fidelity | audit, render-audit, caption, style, export, memory-init, memory-load, memory-update, memory-forget, memory-resume, memory-migrate, repro-lock-audit, journal-verify, visual-artifact-audit, figure-set-build, figure-set-audit, submission-package-build, submission-readiness, pipeline-status, library-planning, environment-probe, render-stack-selection, external-data-planning |
+| Fidelity | audit, render-audit, multipanel-layout-audit, caption, style, export, memory-init, memory-load, memory-update, memory-forget, memory-resume, memory-migrate, repro-lock-audit, journal-verify, visual-artifact-audit, figure-set-build, figure-set-audit, submission-package-build, submission-readiness, pipeline-status, library-planning, environment-probe, render-stack-selection, external-data-planning |
 | Balanced | render, registry-render, revision, full |
 | Originality | planning, scoping |

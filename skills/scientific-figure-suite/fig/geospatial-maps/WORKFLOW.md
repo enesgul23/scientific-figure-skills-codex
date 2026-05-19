@@ -35,8 +35,10 @@ Produce map figure specification, cartographic requirements, code outline or run
 2. Identify layer types: vector, raster, point station, boundary, basemap, or model output.
 3. Choose map encoding and color ramp appropriate to the mapped variable.
 4. Add scale bar, legend, units, source, projection, and north arrow when appropriate.
-5. Use inset maps when geographic context is otherwise unclear.
-6. Export linework as vector and continuous rasters at suitable resolution.
+5. Use direct station labels only for a small controlled subset with collision
+   checks; use indexed labels, inset tables, or legends for dense station sets.
+6. Use inset maps when geographic context is otherwise unclear.
+7. Export linework as vector and continuous rasters at suitable resolution.
 
 ## Quality Gates
 
@@ -45,6 +47,8 @@ Produce map figure specification, cartographic requirements, code outline or run
 - color ramp is not misleading
 - choropleth bins are justified
 - basemap licensing/source is not hidden
+- direct station labels are sparse, controlled, and collision-checked
+- colorbar labels and spacing are checked before final multi-panel composition
 
 ## Failure Modes
 
@@ -53,6 +57,7 @@ Produce map figure specification, cartographic requirements, code outline or run
 - basemap source is unverified
 - choropleth bins distort interpretation
 - raster resolution is insufficient for the target output
+- station labels overlap or crowd map evidence
 
 ## Memory Integration
 

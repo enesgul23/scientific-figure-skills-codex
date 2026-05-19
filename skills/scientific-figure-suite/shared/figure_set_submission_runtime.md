@@ -6,7 +6,8 @@ Defines the manuscript-level runtime. v0.4 aggregates individual figure and
 panel memory into a figure set, indexes exported package files, checks
 cross-figure consistency, and records a submission-readiness decision. v0.6
 adds render-quality, dependency-plan, and external-data decision evidence as
-readiness inputs.
+readiness inputs. v0.7 adds multi-panel layout audit evidence for optical-grid,
+colorbar, semantic color, and direct-label risks.
 
 ## Memory Files
 
@@ -19,6 +20,7 @@ Project-local files:
   cross_figure_consistency_history.jsonl
   submission_readiness_history.jsonl
   visual_regression_history.jsonl
+  multipanel_layout_history.jsonl
   dependency_plan_history.jsonl
   external_data_plan_history.jsonl
 ```
@@ -34,8 +36,10 @@ installed skill directory.
 4. Audit cross-figure consistency.
 5. Build `submission_package_index.json` from exported files.
 6. Audit render quality and visual regression for exported files when outputs exist.
-7. Audit submission readiness.
-8. Append readiness decision to `submission_readiness_history.jsonl`.
+7. Audit multi-panel layout quality when figures include multiple panels,
+   colorbars, map/scatter labels, or shared legends.
+8. Audit submission readiness.
+9. Append readiness decision to `submission_readiness_history.jsonl`.
 
 ## Figure Set Manifest
 
@@ -66,6 +70,7 @@ Check:
 - stale figures are visible
 - captions, alt text, visual claims, and audit artifacts exist where required
 - latest render-quality audit has not failed
+- latest multi-panel layout audit has not failed when applicable
 
 ## Submission Package Index
 
@@ -80,7 +85,8 @@ Allowed readiness results:
 - `READY`: no blockers and journal status is verified or explicitly waived.
 - `READY_WITH_WARNINGS`: no blockers but warnings remain.
 - `BLOCKED`: stale artifacts, missing required files, missing data/code for
-  data-derived figures, missing audit evidence, or unsupported journal claims.
+  data-derived figures, failed layout/render audits, missing audit evidence, or
+  unsupported journal claims.
 - `NOT_RUN`: readiness was not evaluated.
 
 Do not use "submission-ready" wording unless the result is `READY` and the

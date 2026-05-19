@@ -16,6 +16,7 @@ python scripts/validate_visual_claim_ledger.py tests/sample_visual_claim_ledger.
 python scripts/validate_style_tokens.py
 python scripts/validate_render_template_registry.py
 python scripts/validate_library_pool.py
+python scripts/audit_multipanel_layout.py --layout tests/sample_multipanel_layout.yaml
 python scripts/validate_memory.py --memory-dir tests/sample_memory/scientific-figure-memory
 python scripts/audit_repro_lock.py --memory-dir tests/sample_memory/scientific-figure-memory
 python scripts/build_pipeline_dashboard.py --memory-dir tests/sample_memory/scientific-figure-memory --no-update-manifest
@@ -29,6 +30,6 @@ python scripts/validate_handoff_artifact.py tests/sample_submission_manifest.jso
 Expected result: all commands return `PASS`.
 
 `quick_validate.py` also performs temporary render-registry smoke tests and
-render-quality checks outside the skill package. v0.6.0 also smoke-tests
-dataset inspection, environment probing, dependency planning, render with a
-dependency plan, and external data plan validation.
+render-quality checks outside the skill package. It also smoke-tests dataset
+inspection, environment probing, dependency planning, render with a dependency
+plan, external data plan validation, and v0.7 multi-panel layout audit behavior.

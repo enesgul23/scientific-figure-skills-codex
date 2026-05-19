@@ -8,6 +8,7 @@ Review scientific figures for visual claim, image integrity, and evidence-bounda
 
 - The user asks for a figure audit.
 - The figure includes image panels, schematic elements, graphical abstracts, or evidence-bearing visual claims.
+- Multi-panel optical grid, colorbar placement, or direct map/scatter labels may affect interpretation.
 
 ## Inputs
 
@@ -21,8 +22,10 @@ Review scientific figures for visual claim, image integrity, and evidence-bounda
 1. Check whether each result-implying element maps to evidence.
 2. Check image provenance limitations.
 3. Check whether schematics or graphical abstracts overclaim mechanisms.
-4. Flag manipulation or unverifiable raw-image issues.
-5. Produce required fixes before submission use.
+4. Check whether layout choices distort interpretation through crowded colorbars,
+   inconsistent semantic colors, or uncontrolled direct labels.
+5. Flag manipulation or unverifiable raw-image issues.
+6. Produce required fixes before submission use.
 
 ## Output Contract
 
@@ -31,6 +34,7 @@ visual_integrity_review:
   result: PASS | PASS_WITH_WARNINGS | FAIL
   claim_issues: []
   image_integrity_issues: []
+  layout_integrity_issues: []
   required_fixes: []
 ```
 

@@ -15,6 +15,8 @@ Audit submission readiness for the full figure set and package.
 - Require no stale figures or panels.
 - Require package index files to exist and match hashes.
 - Require visual audit artifacts for final outputs.
+- Require latest multi-panel layout audit not to fail when multi-panel figures,
+  colorbars, shared legends, maps, scatter labels, or station labels are present.
 - Require journal verification unless the user explicitly allows an unverified
   journal waiver for internal review.
 - Append `submission_readiness_history.jsonl`.
@@ -28,4 +30,3 @@ python scripts/audit_submission_readiness.py --memory-dir .codex/scientific-figu
 ## Output
 
 Return READY, READY_WITH_WARNINGS, or BLOCKED with gates, blockers, and warnings.
-

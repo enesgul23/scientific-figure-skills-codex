@@ -6,7 +6,7 @@ Scientific Figure Skills for Codex turns figure work into a managed, auditable p
 
 [![Validation](https://github.com/enesgul23/scientific-figure-skills-codex/actions/workflows/validation.yml/badge.svg)](https://github.com/enesgul23/scientific-figure-skills-codex/actions/workflows/validation.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.6.0-blue.svg)](VERSION)
+[![Version](https://img.shields.io/badge/version-0.7.0-blue.svg)](VERSION)
 
 ## Why This Exists
 
@@ -34,6 +34,7 @@ The suite does not fabricate data, does not silently install packages, does not 
 - Track figure lineage through project-local Figure Passport memory.
 - Maintain dataset registries, visual claim ledgers, audit ledgers, and reset/resume boundaries.
 - Audit render quality, blank images, output formats, SVG labels, file hashes, and visual regression sanity.
+- Audit multi-panel optical grids, colorbar spacing, semantic color consistency, and controlled station labels.
 - Package figures with captions, alt text, manifests, reproducibility notes, and readiness checks.
 
 ## Skill Layout
@@ -144,6 +145,7 @@ For underspecified requests, the suite routes to figure scoping first. It asks f
 | `fig-full` | Run the full staged figure production chain. |
 | `fig-render-template` | Render from the registry-backed Python templates. |
 | `fig-audit-render` | Run visual QA and render-quality checks. |
+| `fig-audit-multipanel-layout` | Audit multi-panel layout geometry, colorbars, semantic colors, and optical grid quality. |
 | `fig-plan-libraries` | Inspect data and plan required plotting/data libraries. |
 | `fig-probe-environment` | Probe available Python imports and versions. |
 | `fig-select-render-stack` | Select a minimal Python render stack. |
@@ -165,7 +167,7 @@ For underspecified requests, the suite routes to figure scoping first. It asks f
 
 ## Library Intelligence Runtime
 
-Version `0.6.0` adds a Python-first dependency planning layer.
+Version `0.6.0` added a Python-first dependency planning layer.
 
 The suite can inspect datasets, read the renderer registry, check the current Python environment, and produce a dependency plan. It does not install packages automatically.
 
@@ -211,7 +213,33 @@ Valid roles:
 
 External data require source, license, citation, access date, hash when materialized, usage role, and contamination-risk review for model-performance work.
 
-Example:
+## Multipanel Layout Quality Runtime
+
+Version `0.7.0` adds a dedicated multi-panel layout audit.
+
+For complex manuscript figures, the suite does not treat `constrained_layout` or `tight_layout` as sufficient by itself. Colorbar panels, shared legends, maps, scatter panels, and station labels require explicit layout checks before final export.
+
+The audit checks:
+
+- panel boxes do not overlap
+- panel boxes in the same visual row share top and bottom bounds
+- colorbars have explicit boxes, label spacing checks, and collision checks
+- long colorbar labels use a short title or move detail to the caption
+- repeated semantic categories keep the same colors across panels
+- direct station or point labels are controlled and collision-checked
+- automatic layout has a manual-axes fallback when optical grid quality fails
+
+Multipanel layout audit example:
+
+```bash
+python skills/scientific-figure-suite/scripts/audit_multipanel_layout.py \
+  --layout layout.yaml \
+  --out multipanel_layout_audit.json
+```
+
+This audit is also wired into project memory through `multipanel_layout_history.jsonl`, pipeline dashboards, and submission-readiness checks. A failed layout audit blocks readiness wording until the panel boxes, colorbars, semantic colors, or direct labels are repaired.
+
+External data planning example:
 
 ```bash
 python skills/scientific-figure-suite/scripts/plan_external_data.py \
@@ -247,6 +275,7 @@ Memory can track:
 - visual claim ledger
 - quality audit history
 - render-quality history
+- multipanel layout audit history
 - dependency plan history
 - external data plan history
 - reset/resume boundaries
@@ -274,6 +303,7 @@ The validation suite checks:
 - pipeline dashboard
 - render-template smoke tests
 - visual QA pass/fail behavior
+- multipanel layout optical-grid QA
 - dataset inspection
 - dependency planning
 - external data plan validation
@@ -293,7 +323,26 @@ This suite is intentionally conservative.
 
 ## Citation
 
-If this suite supports academic work, cite the repository metadata in `CITATION.cff`.
+If this suite supports academic work, please cite it. GitHub can generate citation metadata directly from `CITATION.cff`.
+
+Recommended citation:
+
+```text
+Gul, E. (2026). Scientific Figure Skills for Codex (Version 0.7.0) [Computer software]. GitHub. https://github.com/enesgul23/scientific-figure-skills-codex
+```
+
+BibTeX:
+
+```bibtex
+@software{gul_scientific_figure_skills_codex_2026,
+  author = {Gul, Enes},
+  title = {Scientific Figure Skills for Codex},
+  year = {2026},
+  version = {0.7.0},
+  url = {https://github.com/enesgul23/scientific-figure-skills-codex},
+  license = {MIT}
+}
+```
 
 ## License
 

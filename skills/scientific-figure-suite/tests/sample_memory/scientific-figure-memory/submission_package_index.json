@@ -5,7 +5,7 @@
     "index_status": "NOT_RUN",
     "package_root": null,
     "project_id": "flood-gnn-paper-2026",
-    "schema_version": "0.6.0",
+    "schema_version": "0.7.0",
     "updated_at": "2026-05-19T16:30:00Z"
   }
 }

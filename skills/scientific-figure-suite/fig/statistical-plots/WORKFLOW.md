@@ -35,7 +35,9 @@ Produce figure code or a figure specification, caption notes, uncertainty statem
 4. Show uncertainty or explain why uncertainty is not available.
 5. Label axes, units, sample sizes, and error-bar definitions.
 6. Generate deterministic plotting code when data are supplied.
-7. Create caption language that matches only visible evidence.
+7. For repeated groups across panels, preserve the same semantic color mapping.
+8. Use direct point labels only as a controlled, collision-checked subset.
+9. Create caption language that matches only visible evidence.
 
 ## Quality Gates
 
@@ -44,6 +46,8 @@ Produce figure code or a figure specification, caption notes, uncertainty statem
 - axis labels and units are present
 - chart type matches the scientific question
 - no misleading truncation, dual-axis use, or p-value-only conclusion
+- repeated groups or categories keep the same colors across panels
+- direct scatter labels are sparse, controlled, and collision-checked
 
 ## Failure Modes
 
@@ -52,6 +56,7 @@ Produce figure code or a figure specification, caption notes, uncertainty statem
 - bar chart hides a meaningful distribution
 - multiple comparisons lack correction
 - log scale or truncation is unlabeled
+- direct labels obscure points or imply unsupported salience
 
 ## Memory Integration
 

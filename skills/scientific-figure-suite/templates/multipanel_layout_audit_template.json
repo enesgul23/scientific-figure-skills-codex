@@ -1,0 +1,28 @@
+{
+  "multipanel_layout_audit": {
+    "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+    "layout_name": "figure_01_layout",
+    "result": "PASS_WITH_WARNINGS",
+    "layout_engine": "manual_axes",
+    "panel_count": 4,
+    "colorbar_count": 1,
+    "checks": [
+      {
+        "check": "panel_row_top_bottom_alignment",
+        "result": "PASS",
+        "new_blockers": 0,
+        "new_warnings": 0
+      },
+      {
+        "check": "colorbar_layout_control",
+        "result": "PASS_WITH_WARNINGS",
+        "new_blockers": 0,
+        "new_warnings": 1
+      }
+    ],
+    "blockers": [],
+    "warnings": [
+      "Verify the optical grid against final exported PNG/SVG before submission."
+    ]
+  }
+}

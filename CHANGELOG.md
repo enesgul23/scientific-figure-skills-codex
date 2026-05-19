@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.7.0 - 2026-05-20
+
+- Added Multi-panel Layout Quality Runtime for optical-grid and colorbar layout audits.
+- Added `fig-audit-multipanel-layout` command recipe.
+- Added `audit_multipanel_layout.py` to check panel box alignment, overlap, colorbar spacing, semantic colors, and controlled map/scatter labels.
+- Added `multipanel_layout_history.jsonl` project-memory ledger and readiness/dashboard integration.
+- Added multipanel layout audit schema, template, protocol, and validation smoke tests.
+- Updated multi-panel workflow guidance to require manual axes fallback when automatic layout is insufficient.
+
 ## 0.6.0 - 2026-05-19
 
 - Added Library Intelligence Runtime for Python-first dependency planning.

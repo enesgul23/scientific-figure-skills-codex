@@ -20,6 +20,7 @@ Overall integrity status:
 | G8 Journal style status |  |  |  |
 | G9 Export readiness |  |  |  |
 | G10 Reproducibility |  |  |  |
+| G17 Multi-panel layout integrity |  |  |  |
 
 ## Blocking Issues
 

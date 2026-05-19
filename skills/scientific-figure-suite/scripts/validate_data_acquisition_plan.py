@@ -26,7 +26,7 @@ def validate_plan(path: Path) -> tuple[list[str], list[str]]:
     if decision not in VALID_DECISIONS:
         errors.append("data_acquisition_plan.decision has invalid value")
     if plan.get("download_allowed") is True:
-        errors.append("v0.6.0 plans must not set download_allowed true")
+        errors.append("data acquisition plans must not set download_allowed true")
     if not isinstance(plan.get("approval_required"), bool):
         errors.append("approval_required must be boolean")
     items = plan.get("items", [])

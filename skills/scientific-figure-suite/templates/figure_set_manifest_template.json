@@ -1,6 +1,6 @@
 {
   "figure_set_manifest": {
-    "schema_version": "0.6.0",
+    "schema_version": "0.7.0",
     "project_id": "project-id",
     "created_at": "YYYY-MM-DDTHH:MM:SSZ",
     "updated_at": "YYYY-MM-DDTHH:MM:SSZ",

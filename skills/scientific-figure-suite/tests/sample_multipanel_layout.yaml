@@ -1,0 +1,49 @@
+layout_name: sample_four_panel_layout
+layout_engine: manual_axes
+manual_axes_fallback: true
+semantic_color_map:
+  observed: "#0072B2"
+  model_a: "#D55E00"
+canvas:
+  width_mm: 180
+  height_mm: 130
+panels:
+  - id: a
+    role: primary
+    plot_type: scatter
+    bbox: {x0: 0.08, y0: 0.56, width: 0.36, height: 0.34}
+    color_bindings:
+      observed: "#0072B2"
+      model_a: "#D55E00"
+    direct_labels:
+      count: 3
+      max_count: 8
+      policy: controlled
+      collision_checked: true
+  - id: b
+    role: map
+    plot_type: geospatial_map
+    bbox: {x0: 0.54, y0: 0.56, width: 0.28, height: 0.34}
+    color_bindings:
+      observed: "#0072B2"
+    colorbar:
+      label: "Error"
+      short_label: "Error"
+      label_overlap_checked: true
+      label_spacing_checked: true
+      bbox: {x0: 0.86, y0: 0.58, width: 0.025, height: 0.30}
+    direct_labels:
+      count: 0
+      max_count: 8
+      policy: controlled
+      collision_checked: true
+  - id: c
+    role: diagnostic
+    plot_type: time_series
+    bbox: {x0: 0.08, y0: 0.12, width: 0.36, height: 0.34}
+    color_bindings:
+      model_a: "#D55E00"
+  - id: d
+    role: summary
+    plot_type: forest_plot
+    bbox: {x0: 0.54, y0: 0.12, width: 0.36, height: 0.34}

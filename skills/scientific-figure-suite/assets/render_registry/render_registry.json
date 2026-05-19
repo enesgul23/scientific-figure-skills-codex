@@ -1,6 +1,6 @@
 {
   "render_registry": {
-    "schema_version": "0.6.0",
+    "schema_version": "0.7.0",
     "templates": [
       {
         "chart_type": "parity_scatter",

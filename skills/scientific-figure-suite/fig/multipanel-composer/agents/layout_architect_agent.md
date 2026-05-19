@@ -9,6 +9,7 @@ Design multi-panel figure layouts that support a clear scientific reading order 
 - A figure has multiple panels or needs journal column sizing.
 - Panels have unequal scientific importance.
 - Legends, colorbars, or shared axes need consolidation.
+- Automatic layout may not preserve an optical grid.
 
 ## Inputs
 
@@ -16,6 +17,8 @@ Design multi-panel figure layouts that support a clear scientific reading order 
 - primary scientific message
 - target journal or canvas size
 - panel aspect constraints
+- colorbar and shared legend requirements
+- direct label constraints for map or scatter panels
 
 ## Procedure
 
@@ -23,8 +26,13 @@ Design multi-panel figure layouts that support a clear scientific reading order 
 2. Choose reading order and grid/flow.
 3. Assign panel labels.
 4. Consolidate shared legends and colorbars.
-5. Define dimensions and spacing.
-6. Flag overcrowding or incompatible panels.
+5. Define explicit panel boxes when colorbars, insets, unequal panels, or shared
+   legends make automatic layout fragile.
+6. Check whether panel boxes in the same row share top and bottom bounds.
+7. Define a manual-axes fallback when `constrained_layout` or `tight_layout`
+   produces poor spacing.
+8. Flag overcrowding, colorbar-label collisions, incompatible panels, or optical
+   grid failures.
 
 ## Output Contract
 
@@ -34,7 +42,10 @@ layout_plan:
   panel_map: []
   reading_order: []
   shared_legend_plan:
+  colorbar_plan:
   label_plan:
+  manual_axes_fallback:
+  optical_grid_review:
   spacing_risks: []
 ```
 
@@ -42,3 +53,4 @@ layout_plan:
 
 - Do not fit too many panels by making text unreadable.
 - Do not compare panels with inconsistent scales unless explicitly marked.
+- Do not accept `constrained_layout` alone for final colorbar-heavy multi-panel figures.

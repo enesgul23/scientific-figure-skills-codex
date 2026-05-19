@@ -33,9 +33,12 @@ Produce a model-performance figure package that considers agreement, error struc
 2. Separate train, internal validation, external validation, and field validation when labels exist.
 3. Select diagnostic panels: parity, residuals, metric intervals, calibration, uncertainty, confusion matrix, or domain coverage.
 4. Use shared limits for comparable parity panels and include the 1:1 line.
-5. Add tolerance bands only when the threshold is justified by the study.
-6. Report metrics compactly and define them in caption or notes.
-7. Flag unsupported claims such as "state of the art" or "external validation" when evidence is missing.
+5. Keep model, split, and cohort colors semantically stable across all panels.
+6. Add tolerance bands only when the threshold is justified by the study.
+7. Use direct case, basin, or station labels only as a controlled,
+   collision-checked subset.
+8. Report metrics compactly and define them in caption or notes.
+9. Flag unsupported claims such as "state of the art" or "external validation" when evidence is missing.
 
 ## Quality Gates
 
@@ -43,6 +46,8 @@ Produce a model-performance figure package that considers agreement, error struc
 - residuals or error distribution are considered
 - calibration or uncertainty is considered when probabilities or intervals exist
 - shared limits are used for comparable panels
+- model/split colors are consistent across panels
+- direct outlier or station labels are controlled and collision-checked
 - overclaiming is avoided
 
 ## Failure Modes

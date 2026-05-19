@@ -17,7 +17,8 @@ def main() -> None:
 
     panels = [Path(item) for item in args.panel]
     rows = (len(panels) + args.cols - 1) // args.cols
-    fig, axes = plt.subplots(rows, args.cols, figsize=(3.4 * args.cols, 3.0 * rows), constrained_layout=True)
+    fig, axes = plt.subplots(rows, args.cols, figsize=(3.4 * args.cols, 3.0 * rows))
+    fig.subplots_adjust(left=0.03, right=0.99, bottom=0.04, top=0.98, wspace=0.05, hspace=0.08)
     axes_list = axes.ravel() if hasattr(axes, "ravel") else [axes]
     for index, ax in enumerate(axes_list):
         ax.axis("off")
@@ -26,7 +27,7 @@ def main() -> None:
         ax.imshow(mpimg.imread(panels[index]))
         label = args.label[index] if index < len(args.label) else chr(ord("a") + index)
         ax.text(0.01, 0.99, label, transform=ax.transAxes, ha="left", va="top", fontweight="bold")
-    fig.savefig(args.out, dpi=300)
+    fig.savefig(args.out, dpi=300, bbox_inches="tight", facecolor="white")
 
 
 if __name__ == "__main__":

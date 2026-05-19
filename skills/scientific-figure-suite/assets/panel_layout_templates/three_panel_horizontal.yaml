@@ -1,5 +1,7 @@
 layout_name: three_panel_horizontal
 status: template
+layout_engine: audited_grid
+manual_axes_fallback: true
 canvas:
   width_mm: 180
   height_mm: 70
@@ -9,10 +11,18 @@ grid:
 panels:
   - id: a
     role: primary
+    bbox: {x0: 0.06, y0: 0.22, width: 0.28, height: 0.66}
   - id: b
     role: comparator
+    bbox: {x0: 0.38, y0: 0.22, width: 0.28, height: 0.66}
   - id: c
     role: summary
+    bbox: {x0: 0.70, y0: 0.22, width: 0.24, height: 0.66}
 legend:
   placement: bottom
   shared: true
+layout_quality:
+  require_same_row_top_bottom_alignment: true
+  colorbar_requires_explicit_bbox: true
+  semantic_colors_global: true
+  direct_labels_controlled_only: true

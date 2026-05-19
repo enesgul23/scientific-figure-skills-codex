@@ -31,6 +31,15 @@ def latest_visual_regression_result(memory_dir: Path) -> str | None:
     return None
 
 
+def latest_multipanel_layout_result(memory_dir: Path) -> str | None:
+    entries = read_jsonl(memory_dir / "multipanel_layout_history.jsonl")
+    for entry in reversed(entries):
+        report = entry.get("multipanel_layout_audit", entry)
+        if isinstance(report, dict) and report.get("result"):
+            return str(report.get("result"))
+    return None
+
+
 def latest_dependency_blockers(memory_dir: Path) -> list[str]:
     entries = read_jsonl(memory_dir / "dependency_plan_history.jsonl")
     if not entries:
@@ -153,6 +162,13 @@ def audit(args: argparse.Namespace) -> tuple[list[str], list[str]]:
     elif visual_regression is None:
         warnings.append("no visual regression/render-quality audit has been recorded")
     add_gate(gates, "visual_regression", visual_regression or "NOT_RUN", "Latest render-quality result")
+
+    multipanel_layout = latest_multipanel_layout_result(memory_dir)
+    if multipanel_layout == "FAIL":
+        blockers.append("latest multipanel layout audit failed")
+    elif multipanel_layout is None:
+        warnings.append("no multipanel layout audit has been recorded")
+    add_gate(gates, "multipanel_layout", multipanel_layout or "NOT_RUN", "Latest optical-grid and colorbar layout result")
 
     dependency_blockers = latest_dependency_blockers(memory_dir)
     if dependency_blockers:

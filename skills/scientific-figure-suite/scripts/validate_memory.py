@@ -356,6 +356,14 @@ def validate_memory(memory_dir: Path, check_paths: bool = False) -> tuple[list[s
             continue
         if report.get("result") not in {"PASS", "PASS_WITH_WARNINGS", "FAIL"}:
             errors.append(f"visual_regression_history line {index}: invalid result")
+    multipanel_entries = validate_jsonl_file(memory_dir / "multipanel_layout_history.jsonl", errors)
+    for index, entry in enumerate(multipanel_entries, start=1):
+        report = entry.get("multipanel_layout_audit", entry)
+        if not isinstance(report, dict):
+            errors.append(f"multipanel_layout_history line {index}: entry must be an object")
+            continue
+        if report.get("result") not in {"PASS", "PASS_WITH_WARNINGS", "FAIL"}:
+            errors.append(f"multipanel_layout_history line {index}: invalid result")
     dependency_entries = validate_jsonl_file(memory_dir / "dependency_plan_history.jsonl", errors)
     for index, entry in enumerate(dependency_entries, start=1):
         plan = entry.get("dependency_plan", entry)

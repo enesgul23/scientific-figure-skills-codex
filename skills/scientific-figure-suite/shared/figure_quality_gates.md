@@ -37,6 +37,7 @@ Use:
 | G14 Omics correction | Many-test omics inference is shown | Normalization, thresholds, and correction status are stated. |
 | G15 Model validation | Model performance is shown | Splits, metrics, calibration/uncertainty, and leakage risk are addressed. |
 | G16 Mechanism status | Schematics imply mechanisms | Evidence/hypothesis status is labeled. |
+| G17 Multi-panel layout integrity | Multi-panel figures, colorbars, maps, scatter panels, or direct labels are used | Optical grid, same-row panel bounds, colorbar spacing, semantic color mapping, and controlled direct labels are audited. |
 
 ## Blocking Conditions
 
@@ -49,6 +50,11 @@ Return `FAIL` when:
 - omics significance lacks correction status
 - captions make unsupported causal or mechanistic claims
 - a final package lacks code/data traceability and is not marked design-only
+- a colorbar-heavy multi-panel figure relies only on automatic layout without
+  explicit layout audit or manual fallback
+- the same semantic category changes color across panels without an explicit,
+  captioned reason
+- map or scatter station labels overlap, crowd the evidence, or lack a controlled label policy
 
 ## Report Format
 

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Multipanel Layout Audit",
+  "type": "object",
+  "required": ["multipanel_layout_audit"],
+  "properties": {
+    "multipanel_layout_audit": {
+      "type": "object",
+      "required": ["created_at", "layout_name", "result", "checks", "blockers", "warnings"],
+      "properties": {
+        "created_at": {"type": "string"},
+        "layout_name": {"type": "string"},
+        "result": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL"]},
+        "layout_engine": {"type": ["string", "null"]},
+        "panel_count": {"type": "integer"},
+        "colorbar_count": {"type": "integer"},
+        "checks": {"type": "array"},
+        "blockers": {"type": "array"},
+        "warnings": {"type": "array"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

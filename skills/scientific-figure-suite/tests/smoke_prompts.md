@@ -62,6 +62,7 @@ Expected:
 
 - route to `model-performance`
 - suggest multi-panel chain
+- include multi-panel layout audit when colorbars, shared legends, or uneven panel boxes are possible
 - do not invent metrics
 
 ## 6. Clinical Forest Plot
@@ -98,3 +99,16 @@ Expected:
 - route to `graphical-abstract` and `schematic-mechanism`
 - no unsupported mechanism claims
 - `STYLE_STATUS` remains `ESTIMATED` or `UNVERIFIED` unless verified
+
+## 9. Multi-panel Layout Audit
+
+```text
+Use $scientific-figure-suite fig-audit-multipanel-layout for a four-panel map/scatter figure with one colorbar and station labels.
+```
+
+Expected:
+
+- check that automatic layout alone is not accepted for colorbar-heavy panels
+- require same-row panel top/bottom alignment
+- require consistent semantic colors across panels
+- require controlled, collision-checked station labels

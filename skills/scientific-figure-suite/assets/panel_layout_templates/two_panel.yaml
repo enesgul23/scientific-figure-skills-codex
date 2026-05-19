@@ -1,5 +1,7 @@
 layout_name: two_panel
 status: template
+layout_engine: audited_grid
+manual_axes_fallback: true
 canvas:
   width_mm: 180
   height_mm: 85
@@ -10,9 +12,16 @@ panels:
   - id: a
     role: primary
     width_fraction: 0.5
+    bbox: {x0: 0.08, y0: 0.20, width: 0.40, height: 0.68}
   - id: b
     role: secondary
     width_fraction: 0.5
+    bbox: {x0: 0.55, y0: 0.20, width: 0.40, height: 0.68}
 legend:
   placement: bottom
   shared: true
+layout_quality:
+  require_same_row_top_bottom_alignment: true
+  colorbar_requires_explicit_bbox: true
+  semantic_colors_global: true
+  direct_labels_controlled_only: true

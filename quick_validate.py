@@ -22,6 +22,7 @@ COMMANDS = [
     ["scripts/validate_render_template_registry.py"],
     ["scripts/validate_library_pool.py"],
     ["scripts/validate_data_acquisition_plan.py", "templates/data_acquisition_plan_template.json"],
+    ["scripts/audit_multipanel_layout.py", "--layout", "tests/sample_multipanel_layout.yaml"],
     ["scripts/validate_memory.py", "--memory-dir", "tests/sample_memory/scientific-figure-memory"],
     ["scripts/audit_repro_lock.py", "--memory-dir", "tests/sample_memory/scientific-figure-memory"],
     ["scripts/build_pipeline_dashboard.py", "--memory-dir", "tests/sample_memory/scientific-figure-memory", "--no-update-manifest"],
@@ -93,11 +94,77 @@ def make_blank_png(path: Path) -> None:
     plt.close(fig)
 
 
+def write_multipanel_layouts(temp_dir: Path) -> tuple[Path, Path]:
+    good_layout = temp_dir / "multipanel_good.yaml"
+    bad_layout = temp_dir / "multipanel_bad.yaml"
+    good_layout.write_text(
+        (
+            "layout_name: smoke_multipanel_good\n"
+            "layout_engine: manual_axes\n"
+            "manual_axes_fallback: true\n"
+            "semantic_color_map:\n"
+            "  observed: '#0072B2'\n"
+            "  model_a: '#D55E00'\n"
+            "canvas:\n"
+            "  width_mm: 180\n"
+            "  height_mm: 130\n"
+            "panels:\n"
+            "  - id: a\n"
+            "    plot_type: scatter\n"
+            "    bbox: {x0: 0.08, y0: 0.56, width: 0.36, height: 0.34}\n"
+            "    color_bindings: {observed: '#0072B2', model_a: '#D55E00'}\n"
+            "    direct_labels: {count: 2, max_count: 8, policy: controlled, collision_checked: true}\n"
+            "  - id: b\n"
+            "    plot_type: geospatial_map\n"
+            "    bbox: {x0: 0.54, y0: 0.56, width: 0.28, height: 0.34}\n"
+            "    color_bindings: {observed: '#0072B2'}\n"
+            "    colorbar:\n"
+            "      label: Error\n"
+            "      short_label: Error\n"
+            "      label_overlap_checked: true\n"
+            "      label_spacing_checked: true\n"
+            "      bbox: {x0: 0.86, y0: 0.58, width: 0.025, height: 0.30}\n"
+            "    direct_labels: {count: 0, max_count: 8, policy: controlled, collision_checked: true}\n"
+            "  - id: c\n"
+            "    plot_type: time_series\n"
+            "    bbox: {x0: 0.08, y0: 0.12, width: 0.36, height: 0.34}\n"
+            "    color_bindings: {model_a: '#D55E00'}\n"
+            "  - id: d\n"
+            "    plot_type: forest_plot\n"
+            "    bbox: {x0: 0.54, y0: 0.12, width: 0.36, height: 0.34}\n"
+        ),
+        encoding="utf-8",
+    )
+    bad_layout.write_text(
+        (
+            "layout_name: smoke_multipanel_bad\n"
+            "layout_engine: constrained_layout\n"
+            "semantic_color_map:\n"
+            "  observed: '#0072B2'\n"
+            "panels:\n"
+            "  - id: a\n"
+            "    plot_type: scatter\n"
+            "    bbox: {x0: 0.08, y0: 0.56, width: 0.40, height: 0.34}\n"
+            "    color_bindings: {observed: '#0072B2'}\n"
+            "    direct_labels: {count: 18, policy: all, collision_checked: false}\n"
+            "  - id: b\n"
+            "    plot_type: geospatial_map\n"
+            "    bbox: {x0: 0.46, y0: 0.55, width: 0.42, height: 0.30}\n"
+            "    color_bindings: {observed: '#D55E00'}\n"
+            "    colorbar:\n"
+            "      label: Very long hydrologic model residual colorbar label that should be shortened\n"
+        ),
+        encoding="utf-8",
+    )
+    return good_layout, bad_layout
+
+
 def prepare_v04_memory_copy(source: Path, target: Path) -> None:
     shutil.copytree(source, target)
     for filename in [
         "figure_decision_log.jsonl",
         "visual_regression_history.jsonl",
+        "multipanel_layout_history.jsonl",
         "dependency_plan_history.jsonl",
         "external_data_plan_history.jsonl",
     ]:
@@ -111,14 +178,15 @@ def prepare_v04_memory_copy(source: Path, target: Path) -> None:
     manifest.pop("pipeline_state", None)
     manifest["files"].pop("figure_decision_log", None)
     manifest["files"].pop("visual_regression_history", None)
+    manifest["files"].pop("multipanel_layout_history", None)
     manifest["files"].pop("dependency_plan_history", None)
     manifest["files"].pop("external_data_plan_history", None)
     manifest_path.write_text(json.dumps(manifest_data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def run_v060_smoke(env: dict[str, str]) -> int:
+def run_runtime_smoke(env: dict[str, str]) -> int:
     failures = 0
-    with tempfile.TemporaryDirectory(prefix="sfs-v060-") as raw_temp:
+    with tempfile.TemporaryDirectory(prefix="sfs-runtime-") as raw_temp:
         temp_dir = Path(raw_temp)
         fixture_csvs = write_fixture_csvs(temp_dir)
         parity_profile = temp_dir / "parity_profile.json"
@@ -219,6 +287,23 @@ def run_v060_smoke(env: dict[str, str]) -> int:
         ]:
             ok, _ = run_command(command, env, expect_success=False)
             failures += 0 if ok else 1
+
+        good_layout, bad_layout = write_multipanel_layouts(temp_dir)
+        ok, _ = run_command(
+            ["scripts/audit_multipanel_layout.py", "--layout", str(good_layout), "--out", str(temp_dir / "multipanel_layout_audit.json")],
+            env,
+        )
+        failures += 0 if ok else 1
+        ok, _ = run_command(["scripts/audit_multipanel_layout.py", "--layout", str(bad_layout)], env, expect_success=False)
+        failures += 0 if ok else 1
+        layout_out = temp_dir / "multipanel-proof"
+        ok, _ = run_command(["scripts/export_multipanel.py", "--layout", str(good_layout), "--outdir", str(layout_out), "--formats", "png"], env)
+        failures += 0 if ok else 1
+        ok, _ = run_command(
+            ["scripts/audit_render_quality.py", "--figure-id", "multipanel_layout_proof", "--file", str(layout_out / "smoke_multipanel_good.png")],
+            env,
+        )
+        failures += 0 if ok else 1
 
         external_plan = temp_dir / "external_data_plan.json"
         ok, _ = run_command(
@@ -339,6 +424,24 @@ def run_v060_smoke(env: dict[str, str]) -> int:
         else:
             print("[FAIL] readiness did not expose failed visual regression blocker", file=sys.stderr)
             failures += 1
+        (memory_copy / "visual_regression_history.jsonl").write_text(
+            '{"visual_regression_report":{"baseline_dir":null,"blockers":[],"created_at":"2026-05-20T08:30:00Z","figure_id":"fig_01","files":[],"result":"PASS","warnings":[]}}\n',
+            encoding="utf-8",
+        )
+        (memory_copy / "multipanel_layout_history.jsonl").write_text(
+            '{"multipanel_layout_audit":{"blockers":["forced multipanel layout failure"],"checks":[],"colorbar_count":1,"created_at":"2026-05-20T08:30:00Z","layout_engine":"constrained_layout","layout_name":"forced_failure","panel_count":2,"result":"FAIL","warnings":[]}}\n',
+            encoding="utf-8",
+        )
+        ok, output = run_command(
+            ["scripts/audit_submission_readiness.py", "--memory-dir", str(memory_copy), "--allow-unverified-journal"],
+            env,
+            expect_success=False,
+        )
+        if ok and "latest multipanel layout audit failed" in output:
+            print("[PASS] readiness blocks on failed multipanel layout audit")
+        else:
+            print("[FAIL] readiness did not expose failed multipanel layout blocker", file=sys.stderr)
+            failures += 1
     return failures
 
 
@@ -354,7 +457,7 @@ def main() -> int:
     for command in COMMANDS:
         ok, _ = run_command(command, env)
         failures += 0 if ok else 1
-    failures += run_v060_smoke(env)
+    failures += run_runtime_smoke(env)
 
     if failures:
         print(f"[FAIL] {failures} validation command(s) failed", file=sys.stderr)

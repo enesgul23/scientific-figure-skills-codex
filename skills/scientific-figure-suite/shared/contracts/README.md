@@ -13,6 +13,9 @@ metadata, dependency plans, data acquisition plans, and renderer dependency
 metadata. These are planning and validation artifacts only; they do not install
 packages or download external data.
 
+v0.7 contracts add multi-panel layout audit artifacts for optical-grid,
+colorbar, semantic color, and direct-label checks.
+
 Use with:
 
 ```powershell

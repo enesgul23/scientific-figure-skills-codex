@@ -14,7 +14,9 @@ description: >
   kits, figure set manifests, cross-figure consistency audits, submission
   package indexes, submission-readiness reports, figure scoping, pipeline
   dashboards, renderer registries, style-token validation, visual regression
-  checks, render-quality audits, library-pool planning, dependency selection,
+  checks, render-quality audits, multi-panel optical-grid audits, colorbar
+  layout checks, semantic color consistency checks, controlled station-label
+  audits, library-pool planning, dependency selection,
   Python environment probing, and external-data acquisition decisions. Use when the user asks for scientific charts, research figures,
   journal-ready plots, Nature-style figures, Science-style figures,
   Lancet-style figures, graphical abstracts, figure audits, caption writing,
@@ -28,8 +30,8 @@ description: >
   fig-audit-repro-lock, fig-verify-journal, fig-audit-visual-artifact,
   fig-build-figure-set, fig-audit-figure-set, fig-build-submission-package,
   fig-audit-readiness, fig-scope, fig-status, fig-render-template,
-  fig-audit-render, fig-plan-libraries, fig-probe-environment,
-  fig-select-render-stack, or fig-plan-external-data.
+  fig-audit-render, fig-audit-multipanel-layout, fig-plan-libraries,
+  fig-probe-environment, fig-select-render-stack, or fig-plan-external-data.
 ---
 
 # Scientific Figure Suite
@@ -41,7 +43,7 @@ task.
 
 ## Versioning
 
-This package is version `0.6.0`. Keep repo-root `VERSION` and
+This package is version `0.7.0`. Keep repo-root `VERSION` and
 `manifest.json` `adapter_version` synchronized. Keep `SKILL.md` frontmatter
 minimal so Codex skill discovery remains stable.
 
@@ -155,6 +157,7 @@ below.
 | `/fig-status`, `fig-status` | `commands/fig-status.md` | `shared/figure_memory_protocol.md` and pipeline dashboard |
 | `/fig-render-template`, `fig-render-template` | `commands/fig-render-template.md` | render registry |
 | `/fig-audit-render`, `fig-audit-render` | `commands/fig-audit-render.md` | render-quality audit |
+| `/fig-audit-multipanel-layout`, `fig-audit-multipanel-layout` | `commands/fig-audit-multipanel-layout.md` | multi-panel layout quality audit |
 | `/fig-plan-libraries`, `fig-plan-libraries` | `commands/fig-plan-libraries.md` | library-pool dependency planning |
 | `/fig-probe-environment`, `fig-probe-environment` | `commands/fig-probe-environment.md` | Python environment probe |
 | `/fig-select-render-stack`, `fig-select-render-stack` | `commands/fig-select-render-stack.md` | renderer dependency stack selection |
@@ -202,6 +205,7 @@ Memory files:
 - `submission_readiness_history.jsonl`: append-style submission readiness decisions.
 - `figure_decision_log.jsonl`: append-style scoping, waiver, mockup, and style decisions.
 - `visual_regression_history.jsonl`: append-style render-quality and visual regression results.
+- `multipanel_layout_history.jsonl`: append-style multi-panel optical-grid, colorbar, semantic color, and direct-label layout audits.
 - `dependency_plan_history.jsonl`: append-style dependency plans and library stack decisions.
 - `external_data_plan_history.jsonl`: append-style external data acquisition decisions.
 - `author_visual_style_profile.json`: optional visual style memory from
@@ -228,7 +232,7 @@ Memory rules:
 For a journal-ready multi-panel figure:
 
 ```text
-intake-design -> domain workflow -> multipanel-composer -> journal-style-translator -> caption-alttext -> figure-auditor -> export-packager
+intake-design -> domain workflow -> multipanel-composer -> fig-audit-multipanel-layout -> journal-style-translator -> caption-alttext -> figure-auditor -> export-packager
 ```
 
 For a graphical abstract:
@@ -352,10 +356,12 @@ Use `shared/` for cross-workflow contracts and gates:
 - `shared/submission_memory_runtime.md` defines workflow-memory integration, panel passports, repro-lock, and stale detection.
 - `shared/figure_set_submission_runtime.md` defines v0.4 figure set manifests, package indexing, cross-figure consistency, and readiness gates.
 - `shared/external_data_decision_protocol.md` defines when external data can be proposed and what provenance is required.
-- `assets/render_registry/render_registry.json` defines v0.6 chart-type to renderer and dependency mappings.
-- `assets/library_pool/library_pool.json` defines the v0.6 Python-first library metadata pool.
+- `shared/multipanel_layout_quality_protocol.md` defines v0.7 optical-grid, colorbar, semantic color, and direct-label layout rules.
+- `assets/render_registry/render_registry.json` defines chart-type to renderer and dependency mappings.
+- `assets/library_pool/library_pool.json` defines the Python-first library metadata pool.
 - `shared/contracts/style_token.schema.json` defines style-token validation shape.
 - `shared/contracts/visual_regression_report.schema.json` defines render-quality report shape.
+- `shared/contracts/multipanel_layout_audit.schema.json` defines multi-panel layout audit shape.
 - `shared/contracts/library_pool.schema.json` defines library-pool metadata shape.
 - `shared/contracts/dependency_plan.schema.json` defines dependency-plan output shape.
 - `shared/contracts/data_acquisition_plan.schema.json` defines external-data plan output shape.

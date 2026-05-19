@@ -5,7 +5,7 @@
 Defines the v0.3 submission-grade runtime layer. Figure memory is no longer only
 an optional project notebook; it participates in workflow entry, figure updates,
 quality audits, export packaging, stale detection, resume boundaries, pipeline
-status dashboards, and render-quality evidence.
+status dashboards, render-quality evidence, and multi-panel layout evidence.
 
 ## Workflow Integration
 
@@ -20,7 +20,8 @@ user asks to continue a project:
    stale by repro-lock.
 5. After producing or auditing work, update the Figure Passport and append
    audit, claim, journal verification, visual artifact, decision, visual
-   regression, dependency-plan, or external-data-plan ledger entries.
+   regression, multipanel-layout, dependency-plan, or external-data-plan ledger
+   entries.
 6. If pausing or moving to another session, create a Figure Passport reset
    boundary.
 
@@ -102,6 +103,20 @@ Use `visual_regression_history.jsonl` for render-quality evidence:
 This ledger is a render sanity check. It does not replace statistical,
 scientific, journal, or caption integrity review.
 
+## Multipanel Layout Ledger
+
+Use `multipanel_layout_history.jsonl` for layout evidence:
+
+- panel box geometry and overlap
+- same-row top/bottom alignment
+- colorbar bbox, label collision, and spacing checks
+- semantic color consistency across panels
+- controlled direct station or point labels in maps/scatter panels
+- manual axes fallback when automatic layout is insufficient
+
+This ledger answers whether the optical grid is credible. It does not replace
+render-quality, statistical, scientific, journal, or caption review.
+
 ## Dependency Plan Ledger
 
 Use `dependency_plan_history.jsonl` when a figure uses or plans a render stack.
@@ -126,6 +141,8 @@ A submission-grade package should have:
 - journal target `VERIFIED` or explicit unresolved `UNVERIFIED/ESTIMATED` status
 - visual audit artifact for every exported final file
 - latest visual regression/render-quality audit not failed
+- latest multi-panel layout audit not failed when multi-panel figures,
+  colorbars, maps, scatter labels, or shared legends are present
 - latest dependency plan has no unresolved required-library blockers for rendered outputs
 - external data plans are either `NOT_REQUIRED` or have complete provenance and user approval
 - quality audit history with latest gate results

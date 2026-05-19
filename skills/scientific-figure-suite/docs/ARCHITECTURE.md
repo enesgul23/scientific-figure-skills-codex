@@ -41,6 +41,7 @@ project-root/
     submission_readiness_history.jsonl
     figure_decision_log.jsonl
     visual_regression_history.jsonl
+    multipanel_layout_history.jsonl
     dependency_plan_history.jsonl
     external_data_plan_history.jsonl
     author_visual_style_profile.json
@@ -60,9 +61,10 @@ project-root/
 10. `shared/external_data_decision_protocol.md` and `scripts/plan_external_data.py` decide whether external data are scientifically justified.
 11. `assets/render_registry/render_registry.json` maps chart types to reusable renderer templates, expected columns, and dependencies.
 12. `scripts/audit_render_quality.py` records visual regression and render-quality evidence.
-13. `scripts/build_pipeline_dashboard.py` summarizes active stage, blockers, latest artifacts, and next actions.
-14. `figure-auditor` and shared compliance checks gate final packaging.
-15. `export-packager` creates or describes files and manifest.
+13. `scripts/audit_multipanel_layout.py` records optical-grid, colorbar, semantic color, and direct-label layout evidence.
+14. `scripts/build_pipeline_dashboard.py` summarizes active stage, blockers, latest artifacts, and next actions.
+15. `figure-auditor` and shared compliance checks gate final packaging.
+16. `export-packager` creates or describes files and manifest.
 
 ## Library Intelligence Runtime
 
@@ -84,6 +86,14 @@ layers, benchmark datasets, evidence-bearing external records, and annotation
 resources require source, license, citation, access date, hash when downloaded,
 and usage role. v0.6.0 does not download external data without explicit user
 approval.
+
+## Multipanel Layout Quality Runtime
+
+v0.7.0 adds explicit optical-grid review. Colorbar-heavy multi-panel figures
+must not rely only on automatic layout. Layout specs should include panel boxes,
+colorbar boxes, semantic color maps, and direct-label policies so
+`scripts/audit_multipanel_layout.py` can block collisions, inconsistent colors,
+and uneven row bounds before submission-readiness checks.
 
 ## Non-Runtime Materials
 

@@ -1,5 +1,7 @@
 layout_name: clinical_trial_figure
 status: template
+layout_engine: audited_grid_or_manual_axes
+manual_axes_fallback: true
 canvas:
   width_mm: 180
   height_mm: 140
@@ -13,3 +15,8 @@ panel_options:
   - forest_plot
   - adverse_event_summary
   - kaplan_meier
+layout_quality:
+  require_same_row_top_bottom_alignment: true
+  colorbar_requires_explicit_bbox: true
+  semantic_colors_global: true
+  direct_labels_controlled_only: true

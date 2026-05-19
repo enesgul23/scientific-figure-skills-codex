@@ -33,6 +33,7 @@ def migrate_manifest(memory_dir: Path) -> None:
     files.setdefault("submission_readiness_history", "submission_readiness_history.jsonl")
     files.setdefault("figure_decision_log", "figure_decision_log.jsonl")
     files.setdefault("visual_regression_history", "visual_regression_history.jsonl")
+    files.setdefault("multipanel_layout_history", "multipanel_layout_history.jsonl")
     files.setdefault("dependency_plan_history", "dependency_plan_history.jsonl")
     files.setdefault("external_data_plan_history", "external_data_plan_history.jsonl")
     pipeline_state = manifest.setdefault("pipeline_state", default_pipeline_state())

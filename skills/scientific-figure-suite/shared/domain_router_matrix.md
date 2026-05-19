@@ -2,7 +2,7 @@
 
 Use when multiple workflows could apply.
 
-| Signal | Primary workflow | Agents | Conditional gates | v0.6 dependency/data gate |
+| Signal | Primary workflow | Agents | Conditional gates | Dependency/data/layout gate |
 |---|---|---|---|---|
 | p-values, CIs, group comparison | `statistical-plots` | `chart_selection_agent`, `statistical_honesty_agent` | G3, G4, G5 | inspect tabular data, then select static stack |
 | observed vs predicted, residuals, NSE, KGE, RMSE | `model-performance` | `performance_diagnostic_agent`, `validation_split_agent` | G15, G4 | select metric libraries only when needed; external validation goes through data decision |
@@ -11,7 +11,7 @@ Use when multiple workflows could apply.
 | volcano, FDR, heatmap, PCA, pathway | `omics-bioinformatics` | `omics_threshold_agent`, `bioinformatics_visual_agent` | G14 | select `scanpy`/`anndata` only when format requires; annotations require external data plan |
 | arrows, mechanism, conceptual model | `schematic-mechanism` | `mechanism_claim_agent` | G16 | dependency planning usually not needed unless data-derived panels are embedded |
 | graphical abstract, visual summary | `graphical-abstract` | `visual_narrative_agent`, `evidence_boundary_agent` | G2, G16 | external evidence or annotation assets require provenance |
-| many panels, shared legend, layout | `multipanel-composer` | `layout_architect_agent`, `panel_consistency_agent` | G7, G8 | require compatible dependency plans for data-derived panels |
+| many panels, shared legend, layout | `multipanel-composer` | `layout_architect_agent`, `panel_consistency_agent` | G7, G8, G17 | require compatible dependency plans for data-derived panels and run `fig-audit-multipanel-layout` before final readiness |
 | target journal/style/compliance | `journal-style-translator` | `journal_policy_agent`, `style_token_agent` | G8 | style tokens do not install or imply plotting dependencies |
 | caption, legend, alt text | `caption-alttext` | `caption_integrity_agent`, `alt_text_agent` | G6, G7 | disclose external data role when used |
 | review/check/audit | `figure-auditor` | reviewer agents | all relevant gates | audit blocked dependencies and external data provenance |

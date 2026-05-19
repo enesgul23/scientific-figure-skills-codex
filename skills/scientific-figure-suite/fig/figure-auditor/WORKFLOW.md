@@ -48,12 +48,15 @@ Data status:
 1. Check data provenance and reproducibility.
 2. Check visual claim ledger alignment.
 3. Check chart appropriateness and statistical honesty.
-4. Check axes, units, scales, legends, colorbars, and panel labels.
+4. Check axes, units, scales, legends, colorbars, panel labels, panel box
+   alignment, and optical-grid quality.
 5. Check accessibility: color, contrast, minimum text size, redundancy, alt text.
 6. Check journal style status without claiming unverified compliance.
 7. Check export readiness.
 8. Check render-quality evidence for blank outputs, dimensions, expected formats, and SVG text/title presence when exported files are supplied.
-9. Check image integrity for microscopy, gel/blot, radiology, or other scientific images when applicable.
+9. Check multi-panel layout evidence for colorbar spacing, semantic color
+   consistency, same-row panel bounds, and controlled direct labels when supplied.
+10. Check image integrity for microscopy, gel/blot, radiology, or other scientific images when applicable.
 
 ## Quality Gates
 

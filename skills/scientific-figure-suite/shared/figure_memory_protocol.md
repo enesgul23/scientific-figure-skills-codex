@@ -7,7 +7,8 @@ personal memory. It is an auditable file layer that lets a long figure project
 carry project profile, journal targets, figure passports, dataset metadata,
 visual claims, audit history, and reset/resume state across sessions.
 v0.6 also carries pipeline-state, figure decisions, render-quality history,
-dependency planning history, and external-data planning history.
+dependency planning history, and external-data planning history. v0.7 adds
+multi-panel optical-grid and colorbar layout audit history.
 
 ## Storage Boundary
 
@@ -27,7 +28,7 @@ scripts only.
 |---|---|---|
 | Lightweight | Early planning or a single figure | `project_profile.json`, `journal_targets.json`, `figure_passport.json` |
 | Research-grade | Manuscript figure set | lightweight files plus `visual_claim_ledger.jsonl`, `dataset_registry.json`, `quality_audit_history.jsonl`, `memory_manifest.json` |
-| Submission-grade | Journal submission preparation | research-grade files plus `revision_boundary_ledger.jsonl`, `journal_guideline_verification.jsonl`, `visual_audit_artifact.jsonl`, `figure_decision_log.jsonl`, `visual_regression_history.jsonl`, `dependency_plan_history.jsonl`, `external_data_plan_history.jsonl`, `author_visual_style_profile.json`, current guideline verification records |
+| Submission-grade | Journal submission preparation | research-grade files plus `revision_boundary_ledger.jsonl`, `journal_guideline_verification.jsonl`, `visual_audit_artifact.jsonl`, `figure_decision_log.jsonl`, `visual_regression_history.jsonl`, `multipanel_layout_history.jsonl`, `dependency_plan_history.jsonl`, `external_data_plan_history.jsonl`, `author_visual_style_profile.json`, current guideline verification records |
 
 Default to research-grade memory when the user asks to initialize figure memory.
 
@@ -47,6 +48,7 @@ Default to research-grade memory when the user asks to initialize figure memory.
 | `visual_audit_artifact.jsonl` | Append-style file-level audit evidence with hashes, format, size, and dimensions when available. |
 | `figure_decision_log.jsonl` | Append-style scoping, waiver, design-only, mockup, and user-approved style decisions. |
 | `visual_regression_history.jsonl` | Append-style render-quality and visual regression audit reports. |
+| `multipanel_layout_history.jsonl` | Append-style optical-grid, panel-box, colorbar, semantic color, and direct-label layout audits. |
 | `dependency_plan_history.jsonl` | Append-style library-stack and dependency planning decisions. |
 | `external_data_plan_history.jsonl` | Append-style external data decisions, provenance gaps, and approval gates. |
 | `author_visual_style_profile.json` | Optional author or lab visual style preferences from user-approved samples. |
@@ -81,6 +83,7 @@ Default to research-grade memory when the user asks to initialize figure memory.
 | `fig-forget-memory` | Redact or remove selected memory only after explicit user confirmation. |
 | `fig-resume-project` | Verify a reset boundary hash and continue from the Figure Passport. |
 | `fig-status` | Build the pipeline dashboard from project-local memory and update `memory_manifest.pipeline_state`. |
+| `fig-audit-multipanel-layout` | Audit multi-panel layout geometry, colorbars, semantic colors, and direct labels; append the report when memory is enabled. |
 | `fig-plan-libraries` | Inspect data and plan the minimal library stack without installing packages. |
 | `fig-plan-external-data` | Decide whether external data are justified and provenance-complete without downloading data. |
 
@@ -100,6 +103,7 @@ When loading memory, report:
 - stale figure or panel entries
 - latest journal guideline verification status
 - latest visual regression/render-quality status
+- latest multi-panel layout audit status
 - latest dependency plan status
 - latest external data plan and approval blockers
 - next actions from `memory_manifest.pipeline_state`

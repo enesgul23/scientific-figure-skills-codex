@@ -10,6 +10,7 @@ Use these modes in command recipes and workflow handoffs.
 | `registry-render` | Render from the template registry | `fig-render-template` |
 | `audit` | Review figure/spec/caption/package for gates | `fig-audit` |
 | `render-audit` | Check rendered files for visual QA/regression sanity | `fig-audit-render` |
+| `multipanel-layout-audit` | Check optical grid, colorbars, semantic colors, and direct labels | `fig-audit-multipanel-layout` |
 | `caption` | Write caption, note, legend, and alt text | `fig-caption` |
 | `style` | Translate target journal style and status | `fig-style` |
 | `export` | Build export package and manifest | `fig-export` |
@@ -44,6 +45,7 @@ Use these modes in command recipes and workflow handoffs.
 - `external-data-planning` must not download data without explicit user approval and complete provenance.
 - `audit` may run with partial materials, but must mark unverifiable gates.
 - `render-audit` checks rendered files, not scientific truth.
+- `multipanel-layout-audit` checks whether the optical grid and colorbar/direct-label layout are fit for manuscript use.
 - `style` can be verified only with current official or user-provided guidance.
 - `full` must include audit before export.
 - Memory modes use project-local `.codex/scientific-figure-memory/` storage and must not write project memory inside the installed skill folder.

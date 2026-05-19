@@ -1,6 +1,6 @@
 {
   "library_pool": {
-    "schema_version": "0.6.0",
+    "schema_version": "0.7.0",
     "selection_policy": {
       "default_runtime": "python_first",
       "install_policy": "plan_only_no_auto_install",

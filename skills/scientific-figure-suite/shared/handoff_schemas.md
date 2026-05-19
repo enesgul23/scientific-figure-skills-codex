@@ -403,7 +403,7 @@ truth, statistical correctness, or journal compliance by itself.
 
 ## Schema 18: Library Pool Entry
 
-Producer: bundled v0.6 library metadata.
+Producer: bundled library metadata.
 
 Consumer: dependency planner and render stack selector.
 
@@ -472,3 +472,25 @@ Required fields:
 
 Each item must classify the external data role as `contextual`, `evidentiary`,
 `benchmark`, or `annotation`. Missing source, license, or citation blocks use.
+
+## Schema 21: Multipanel Layout Audit
+
+Producer: `fig-audit-multipanel-layout`.
+
+Consumer: `figure-auditor`, `fig-audit-readiness`, user.
+
+Required fields:
+
+- `created_at`
+- `layout_name`
+- `result`
+- `layout_engine`
+- `panel_count`
+- `colorbar_count`
+- `checks`
+- `blockers`
+- `warnings`
+
+The audit must explicitly cover panel-box geometry, same-row top/bottom
+alignment, colorbar layout control, semantic color consistency, controlled
+map/scatter direct labels, and manual fallback for poor automatic layout.

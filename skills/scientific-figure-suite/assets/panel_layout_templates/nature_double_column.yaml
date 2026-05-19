@@ -1,6 +1,8 @@
 layout_name: nature_double_column_estimated
 status: ESTIMATED
 requires_live_verification: true
+layout_engine: audited_grid_or_manual_axes
+manual_axes_fallback: true
 canvas:
   width_mm: 183
   height_mm: 130
@@ -13,6 +15,13 @@ panel_labels:
   position: upper_left
 legend:
   placement: compact_unused_space_or_bottom
+layout_quality:
+  require_same_row_top_bottom_alignment: true
+  colorbar_requires_explicit_bbox: true
+  colorbar_label_collision_check: true
+  semantic_colors_global: true
+  direct_labels_controlled_only: true
+  run_before_readiness: fig-audit-multipanel-layout
 export:
   vector: [pdf, svg]
   raster_review: png

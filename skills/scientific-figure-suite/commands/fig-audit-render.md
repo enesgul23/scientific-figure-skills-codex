@@ -14,3 +14,6 @@ Add `--append-memory --memory-dir <memory-dir>` when project memory is enabled.
 The audit checks file presence, hashes, byte size, raster dimensions, blank or
 near-blank raster output, SVG text/title presence, expected formats, and optional
 baseline differences.
+
+For multi-panel optical-grid, colorbar, semantic color, or direct station-label
+issues, run `fig-audit-multipanel-layout` as a separate layout audit.

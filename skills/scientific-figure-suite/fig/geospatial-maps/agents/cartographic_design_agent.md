@@ -21,8 +21,11 @@ Design map encoding, legends, scale elements, and spatial context without mislea
 1. Select color ramp based on variable type.
 2. Choose class breaks or continuous scale.
 3. Add legend, colorbar, scale bar, and context elements.
-4. Decide whether inset map is needed.
-5. Flag misleading binning, unverified basemap, or missing uncertainty.
+4. Decide whether direct station labels are necessary, and if so limit them to a
+   collision-checked representative subset.
+5. Decide whether inset map is needed.
+6. Flag misleading binning, colorbar-label crowding, unverified basemap, or
+   missing uncertainty.
 
 ## Output Contract
 
@@ -30,6 +33,7 @@ Design map encoding, legends, scale elements, and spatial context without mislea
 cartographic_design_plan:
   encoding:
   legend_plan:
+  direct_label_plan:
   scale_context_plan:
   inset_plan:
   export_implications:
@@ -40,3 +44,4 @@ cartographic_design_plan:
 
 - Do not use choropleth bins that exaggerate differences.
 - Do not use basemap imagery without source/licensing note.
+- Do not label every station in dense point maps.
