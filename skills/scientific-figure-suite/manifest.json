@@ -1,6 +1,6 @@
 {
   "name": "scientific-figure-suite",
-  "display_name": "Scientific Figure Suite",
+  "display_name": "Scientific Figure Design",
   "adapter_version": "0.7.0",
   "kind": "codex_skill",
   "entrypoint": "SKILL.md",

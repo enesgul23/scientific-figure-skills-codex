@@ -34,7 +34,7 @@ description: >
   fig-probe-environment, fig-select-render-stack, or fig-plan-external-data.
 ---
 
-# Scientific Figure Suite
+# Scientific Figure Design
 
 This is a Codex-native router skill for publication-quality scientific figure
 work. Route through this file first, then read only the workflow, command
