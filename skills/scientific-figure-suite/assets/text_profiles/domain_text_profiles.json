@@ -1,6 +1,6 @@
 {
   "text_style_profiles": {
-    "schema_version": "0.8.0",
+    "schema_version": "0.9.0",
     "source": "bundled_domain_profiles",
     "live_web_required": false,
     "profiles": [

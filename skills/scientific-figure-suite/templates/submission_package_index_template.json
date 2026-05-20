@@ -1,6 +1,6 @@
 {
   "submission_package_index": {
-    "schema_version": "0.8.0",
+    "schema_version": "0.9.0",
     "project_id": "project-id",
     "created_at": "YYYY-MM-DDTHH:MM:SSZ",
     "updated_at": "YYYY-MM-DDTHH:MM:SSZ",

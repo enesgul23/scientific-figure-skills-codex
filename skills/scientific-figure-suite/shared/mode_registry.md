@@ -6,6 +6,11 @@ Use these modes in command recipes and workflow handoffs.
 |---|---|---|
 | `planning` | Convert request into figure plan and missing inputs | `fig-plan` |
 | `scoping` | Narrow underspecified figure intent before rendering | `fig-scope` |
+| `agentic-plan` | Build a dry-run runbook from memory and audit state | `fig-agent-plan` |
+| `agentic-next` | Select the next safe gated action from a runbook | `fig-agent-next` |
+| `agentic-resume` | Resume planning from project-local memory and dashboard | `fig-agent-resume` |
+| `environment-doctor` | Diagnose environment, registry, library pool, and memory fixtures | `fig-doctor` |
+| `release-check` | Run version sync, shell syntax, validation, and repo hygiene checks | `sfs-release-check.sh` |
 | `render` | Generate data-derived figure code/output | domain-specific |
 | `registry-render` | Render from the template registry | `fig-render-template` |
 | `audit` | Review figure/spec/caption/package for gates | `fig-audit` |
@@ -41,6 +46,9 @@ Use these modes in command recipes and workflow handoffs.
 
 - `planning` may run without data, but must mark missing inputs.
 - `scoping` must not render files.
+- Agentic modes are dry-run-first and must keep package install, data download,
+  deletion, push, and verified journal compliance behind explicit gates.
+- Shell helper modes wrap Python scripts and must not replace the Python runtime.
 - `render` requires supplied data or code.
 - `registry-render` requires a valid registry entry and required data columns.
 - Dependency modes must not install packages automatically.

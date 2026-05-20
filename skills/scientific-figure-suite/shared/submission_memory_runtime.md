@@ -6,7 +6,7 @@ Defines the v0.3 submission-grade runtime layer. Figure memory is no longer only
 an optional project notebook; it participates in workflow entry, figure updates,
 quality audits, export packaging, stale detection, resume boundaries, pipeline
 status dashboards, render-quality evidence, multi-panel layout evidence, and
-text layout evidence.
+text layout evidence. v0.9 adds agentic runbooks and next-action reports.
 
 ## Workflow Integration
 
@@ -22,7 +22,7 @@ user asks to continue a project:
 5. After producing or auditing work, update the Figure Passport and append
    audit, claim, journal verification, visual artifact, decision, visual
    regression, multipanel-layout, text-layout, dependency-plan, or
-   external-data-plan ledger
+   external-data-plan ledger, plus agentic run history when a runbook is used
    entries.
 6. If pausing or moving to another session, create a Figure Passport reset
    boundary.
@@ -147,6 +147,13 @@ resources. Plans are append-only and must record whether the decision is
 `NOT_REQUIRED`, `RECOMMENDED_WITH_APPROVAL`, `BLOCKED_PENDING_SOURCE`, or
 `REJECTED`.
 
+## Agentic Run Ledger
+
+Use `agentic_run_history.jsonl` for dry-run or whitelisted execution reports.
+Use `agentic_task_queue.jsonl` only for explicit queued runbook tasks. These
+ledgers must not record hidden package installation, external data download,
+deletion, Git push, or journal verification automation.
+
 ## Submission-Grade Acceptance
 
 A submission-grade package should have:
@@ -161,6 +168,7 @@ A submission-grade package should have:
 - latest text layout audit not failed when text layout evidence is available
 - latest dependency plan has no unresolved required-library blockers for rendered outputs
 - external data plans are either `NOT_REQUIRED` or have complete provenance and user approval
+- latest agentic next action has no unresolved blocker when agentic mode is used
 - quality audit history with latest gate results
 - Figure Passport reset/resume ledger cleanly consumed or no pending boundary
 - export manifest that references the same file hashes as audit artifacts

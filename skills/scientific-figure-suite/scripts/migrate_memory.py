@@ -37,6 +37,8 @@ def migrate_manifest(memory_dir: Path) -> None:
     files.setdefault("text_layout_history", "text_layout_history.jsonl")
     files.setdefault("dependency_plan_history", "dependency_plan_history.jsonl")
     files.setdefault("external_data_plan_history", "external_data_plan_history.jsonl")
+    files.setdefault("agentic_task_queue", "agentic_task_queue.jsonl")
+    files.setdefault("agentic_run_history", "agentic_run_history.jsonl")
     pipeline_state = manifest.setdefault("pipeline_state", default_pipeline_state())
     for key, value in default_pipeline_state().items():
         pipeline_state.setdefault(key, value)

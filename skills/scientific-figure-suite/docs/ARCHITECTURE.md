@@ -17,6 +17,7 @@ scientific-figure-suite/
   templates/
   examples/
   scripts/
+  scripts/bin/
   tests/
 ```
 
@@ -45,6 +46,8 @@ project-root/
     text_layout_history.jsonl
     dependency_plan_history.jsonl
     external_data_plan_history.jsonl
+    agentic_task_queue.jsonl
+    agentic_run_history.jsonl
     author_visual_style_profile.json
 ```
 
@@ -65,8 +68,10 @@ project-root/
 13. `scripts/audit_multipanel_layout.py` records optical-grid, colorbar, semantic color, and direct-label layout evidence.
 14. `scripts/select_text_profile.py`, `scripts/audit_text_layout.py`, and `scripts/repair_text_layout.py` select domain terminology, audit text geometry, and repair crowded labels.
 15. `scripts/build_pipeline_dashboard.py` summarizes active stage, blockers, latest artifacts, and next actions.
-16. `figure-auditor` and shared compliance checks gate final packaging.
-17. `export-packager` creates or describes files and manifest.
+16. `scripts/build_agentic_runbook.py` and `scripts/advance_agentic_runbook.py` create dry-run runbooks and next-action reports from memory and audit state.
+17. `scripts/bin/*.sh` wraps validation, doctor, agentic plan, next-action, release-check, and generated-cache cleanup flows.
+18. `figure-auditor` and shared compliance checks gate final packaging.
+19. `export-packager` creates or describes files and manifest.
 
 ## Library Intelligence Runtime
 
@@ -107,6 +112,20 @@ rotation, priority, wrapping, abbreviation, and overlap status when available.
 colorbar-title crowding, direct-label density, and vague terminology.
 `scripts/repair_text_layout.py` may wrap, shorten, rotate, reserve margins, or
 hide low-priority direct labels, but it must not rewrite scientific meaning.
+
+## Agentic Orchestration Runtime
+
+v0.9.0 adds plan-first orchestration. `agentic_runbook.json` records the staged
+state from intake through readiness, including evidence, blockers, gated
+actions, and the selected next action. `agentic_run_report.json` records the
+dry-run or whitelisted execution result.
+
+The runtime is not autonomous package installation, data acquisition, Git
+automation, or journal compliance scraping. Missing required libraries,
+external data, deletion, pushes, and verified journal status remain approval
+gates. Shell helpers under `scripts/bin/` call the Python runtime and provide
+repeatable validation and release checks; they are not a parallel
+implementation layer.
 
 ## Non-Runtime Materials
 

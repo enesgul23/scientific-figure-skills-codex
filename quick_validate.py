@@ -21,7 +21,9 @@ COMMANDS = [
     ["scripts/validate_style_tokens.py"],
     ["scripts/validate_render_template_registry.py"],
     ["scripts/validate_library_pool.py"],
+    ["scripts/validate_agentic_runbook.py", "tests/sample_agentic_runbook.json"],
     ["scripts/validate_data_acquisition_plan.py", "templates/data_acquisition_plan_template.json"],
+    ["scripts/validate_repo_hygiene.py", "--repo-root", str(ROOT)],
     ["scripts/audit_multipanel_layout.py", "--layout", "tests/sample_multipanel_layout.yaml"],
     ["scripts/audit_text_layout.py", "--layout", "tests/sample_text_layout.yaml"],
     ["scripts/validate_memory.py", "--memory-dir", "tests/sample_memory/scientific-figure-memory"],
@@ -53,6 +55,26 @@ def run_command(command: list[str], env: dict[str, str], expect_success: bool = 
     if not ok:
         expectation = "success" if expect_success else "failure"
         print(f"[FAIL] expected {expectation} from {display}", file=sys.stderr)
+    return ok, output
+
+
+def run_shell_command(command: str, env: dict[str, str], expect_success: bool = True) -> tuple[bool, str]:
+    print(f"[RUN] {command}")
+    result = subprocess.run(
+        ["bash", "-lc", command],
+        cwd=SKILL_DIR,
+        env=env,
+        text=True,
+        capture_output=True,
+        check=False,
+    )
+    output = "\n".join(part for part in [result.stdout.strip(), result.stderr.strip()] if part)
+    if output:
+        print(output)
+    ok = result.returncode == 0 if expect_success else result.returncode != 0
+    if not ok:
+        expectation = "success" if expect_success else "failure"
+        print(f"[FAIL] expected {expectation} from {command}", file=sys.stderr)
     return ok, output
 
 
@@ -217,6 +239,8 @@ def prepare_v04_memory_copy(source: Path, target: Path) -> None:
         "text_layout_history.jsonl",
         "dependency_plan_history.jsonl",
         "external_data_plan_history.jsonl",
+        "agentic_task_queue.jsonl",
+        "agentic_run_history.jsonl",
     ]:
         path = target / filename
         if path.exists():
@@ -232,6 +256,8 @@ def prepare_v04_memory_copy(source: Path, target: Path) -> None:
     manifest["files"].pop("text_layout_history", None)
     manifest["files"].pop("dependency_plan_history", None)
     manifest["files"].pop("external_data_plan_history", None)
+    manifest["files"].pop("agentic_task_queue", None)
+    manifest["files"].pop("agentic_run_history", None)
     manifest_path.write_text(json.dumps(manifest_data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
@@ -484,6 +510,23 @@ def run_runtime_smoke(env: dict[str, str]) -> int:
         ok, _ = run_command(["scripts/validate_data_acquisition_plan.py", str(invalid_external_plan)], env, expect_success=False)
         failures += 0 if ok else 1
 
+        agentic_runbook = temp_dir / "agentic_runbook.json"
+        agentic_report = temp_dir / "agentic_run_report.json"
+        for command in [
+            [
+                "scripts/build_agentic_runbook.py",
+                "--memory-dir",
+                str(SKILL_DIR / "tests" / "sample_memory" / "scientific-figure-memory"),
+                "--out",
+                str(agentic_runbook),
+            ],
+            ["scripts/validate_agentic_runbook.py", str(agentic_runbook)],
+            ["scripts/advance_agentic_runbook.py", "--runbook", str(agentic_runbook), "--out", str(agentic_report)],
+            ["scripts/summarize_agentic_run.py", str(agentic_runbook)],
+        ]:
+            ok, _ = run_command(command, env)
+            failures += 0 if ok else 1
+
         memory_copy = temp_dir / "memory-v04"
         prepare_v04_memory_copy(SKILL_DIR / "tests" / "sample_memory" / "scientific-figure-memory", memory_copy)
         for command in [
@@ -543,6 +586,36 @@ def run_runtime_smoke(env: dict[str, str]) -> int:
         else:
             print("[FAIL] readiness did not expose failed text layout blocker", file=sys.stderr)
             failures += 1
+
+        text_failure_runbook = temp_dir / "agentic_text_failure_runbook.json"
+        ok, _ = run_command(
+            ["scripts/build_agentic_runbook.py", "--memory-dir", str(memory_copy), "--out", str(text_failure_runbook)],
+            env,
+        )
+        failures += 0 if ok else 1
+        text_next = json.loads(text_failure_runbook.read_text(encoding="utf-8"))["agentic_runbook"]["next_action"]
+        if ok and text_next.get("alias") == "fig-repair-text-layout":
+            print("[PASS] agentic next action repairs failed text layout")
+        else:
+            print("[FAIL] agentic runbook did not route failed text layout to repair", file=sys.stderr)
+            failures += 1
+
+        (memory_copy / "dependency_plan_history.jsonl").write_text(
+            '{"dependency_plan":{"blocked_libraries":[{"library_id":"cartopy","reason":"missing required geospatial package"}],"created_at":"2026-05-20T08:32:00Z","selected_stack":[]}}\n',
+            encoding="utf-8",
+        )
+        dependency_failure_runbook = temp_dir / "agentic_dependency_failure_runbook.json"
+        ok, _ = run_command(
+            ["scripts/build_agentic_runbook.py", "--memory-dir", str(memory_copy), "--out", str(dependency_failure_runbook)],
+            env,
+        )
+        failures += 0 if ok else 1
+        dependency_next = json.loads(dependency_failure_runbook.read_text(encoding="utf-8"))["agentic_runbook"]["next_action"]
+        if ok and dependency_next.get("alias") == "fig-plan-libraries" and dependency_next.get("approval_required") is True:
+            print("[PASS] agentic next action gates missing required dependency")
+        else:
+            print("[FAIL] agentic runbook did not gate missing required dependency", file=sys.stderr)
+            failures += 1
     return failures
 
 
@@ -559,6 +632,16 @@ def main() -> int:
         ok, _ = run_command(command, env)
         failures += 0 if ok else 1
     failures += run_runtime_smoke(env)
+    if shutil.which("bash"):
+        for command in [
+            "bash -n scripts/bin/*.sh",
+            "bash scripts/bin/sfs-validate.sh --no-quick",
+            "bash scripts/bin/sfs-doctor.sh",
+        ]:
+            ok, _ = run_shell_command(command, env)
+            failures += 0 if ok else 1
+    else:
+        print("[WARN] bash not available; shell helper smoke tests skipped")
 
     if failures:
         print(f"[FAIL] {failures} validation command(s) failed", file=sys.stderr)

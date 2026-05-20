@@ -1,7 +1,7 @@
 interface:
   display_name: "Scientific Figure Suite"
-  short_description: "Scope, plan dependencies, render, text/layout-audit, export, and track publication-quality scientific figure sets"
-  default_prompt: "Use $scientific-figure-suite to scope, create, or continue a publication-quality scientific figure set with Figure Passport memory, renderer registry support, library-pool dependency selection, Python environment probing, external-data decision planning, visual QA, multi-panel optical-grid and colorbar layout audits, text layout intelligence, package readiness checks, data integrity checks, and target journal status."
+  short_description: "Scope, plan, render, audit, package, and orchestrate publication-quality scientific figure sets"
+  default_prompt: "Use $scientific-figure-suite to scope, create, or continue a publication-quality scientific figure set with Figure Passport memory, renderer registry support, library-pool dependency selection, Python environment probing, external-data decision planning, visual QA, multi-panel layout audits, text layout intelligence, dry-run agentic runbooks, package readiness checks, data integrity checks, and target journal status."
 
 policy:
   allow_implicit_invocation: true

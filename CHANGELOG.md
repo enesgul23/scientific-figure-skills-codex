@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.9.0 - 2026-05-20
+
+- Added Agentic Orchestration Runtime for dry-run runbooks, next-action selection, resume planning, and guarded execution.
+- Added `fig-agent-plan`, `fig-agent-next`, `fig-agent-resume`, and `fig-doctor` command recipes.
+- Added `build_agentic_runbook.py`, `validate_agentic_runbook.py`, `advance_agentic_runbook.py`, and `summarize_agentic_run.py`.
+- Added POSIX shell helpers under `scripts/bin/` for validation, doctor checks, runbook planning, release checks, and generated-cache cleanup.
+- Added `validate_repo_hygiene.py` for version sync, concise skill metadata, no generated caches, no Turkish text, and docs hygiene.
+- Added `agentic_task_queue.jsonl` and `agentic_run_history.jsonl` project-memory ledgers.
+- Extended quick validation, CI shell syntax checks, README, mode registry, architecture, validation docs, and citation metadata for v0.9.0.
+
 ## 0.8.0 - 2026-05-20
 
 - Added Text Layout Intelligence Runtime for text overlap, clipping, axis-bound, colorbar-title, direct-label, font-size, and terminology audits.

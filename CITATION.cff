@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: "Gul"
     given-names: "Enes"
-abstract: "A Codex-native skill suite for planning, rendering, auditing, and packaging publication-grade scientific figures with project-local memory, renderer registries, dependency planning, visual QA, multi-panel layout audits, and text layout intelligence."
+abstract: "A Codex-native skill suite for planning, rendering, auditing, and packaging publication-grade scientific figures with project-local memory, renderer registries, dependency planning, visual QA, multi-panel layout audits, text layout intelligence, and dry-run agentic orchestration."
 keywords:
   - scientific visualization
   - scientific figures
@@ -14,5 +14,5 @@ keywords:
   - manuscript figures
 repository-code: "https://github.com/enesgul23/scientific-figure-skills-codex"
 license: MIT
-version: "0.8.0"
+version: "0.9.0"
 date-released: "2026-05-20"

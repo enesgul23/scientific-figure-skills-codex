@@ -1,0 +1,45 @@
+{
+  "agentic_runbook": {
+    "schema_version": "0.9.0",
+    "created_at": "2026-05-20T00:00:00Z",
+    "run_id": "agentic-sample",
+    "project_id": "flood-gnn-paper-2026",
+    "mode": "DRY_RUN_FIRST",
+    "memory_dir": "tests/sample_memory/scientific-figure-memory",
+    "dashboard_summary": {
+      "active_stage": "figure-auditor",
+      "readiness_summary": "NOT_RUN",
+      "blockers": [],
+      "next_actions": ["Run fig-build-submission-package after exports exist."]
+    },
+    "stages": [
+      {"stage": "INTAKE", "status": "DONE", "evidence": "figure passport contains figures", "recommended_action": null},
+      {"stage": "DATASET_INSPECTION", "status": "DONE", "evidence": "dataset registry contains datasets", "recommended_action": null},
+      {"stage": "DEPENDENCY_PLANNING", "status": "READY", "evidence": "", "recommended_action": {"alias": "fig-plan-libraries", "reason": "Create dependency plan before registry rendering.", "command": [], "approval_required": false, "gated": false}},
+      {"stage": "RENDER_STACK_SELECTION", "status": "READY", "evidence": "", "recommended_action": {"alias": "fig-select-render-stack", "reason": "Select minimal render stack from registry and environment.", "command": [], "approval_required": false, "gated": false}},
+      {"stage": "RENDER", "status": "DONE", "evidence": "", "recommended_action": {"alias": "fig-render-template", "reason": "Render only from supplied data and an approved dependency plan.", "command": [], "approval_required": false, "gated": false}},
+      {"stage": "MULTIPANEL_LAYOUT_AUDIT", "status": "DONE", "evidence": "", "recommended_action": null},
+      {"stage": "TEXT_LAYOUT_AUDIT", "status": "DONE", "evidence": "", "recommended_action": null},
+      {"stage": "RENDER_QUALITY_AUDIT", "status": "DONE", "evidence": "", "recommended_action": null},
+      {"stage": "STYLE_STATUS", "status": "WAITING", "evidence": "unverified journal target", "recommended_action": {"alias": "fig-verify-journal", "reason": "Journal verification needs current official or user-provided guidance.", "command": [], "approval_required": true, "gated": true}},
+      {"stage": "CAPTION_ALT_TEXT", "status": "READY", "evidence": "", "recommended_action": {"alias": "fig-caption", "reason": "Create or update caption and alt text after figure evidence is stable.", "command": [], "approval_required": false, "gated": false}},
+      {"stage": "FIGURE_SET", "status": "READY", "evidence": "", "recommended_action": {"alias": "fig-build-figure-set", "reason": "Build figure set manifest.", "command": [], "approval_required": false, "gated": false}},
+      {"stage": "SUBMISSION_PACKAGE", "status": "READY", "evidence": "", "recommended_action": {"alias": "fig-build-submission-package", "reason": "Build package index after exports exist.", "command": [], "approval_required": false, "gated": false}},
+      {"stage": "READINESS", "status": "READY", "evidence": "", "recommended_action": {"alias": "fig-audit-readiness", "reason": "Run final readiness audit once earlier blockers are resolved.", "command": [], "approval_required": false, "gated": false}}
+    ],
+    "next_action": {
+      "stage": "STYLE_STATUS",
+      "alias": "fig-verify-journal",
+      "reason": "Journal verification needs current official or user-provided guidance.",
+      "command": [],
+      "approval_required": true,
+      "gated": true
+    },
+    "guardrails": [
+      "Do not install packages automatically.",
+      "Do not download external data without explicit approval.",
+      "Do not claim verified journal compliance without current official or user-provided guidance.",
+      "Do not write project memory inside the installed skill directory."
+    ]
+  }
+}

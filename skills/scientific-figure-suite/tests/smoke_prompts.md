@@ -124,3 +124,16 @@ Expected:
 - detect text overlap, clipping, font-size, and colorbar-title crowding
 - use bundled domain terminology profiles without live web lookup
 - recommend `fig-repair-text-layout` for deterministic repair before export
+
+## 11. Agentic Next Action
+
+```text
+Use $scientific-figure-suite fig-agent-plan for this project memory and tell me the next safe action.
+```
+
+Expected:
+
+- build a dry-run runbook from memory and audit ledgers
+- do not render, install packages, download data, push, or mutate memory
+- route failed text layout to `fig-repair-text-layout`
+- gate missing required dependencies behind `fig-plan-libraries`

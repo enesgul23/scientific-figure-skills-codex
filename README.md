@@ -2,17 +2,24 @@
 
 **A Codex-native skill suite for planning, rendering, auditing, and packaging publication-grade scientific figures.**
 
-Scientific Figure Skills for Codex turns figure work into a managed, auditable production system: scoped intent, dataset inspection, renderer selection, library planning, visual claim tracking, reproducible exports, journal-style status, render-quality checks, and project-local figure memory.
+Scientific Figure Skills for Codex turns figure work into a managed, auditable
+production system: scoped intent, dataset inspection, renderer selection,
+library planning, visual claim tracking, reproducible exports,
+journal-style status, render-quality checks, dry-run runbooks, and
+project-local figure memory.
 
 [![Validation](https://github.com/enesgul23/scientific-figure-skills-codex/actions/workflows/validation.yml/badge.svg)](https://github.com/enesgul23/scientific-figure-skills-codex/actions/workflows/validation.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.8.0-blue.svg)](VERSION)
+[![Version](https://img.shields.io/badge/version-0.9.0-blue.svg)](VERSION)
 
 ## Why This Exists
 
 Scientific figures are not just graphics. They are evidence-bearing artifacts.
 
-This suite is designed for researchers, technical authors, and Codex users who need figures that are not only polished, but also traceable, reproducible, statistically honest, accessible, and explicit about uncertainty, journal status, and data provenance.
+This suite is designed for researchers, technical authors, and Codex users who
+need figures that are not only polished, but also traceable, reproducible,
+statistically honest, accessible, and explicit about uncertainty, journal
+status, and data provenance.
 
 Core priority:
 
@@ -20,7 +27,9 @@ Core priority:
 truth > reproducibility > interpretability > journal compliance > visual elegance > novelty
 ```
 
-The suite does not fabricate data, does not silently install packages, does not download external data without approval, and does not claim verified journal compliance unless current official or user-provided guidance is available.
+The suite does not fabricate data, does not silently install packages, does not
+download external data without approval, and does not claim verified journal
+compliance unless current official or user-provided guidance is available.
 
 ## What It Can Do
 
@@ -31,6 +40,8 @@ The suite does not fabricate data, does not silently install packages, does not 
 - Probe the local Python environment without installing anything.
 - Build dependency plans with required, recommended, optional, blocked, and fallback libraries.
 - Decide whether external data are scientifically justified before acquisition.
+- Build dry-run agentic runbooks and next-action reports from memory, registries, dependency plans, and audit ledgers.
+- Run shell helpers for validation, diagnostics, agentic planning, release checks, and generated-cache cleanup.
 - Track figure lineage through project-local Figure Passport memory.
 - Maintain dataset registries, visual claim ledgers, audit ledgers, and reset/resume boundaries.
 - Audit render quality, blank images, output formats, SVG labels, file hashes, and visual regression sanity.
@@ -57,6 +68,7 @@ skills/scientific-figure-suite/
   assets/library_pool/             # Python library metadata pool
   assets/text_profiles/            # Bundled domain terminology profiles
   scripts/                         # Validators, renderers, memory, QA, planning runtime
+  scripts/bin/                     # POSIX shell helpers for validation and runbooks
   tests/                           # Sample fixtures and smoke prompts
 ```
 
@@ -136,6 +148,10 @@ fig-render-template parity_scatter from predictions.csv
 fig-audit-render exported files in figures/output
 ```
 
+```text
+fig-agent-plan for the current project memory
+```
+
 For underspecified requests, the suite routes to figure scoping first. It asks for the scientific message, data status, figure type, target journal context, and output format before rendering.
 
 ## Main Command Aliases
@@ -144,6 +160,10 @@ For underspecified requests, the suite routes to figure scoping first. It asks f
 |---|---|
 | `fig-scope` | Clarify an underspecified figure request without rendering. |
 | `fig-plan` | Produce a structured figure plan and workflow chain. |
+| `fig-agent-plan` | Build a dry-run runbook from project memory and audit state. |
+| `fig-agent-next` | Select the next safe action from an agentic runbook. |
+| `fig-agent-resume` | Rebuild the runbook from project-local memory and resume planning. |
+| `fig-doctor` | Diagnose environment, registry, library pool, and memory fixture health. |
 | `fig-full` | Run the full staged figure production chain. |
 | `fig-render-template` | Render from the registry-backed Python templates. |
 | `fig-audit-render` | Run visual QA and render-quality checks. |
@@ -221,7 +241,10 @@ External data require source, license, citation, access date, hash when material
 
 Version `0.7.0` adds a dedicated multi-panel layout audit.
 
-For complex manuscript figures, the suite does not treat `constrained_layout` or `tight_layout` as sufficient by itself. Colorbar panels, shared legends, maps, scatter panels, and station labels require explicit layout checks before final export.
+For complex manuscript figures, the suite does not treat `constrained_layout`
+or `tight_layout` as sufficient by itself. Colorbar panels, shared legends,
+maps, scatter panels, and station labels require explicit layout checks before
+final export.
 
 The audit checks:
 
@@ -241,13 +264,20 @@ python skills/scientific-figure-suite/scripts/audit_multipanel_layout.py \
   --out multipanel_layout_audit.json
 ```
 
-This audit is also wired into project memory through `multipanel_layout_history.jsonl`, pipeline dashboards, and submission-readiness checks. A failed layout audit blocks readiness wording until the panel boxes, colorbars, semantic colors, or direct labels are repaired.
+This audit is also wired into project memory through
+`multipanel_layout_history.jsonl`, pipeline dashboards, and submission-readiness
+checks. A failed layout audit blocks readiness wording until the panel boxes,
+colorbars, semantic colors, or direct labels are repaired.
 
 ## Text Layout Intelligence Runtime
 
 Version `0.8.0` adds a dedicated text layout audit and repair layer.
 
-The suite no longer treats successful code execution as enough for text-heavy figures. It checks whether figure titles, panel titles, axis labels, tick labels, legends, colorbar titles, direct labels, and annotations are readable, aligned, inside their bounds, non-overlapping, and worded with domain-appropriate academic terminology.
+The suite no longer treats successful code execution as enough for text-heavy
+figures. It checks whether figure titles, panel titles, axis labels, tick
+labels, legends, colorbar titles, direct labels, and annotations are readable,
+aligned, inside their bounds, non-overlapping, and worded with
+domain-appropriate academic terminology.
 
 The audit checks:
 
@@ -286,6 +316,33 @@ python skills/scientific-figure-suite/scripts/audit_text_layout.py \
 ```
 
 Text audits append to `text_layout_history.jsonl` when project memory is enabled. A failed text layout audit blocks submission-readiness wording until the labels are repaired and re-audited.
+
+## Agentic Orchestration Runtime
+
+Version `0.9.0` adds a dry-run-first orchestration layer. The suite can read
+project memory, dependency plans, render history, text and multi-panel audits,
+and readiness ledgers, then produce the next safe action without rendering or
+mutating memory.
+
+```bash
+python skills/scientific-figure-suite/scripts/build_agentic_runbook.py \
+  --memory-dir .codex/scientific-figure-memory \
+  --out agentic_runbook.json
+
+python skills/scientific-figure-suite/scripts/advance_agentic_runbook.py \
+  --runbook agentic_runbook.json \
+  --out agentic_run_report.json
+```
+
+Shell helper examples:
+
+```bash
+bash skills/scientific-figure-suite/scripts/bin/sfs-doctor.sh
+bash skills/scientific-figure-suite/scripts/bin/sfs-agent-plan.sh --memory-dir .codex/scientific-figure-memory --out agentic_runbook.json
+bash skills/scientific-figure-suite/scripts/bin/sfs-agent-next.sh --runbook agentic_runbook.json
+```
+
+On Windows, use Git Bash or WSL for the POSIX shell helpers. Python scripts remain the canonical runtime.
 
 External data planning example:
 
@@ -327,6 +384,7 @@ Memory can track:
 - text layout audit history
 - dependency plan history
 - external data plan history
+- agentic task queues and run history
 - reset/resume boundaries
 - optional author or lab visual style profile
 
@@ -357,6 +415,9 @@ The validation suite checks:
 - dataset inspection
 - dependency planning
 - external data plan validation
+- agentic runbook validation and next-action dry runs
+- shell helper syntax and diagnostics
+- repository hygiene, version sync, and no generated caches
 
 GitHub Actions runs the same validation workflow on pull requests and pushes to `main`.
 
@@ -369,6 +430,7 @@ This suite is intentionally conservative.
 - It treats journal profiles as `ESTIMATED` or `UNVERIFIED` unless current official or user-provided guidance is available.
 - It treats external data as provenance-gated.
 - It treats dependency installation as a user-approved step, not an automatic behavior.
+- It treats agentic execution as dry-run-first and approval-gated for risky actions.
 - It treats render-quality QA as a file sanity layer, not proof of scientific correctness.
 - It treats text layout repair as conservative layout editing, not scientific wording invention.
 
@@ -379,7 +441,7 @@ If this suite supports academic work, please cite it. GitHub can generate citati
 Recommended citation:
 
 ```text
-Gul, E. (2026). Scientific Figure Skills for Codex (Version 0.8.0) [Computer software]. GitHub. https://github.com/enesgul23/scientific-figure-skills-codex
+Gul, E. (2026). Scientific Figure Skills for Codex (Version 0.9.0) [Computer software]. GitHub. https://github.com/enesgul23/scientific-figure-skills-codex
 ```
 
 BibTeX:
@@ -389,7 +451,7 @@ BibTeX:
   author = {Gul, Enes},
   title = {Scientific Figure Skills for Codex},
   year = {2026},
-  version = {0.8.0},
+  version = {0.9.0},
   url = {https://github.com/enesgul23/scientific-figure-skills-codex},
   license = {MIT}
 }

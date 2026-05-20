@@ -517,3 +517,25 @@ The audit must cover text overlap, figure and axes bounds, minimum font size,
 excessive rotation, title wrapping, colorbar-title crowding, direct-label
 control, and bundled domain terminology. A failed report blocks submission
 readiness until repaired and re-audited.
+
+## Schema 23: Agentic Runbook
+
+Producer: `fig-agent-plan` or `fig-agent-resume`.
+
+Consumer: `fig-agent-next`, user, memory curator.
+
+Required fields:
+
+- `schema_version`
+- `created_at`
+- `run_id`
+- `project_id`
+- `mode`
+- `stages`
+- `next_action`
+- `guardrails`
+
+Stages must follow the public runbook order from intake through readiness. The
+selected next action must be dry-run safe by default. Package installation,
+external download, deletion, Git push, and verified journal compliance remain
+approval-gated even when `--execute` is requested.

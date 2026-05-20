@@ -390,6 +390,22 @@ def validate_memory(memory_dir: Path, check_paths: bool = False) -> tuple[list[s
             continue
         if plan.get("decision") not in {"NOT_REQUIRED", "RECOMMENDED_WITH_APPROVAL", "BLOCKED_PENDING_SOURCE", "REJECTED"}:
             errors.append(f"external_data_plan_history line {index}: invalid decision")
+    task_entries = validate_jsonl_file(memory_dir / "agentic_task_queue.jsonl", errors)
+    for index, entry in enumerate(task_entries, start=1):
+        task = entry.get("agentic_task", entry)
+        if not isinstance(task, dict):
+            errors.append(f"agentic_task_queue line {index}: entry must be an object")
+            continue
+        if not task.get("stage") or not task.get("alias"):
+            errors.append(f"agentic_task_queue line {index}: stage and alias are required")
+    run_entries = validate_jsonl_file(memory_dir / "agentic_run_history.jsonl", errors)
+    for index, entry in enumerate(run_entries, start=1):
+        report = entry.get("agentic_run_report", entry)
+        if not isinstance(report, dict):
+            errors.append(f"agentic_run_history line {index}: entry must be an object")
+            continue
+        if "selected_action" not in report:
+            errors.append(f"agentic_run_history line {index}: selected_action is required")
     boundary_entries = validate_jsonl_file(memory_dir / "revision_boundary_ledger.jsonl", errors)
     boundary_hashes: set[str] = set()
     consumed_hashes: set[str] = set()

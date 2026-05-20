@@ -6,9 +6,10 @@ description: >
   and clinical figures, multi-panel layouts, graphical abstracts, captions,
   alt text, visual-claim ledgers, journal-style checks, reproducible export
   packages, figure memory, render-quality audits, text/layout repair, library
-  selection, and external-data planning. Use for aliases such as fig-plan,
-  fig-audit, fig-caption, fig-export, fig-model-performance, fig-full,
-  fig-status, fig-audit-text-layout, and fig-render-template.
+  selection, external-data planning, and dry-run agentic runbooks. Use for
+  aliases such as fig-plan, fig-audit, fig-caption, fig-export,
+  fig-model-performance, fig-full, fig-status, fig-agent-plan,
+  fig-audit-text-layout, and fig-render-template.
 ---
 
 # Scientific Figure Suite
@@ -20,7 +21,7 @@ task.
 
 ## Versioning
 
-This package is version `0.8.0`. Keep repo-root `VERSION` and
+This package is version `0.9.0`. Keep repo-root `VERSION` and
 `manifest.json` `adapter_version` synchronized. Keep `SKILL.md` frontmatter
 minimal so Codex skill discovery remains stable.
 
@@ -109,6 +110,10 @@ below.
 |---|---|---|
 | `/fig-plan`, `fig-plan` | `commands/fig-plan.md` | `fig/intake-design/WORKFLOW.md` in planning mode |
 | `/fig-scope`, `fig-scope` | `commands/fig-scope.md` | `fig/intake-design/WORKFLOW.md` in scoping mode |
+| `/fig-agent-plan`, `fig-agent-plan` | `commands/fig-agent-plan.md` | agentic runbook planning, dry-run only |
+| `/fig-agent-next`, `fig-agent-next` | `commands/fig-agent-next.md` | next safe action from agentic runbook |
+| `/fig-agent-resume`, `fig-agent-resume` | `commands/fig-agent-resume.md` | resume plan from project-local memory and dashboard |
+| `/fig-doctor`, `fig-doctor` | `commands/fig-doctor.md` | environment, registry, library-pool, and memory fixture diagnostics |
 | `/fig-audit`, `fig-audit` | `commands/fig-audit.md` | `fig/figure-auditor/WORKFLOW.md` |
 | `/fig-caption`, `fig-caption` | `commands/fig-caption.md` | `fig/caption-alttext/WORKFLOW.md` |
 | `/fig-export`, `fig-export` | `commands/fig-export.md` | `fig/export-packager/WORKFLOW.md` |
@@ -188,6 +193,8 @@ Memory files:
 - `text_layout_history.jsonl`: append-style text overlap, clipping, font-size, colorbar-title, direct-label, and terminology audits.
 - `dependency_plan_history.jsonl`: append-style dependency plans and library stack decisions.
 - `external_data_plan_history.jsonl`: append-style external data acquisition decisions.
+- `agentic_task_queue.jsonl`: append-style planned task queue entries.
+- `agentic_run_history.jsonl`: append-style runbook next-action reports.
 - `author_visual_style_profile.json`: optional visual style memory from
   user-approved samples.
 
@@ -247,6 +254,8 @@ Apply these mappings when workflow or command files use suite terminology:
 | choose plotting libraries | Use the library pool, dataset inspection, render registry, and environment probe. Do not install packages automatically. |
 | download external data | Plan only unless the user explicitly approves download and provenance is complete. |
 | repair crowded figure text | Use the Text Layout Intelligence Runtime; wrap, shorten, rotate, reserve margins, or hide only low-priority direct labels, then re-audit. |
+| agentic runbook, next action, resume | Build a dry-run runbook from project memory and audits; execute only whitelisted suite scripts when the user explicitly requests execution. |
+| shell helper, doctor, release check | Use `scripts/bin/*.sh` as wrappers around Python runtime; they must not install, download, push, or mutate memory silently. |
 | memory, passport, visual passport | Use project-local `.codex/scientific-figure-memory/` files and the memory scripts; never write project memory into the skill folder. |
 | Bash, Python, script | Treat as available local tooling subject to Codex filesystem and safety rules. |
 
@@ -339,6 +348,7 @@ Use `shared/` for cross-workflow contracts and gates:
 - `shared/external_data_decision_protocol.md` defines when external data can be proposed and what provenance is required.
 - `shared/multipanel_layout_quality_protocol.md` defines v0.7 optical-grid, colorbar, semantic color, and direct-label layout rules.
 - `shared/text_layout_quality_protocol.md` defines v0.8 text overlap, clipping, colorbar-title, and terminology layout rules.
+- `shared/agentic_orchestration_protocol.md` defines v0.9 dry-run runbooks, next-action selection, shell helpers, and execution gates.
 - `assets/render_registry/render_registry.json` defines chart-type to renderer and dependency mappings.
 - `assets/library_pool/library_pool.json` defines the Python-first library metadata pool.
 - `assets/text_profiles/domain_text_profiles.json` defines bundled domain terminology and label profiles.
@@ -350,6 +360,7 @@ Use `shared/` for cross-workflow contracts and gates:
 - `shared/contracts/library_pool.schema.json` defines library-pool metadata shape.
 - `shared/contracts/dependency_plan.schema.json` defines dependency-plan output shape.
 - `shared/contracts/data_acquisition_plan.schema.json` defines external-data plan output shape.
+- `shared/contracts/agentic_runbook.schema.json` defines agentic runbook output shape.
 - `shared/agents/compliance_agent.md` defines the shared compliance role prompt.
 - `shared/agents/memory_curator_agent.md` defines the shared memory curator role prompt.
 - `shared/contracts/` contains JSON schemas for major handoff artifacts.
@@ -420,6 +431,7 @@ When producing a complete figure package, provide:
 - journal style status
 - dependency plan when libraries beyond the default static stack are required
 - external data acquisition plan when external basemap, benchmark, evidence, or annotation data are proposed
+- agentic runbook or run report when the user asks for `fig-agent-plan`, `fig-agent-next`, or `fig-agent-resume`
 
 If project memory is enabled, also update or emit the relevant Figure Passport
 entry, visual claim ledger entries, dataset registry references, and quality

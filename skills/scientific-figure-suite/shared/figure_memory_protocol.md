@@ -9,7 +9,8 @@ visual claims, audit history, and reset/resume state across sessions.
 v0.6 also carries pipeline-state, figure decisions, render-quality history,
 dependency planning history, and external-data planning history. v0.7 adds
 multi-panel optical-grid and colorbar layout audit history. v0.8 adds text
-layout, clipping, colorbar-title, and terminology audit history.
+layout, clipping, colorbar-title, and terminology audit history. v0.9 adds
+agentic task queues and dry-run run history.
 
 ## Storage Boundary
 
@@ -29,7 +30,7 @@ scripts only.
 |---|---|---|
 | Lightweight | Early planning or a single figure | `project_profile.json`, `journal_targets.json`, `figure_passport.json` |
 | Research-grade | Manuscript figure set | lightweight files plus `visual_claim_ledger.jsonl`, `dataset_registry.json`, `quality_audit_history.jsonl`, `memory_manifest.json` |
-| Submission-grade | Journal submission preparation | research-grade files plus `revision_boundary_ledger.jsonl`, `journal_guideline_verification.jsonl`, `visual_audit_artifact.jsonl`, `figure_decision_log.jsonl`, `visual_regression_history.jsonl`, `multipanel_layout_history.jsonl`, `text_layout_history.jsonl`, `dependency_plan_history.jsonl`, `external_data_plan_history.jsonl`, `author_visual_style_profile.json`, current guideline verification records |
+| Submission-grade | Journal submission preparation | research-grade files plus `revision_boundary_ledger.jsonl`, `journal_guideline_verification.jsonl`, `visual_audit_artifact.jsonl`, `figure_decision_log.jsonl`, `visual_regression_history.jsonl`, `multipanel_layout_history.jsonl`, `text_layout_history.jsonl`, `dependency_plan_history.jsonl`, `external_data_plan_history.jsonl`, `agentic_task_queue.jsonl`, `agentic_run_history.jsonl`, `author_visual_style_profile.json`, current guideline verification records |
 
 Default to research-grade memory when the user asks to initialize figure memory.
 
@@ -53,6 +54,8 @@ Default to research-grade memory when the user asks to initialize figure memory.
 | `text_layout_history.jsonl` | Append-style text overlap, clipping, font-size, colorbar-title, direct-label, and terminology audits. |
 | `dependency_plan_history.jsonl` | Append-style library-stack and dependency planning decisions. |
 | `external_data_plan_history.jsonl` | Append-style external data decisions, provenance gaps, and approval gates. |
+| `agentic_task_queue.jsonl` | Append-style queued or proposed runbook tasks. |
+| `agentic_run_history.jsonl` | Append-style dry-run or whitelisted execution reports. |
 | `author_visual_style_profile.json` | Optional author or lab visual style preferences from user-approved samples. |
 
 ## Write Rules
@@ -90,6 +93,9 @@ Default to research-grade memory when the user asks to initialize figure memory.
 | `fig-repair-text-layout` | Produce deterministic text layout repairs, then rerun the text audit. |
 | `fig-plan-libraries` | Inspect data and plan the minimal library stack without installing packages. |
 | `fig-plan-external-data` | Decide whether external data are justified and provenance-complete without downloading data. |
+| `fig-agent-plan` | Build a dry-run runbook from memory, registry, dependency, and audit state. |
+| `fig-agent-next` | Select the next safe action and expose approval gates from a runbook. |
+| `fig-agent-resume` | Rebuild the runbook from project-local memory and continue planning. |
 
 ## Memory Load Checklist
 
@@ -111,6 +117,7 @@ When loading memory, report:
 - latest text layout audit status
 - latest dependency plan status
 - latest external data plan and approval blockers
+- latest agentic runbook action and approval gates
 - next actions from `memory_manifest.pipeline_state`
 
 ## Status Discipline

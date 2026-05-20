@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scientific Figure Agentic Runbook",
+  "type": "object",
+  "required": ["agentic_runbook"],
+  "properties": {
+    "agentic_runbook": {
+      "type": "object",
+      "required": ["schema_version", "created_at", "run_id", "project_id", "mode", "stages", "next_action", "guardrails"],
+      "properties": {
+        "schema_version": {"type": "string"},
+        "created_at": {"type": "string"},
+        "run_id": {"type": "string"},
+        "project_id": {"type": "string"},
+        "mode": {"type": "string"},
+        "memory_dir": {"type": ["string", "null"]},
+        "dashboard_summary": {"type": "object"},
+        "stages": {"type": "array"},
+        "next_action": {"type": "object"},
+        "guardrails": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

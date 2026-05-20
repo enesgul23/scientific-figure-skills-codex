@@ -16,3 +16,5 @@
 | audit or review | `figure-auditor` | `figure-auditor -> journal-style-translator if target journal is named` |
 | export or package | `export-packager` | `export-packager` |
 | colorbar-heavy multi-panel figure | `multipanel-composer` | `multipanel-composer -> fig-audit-multipanel-layout -> fig-audit-text-layout -> figure-auditor` |
+| `fig-agent-plan`, next safe action, resume package | agentic runbook mode | `fig-status -> build_agentic_runbook -> validate_agentic_runbook -> advance_agentic_runbook` |
+| `fig-doctor`, environment health | environment doctor mode | `probe environment -> validate registry -> validate library pool -> validate memory fixture` |

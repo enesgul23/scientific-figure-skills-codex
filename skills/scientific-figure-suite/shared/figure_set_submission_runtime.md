@@ -9,6 +9,7 @@ adds render-quality, dependency-plan, and external-data decision evidence as
 readiness inputs. v0.7 adds multi-panel layout audit evidence for optical-grid,
 colorbar, semantic color, and direct-label risks. v0.8 adds text layout audit
 evidence for overlap, clipping, colorbar-title crowding, and terminology.
+v0.9 adds agentic runbooks and next-action reports as planning evidence.
 
 ## Memory Files
 
@@ -25,6 +26,8 @@ Project-local files:
   text_layout_history.jsonl
   dependency_plan_history.jsonl
   external_data_plan_history.jsonl
+  agentic_task_queue.jsonl
+  agentic_run_history.jsonl
 ```
 
 These files are project memory. Do not place real project content inside the
@@ -42,8 +45,9 @@ installed skill directory.
    colorbars, map/scatter labels, or shared legends.
 8. Audit text layout quality before final readiness when text layout artifacts
    or exported SVG-derived text boxes are available.
-9. Audit submission readiness.
-10. Append readiness decision to `submission_readiness_history.jsonl`.
+9. Build an agentic runbook when the user asks for next-step orchestration.
+10. Audit submission readiness.
+11. Append readiness decision to `submission_readiness_history.jsonl`.
 
 ## Figure Set Manifest
 

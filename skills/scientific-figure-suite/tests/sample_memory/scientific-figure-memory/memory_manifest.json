@@ -12,6 +12,8 @@
       "figure_set_manifest": "figure_set_manifest.json",
       "dependency_plan_history": "dependency_plan_history.jsonl",
       "external_data_plan_history": "external_data_plan_history.jsonl",
+      "agentic_task_queue": "agentic_task_queue.jsonl",
+      "agentic_run_history": "agentic_run_history.jsonl",
       "multipanel_layout_history": "multipanel_layout_history.jsonl",
       "text_layout_history": "text_layout_history.jsonl",
       "journal_targets": "journal_targets.json",
@@ -40,7 +42,7 @@
       "readiness_summary": "NOT_RUN"
     },
     "project_id": "flood-gnn-paper-2026",
-    "schema_version": "0.8.0",
+    "schema_version": "0.9.0",
     "unresolved_requirements": [
       "Current target journal figure guidance has not been verified."
     ],

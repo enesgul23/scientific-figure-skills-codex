@@ -1,0 +1,1 @@
+{"agentic_run_report":{"blocked":false,"created_at":"2026-05-20T08:45:00Z","dry_run":true,"output":"","project_id":"flood-gnn-paper-2026","run_id":"agentic-sample","selected_action":{"alias":"fig-build-submission-package","approval_required":false,"gated":false,"reason":"Build package index after exports exist.","stage":"SUBMISSION_PACKAGE"}}}

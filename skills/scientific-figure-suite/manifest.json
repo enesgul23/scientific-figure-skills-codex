@@ -1,7 +1,7 @@
 {
   "name": "scientific-figure-suite",
   "display_name": "Scientific Figure Suite",
-  "adapter_version": "0.8.0",
+  "adapter_version": "0.9.0",
   "kind": "codex_skill",
   "entrypoint": "SKILL.md",
   "internal_workflows": [
@@ -22,6 +22,10 @@
   "commands": [
     "fig-plan",
     "fig-scope",
+    "fig-agent-plan",
+    "fig-agent-next",
+    "fig-agent-resume",
+    "fig-doctor",
     "fig-audit",
     "fig-caption",
     "fig-export",
@@ -81,7 +85,8 @@
     "figure_set_submission_runtime",
     "external_data_decision_protocol",
     "multipanel_layout_quality_protocol",
-    "text_layout_quality_protocol"
+    "text_layout_quality_protocol",
+    "agentic_orchestration_protocol"
   ],
   "root_guides": [
     "MODE_REGISTRY.md",
@@ -126,7 +131,8 @@
     "text_style_profile.schema.json",
     "library_pool.schema.json",
     "dependency_plan.schema.json",
-    "data_acquisition_plan.schema.json"
+    "data_acquisition_plan.schema.json",
+    "agentic_runbook.schema.json"
   ],
   "templates": [
     "figure_intake_template",
@@ -156,7 +162,8 @@
     "multipanel_layout_audit_template",
     "text_layout_report_template",
     "dependency_plan_template",
-    "data_acquisition_plan_template"
+    "data_acquisition_plan_template",
+    "agentic_runbook_template"
   ],
   "render_templates": [
     "parity_scatter.py",
@@ -215,7 +222,12 @@
     "select_library_stack.py",
     "build_dependency_plan.py",
     "plan_external_data.py",
-    "validate_data_acquisition_plan.py"
+    "validate_data_acquisition_plan.py",
+    "build_agentic_runbook.py",
+    "validate_agentic_runbook.py",
+    "advance_agentic_runbook.py",
+    "summarize_agentic_run.py",
+    "validate_repo_hygiene.py"
   ],
   "memory_scripts": [
     "_memory.py",
@@ -231,7 +243,10 @@
     "audit_text_layout.py",
     "build_pipeline_dashboard.py",
     "build_dependency_plan.py",
-    "plan_external_data.py"
+    "plan_external_data.py",
+    "build_agentic_runbook.py",
+    "advance_agentic_runbook.py",
+    "summarize_agentic_run.py"
   ],
   "canonical_agents": {
     "intake-design": [
@@ -288,7 +303,7 @@
       "reproducibility_packager_agent"
     ]
   },
-  "status": "text-layout-intelligence-runtime",
+  "status": "agentic-orchestration-runtime",
   "memory_policy": {
     "default_location": ".codex/scientific-figure-memory",
     "storage_boundary": "project_local_only",
@@ -306,7 +321,9 @@
       "multipanel_layout_history.jsonl",
       "text_layout_history.jsonl",
       "dependency_plan_history.jsonl",
-      "external_data_plan_history.jsonl"
+      "external_data_plan_history.jsonl",
+      "agentic_task_queue.jsonl",
+      "agentic_run_history.jsonl"
     ],
     "style_memory": "optional_user_approved"
   },
@@ -323,6 +340,8 @@
     "Multi-panel layout audits check optical grid, colorbar spacing, semantic color mapping, and controlled direct labels.",
     "Text layout audits check overlap, clipping, font size, axis bounds, colorbar title crowding, and bundled domain terminology.",
     "Library pool selection is plan-only and must not install packages automatically.",
-    "External data acquisition is plan-only unless the user explicitly approves download with complete provenance."
+    "External data acquisition is plan-only unless the user explicitly approves download with complete provenance.",
+    "Agentic runbooks are dry-run-first and execute only whitelisted suite scripts when explicitly requested.",
+    "Shell helpers wrap Python runtime commands and must not silently install, download, push, or mutate project memory."
   ]
 }

@@ -9,6 +9,11 @@ adding command aliases, workflow modes, or validator expectations.
 |---|---|---|---|---|
 | `planning` | Originality | Figure intake, candidate visuals, missing-input list | Very High | `fig-plan`, vague figure request |
 | `scoping` | Originality | Figure-intent narrowing without render/export | Very High | `fig-scope`, underspecified journal-style figure request |
+| `agentic-plan` | Fidelity | Dry-run runbook from memory, intake, registry, dependency, and audit state | Very High | `fig-agent-plan` |
+| `agentic-next` | Fidelity | Next safe action and approval gates from runbook | Very High | `fig-agent-next` |
+| `agentic-resume` | Fidelity | Resume plan from project-local memory and dashboard | Very High | `fig-agent-resume` |
+| `environment-doctor` | Fidelity | Local environment, registry, library pool, and memory fixture diagnostics | Medium | `fig-doctor` |
+| `release-check` | Fidelity | Version sync, shell syntax, validation, and repo hygiene report | High | `scripts/bin/sfs-release-check.sh` |
 | `render` | Balanced | Data-derived code and figure outputs | High | "draw", "plot", "generate figure from data" |
 | `registry-render` | Balanced | Registry-selected template render and manifest | High | `fig-render-template` |
 | `audit` | Fidelity | Quality report with gates and fixes | Medium | `fig-audit`, "review/check this figure" |
@@ -44,6 +49,12 @@ adding command aliases, workflow modes, or validator expectations.
 
 - `planning` can proceed without data, but must mark `DATA_STATUS: MISSING` or `MOCKUP`.
 - `scoping` must not render or export files.
+- Agentic modes are dry-run-first and must not install packages, download data,
+  push to Git, delete tracked files, or claim verified journal compliance.
+- `agentic-next` may execute only whitelisted suite scripts when the user
+  explicitly requests execution; risky actions remain approval-gated.
+- Shell helper modes wrap Python runtime scripts and must not become a second
+  implementation of the figure pipeline.
 - `render` requires supplied data, code, or image assets.
 - `registry-render` requires a matching render registry entry and required data columns.
 - `library-planning`, `environment-probe`, and `render-stack-selection` must not install packages automatically.
@@ -65,6 +76,6 @@ adding command aliases, workflow modes, or validator expectations.
 
 | Spectrum | Modes |
 |---|---|
-| Fidelity | audit, render-audit, multipanel-layout-audit, text-layout-audit, caption, style, export, memory-init, memory-load, memory-update, memory-forget, memory-resume, memory-migrate, repro-lock-audit, journal-verify, visual-artifact-audit, figure-set-build, figure-set-audit, submission-package-build, submission-readiness, pipeline-status, library-planning, environment-probe, render-stack-selection, external-data-planning |
+| Fidelity | agentic-plan, agentic-next, agentic-resume, environment-doctor, release-check, audit, render-audit, multipanel-layout-audit, text-layout-audit, caption, style, export, memory-init, memory-load, memory-update, memory-forget, memory-resume, memory-migrate, repro-lock-audit, journal-verify, visual-artifact-audit, figure-set-build, figure-set-audit, submission-package-build, submission-readiness, pipeline-status, library-planning, environment-probe, render-stack-selection, external-data-planning |
 | Balanced | render, registry-render, text-layout-repair, revision, full |
 | Originality | planning, scoping |
