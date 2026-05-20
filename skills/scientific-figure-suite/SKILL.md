@@ -1,39 +1,14 @@
 ---
 name: scientific-figure-suite
 description: >
-  Create, design, audit, and export publication-quality scientific figures,
-  statistical plots, multi-panel journal figures, graphical abstracts, clinical
-  figures, model-performance visualizations, geospatial maps, omics figures,
-  figure captions, alt text, visual claim ledgers, accessibility checks, image
-  integrity checks, and journal-style submission packages for Nature, Science,
-  The Lancet, Cell, NEJM, JAMA, BMJ, PNAS, IEEE, Elsevier, and Springer Nature
-  contexts, including project-local Figure Passport memory, visual style
-  profiles, dataset registries, journal target memory, reset/resume boundaries,
-  append-only visual audit ledgers, panel-level passports, repro-lock stale
-  detection, journal guideline verification ledgers, and renderer starter
-  kits, figure set manifests, cross-figure consistency audits, submission
-  package indexes, submission-readiness reports, figure scoping, pipeline
-  dashboards, renderer registries, style-token validation, visual regression
-  checks, render-quality audits, multi-panel optical-grid audits, colorbar
-  layout checks, semantic color consistency checks, controlled station-label
-  audits, text layout overlap checks, label clipping repair, colorbar-title
-  repair, domain terminology profiles, library-pool planning, dependency selection,
-  Python environment probing, and external-data acquisition decisions. Use when the user asks for scientific charts, research figures,
-  journal-ready plots, Nature-style figures, Science-style figures,
-  Lancet-style figures, graphical abstracts, figure audits, caption writing,
-  visual claim checking, reproducible figure export, project figure memory,
-  figure passport, visual passport, resume a figure project, stale artifact
-  detection, journal verification memory, or command-style aliases such as
-  fig-plan, fig-audit, fig-caption, fig-export, fig-model-performance,
-  fig-graphical-abstract, fig-full, fig-init-memory, fig-load-memory,
-  fig-update-memory, fig-summarize-memory, fig-forget-memory,
-  fig-validate-memory, fig-resume-project, fig-migrate-memory,
-  fig-audit-repro-lock, fig-verify-journal, fig-audit-visual-artifact,
-  fig-build-figure-set, fig-audit-figure-set, fig-build-submission-package,
-  fig-audit-readiness, fig-scope, fig-status, fig-render-template,
-  fig-audit-render, fig-audit-multipanel-layout, fig-audit-text-layout,
-  fig-repair-text-layout, fig-plan-libraries,
-  fig-probe-environment, fig-select-render-stack, or fig-plan-external-data.
+  Create, audit, repair, and export publication-quality scientific figures:
+  statistical plots, model-performance visualizations, geospatial maps, omics
+  and clinical figures, multi-panel layouts, graphical abstracts, captions,
+  alt text, visual-claim ledgers, journal-style checks, reproducible export
+  packages, figure memory, render-quality audits, text/layout repair, library
+  selection, and external-data planning. Use for aliases such as fig-plan,
+  fig-audit, fig-caption, fig-export, fig-model-performance, fig-full,
+  fig-status, fig-audit-text-layout, and fig-render-template.
 ---
 
 # Scientific Figure Suite
