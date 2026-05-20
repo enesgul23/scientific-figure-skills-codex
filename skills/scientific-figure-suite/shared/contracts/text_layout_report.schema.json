@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scientific Figure Text Layout Report",
+  "type": "object",
+  "required": ["text_layout_report"],
+  "properties": {
+    "text_layout_report": {
+      "type": "object",
+      "required": [
+        "created_at",
+        "figure_id",
+        "result",
+        "text_element_count",
+        "checks",
+        "blockers",
+        "warnings",
+        "repairs_suggested"
+      ],
+      "properties": {
+        "created_at": {"type": "string"},
+        "figure_id": {"type": "string"},
+        "result": {"enum": ["PASS", "PASS_WITH_WARNINGS", "FAIL"]},
+        "text_element_count": {"type": "integer", "minimum": 0},
+        "checks": {"type": "array"},
+        "blockers": {"type": "array", "items": {"type": "string"}},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "repairs_suggested": {"type": "array"},
+        "terminology_profile_id": {"type": ["string", "null"]},
+        "colorbar_policy": {"type": ["string", "null"]}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

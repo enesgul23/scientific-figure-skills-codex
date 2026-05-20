@@ -4,7 +4,7 @@
 |---|---|---|
 | vague figure request | `intake-design` scoping mode | `intake-design -> domain workflow after missing inputs are resolved` |
 | underspecified Nature-style paper figure | `intake-design` scoping mode | no render/export until data, message, figure type, target context, and output format are resolved |
-| Nature-style multi-panel model figure | `intake-design` | `intake-design -> model-performance -> multipanel-composer -> fig-audit-multipanel-layout -> journal-style-translator -> caption-alttext -> figure-auditor -> export-packager` |
+| Nature-style multi-panel model figure | `intake-design` | `intake-design -> model-performance -> multipanel-composer -> fig-audit-multipanel-layout -> fig-audit-text-layout -> journal-style-translator -> caption-alttext -> figure-auditor -> export-packager` |
 | observed vs predicted, residuals | `model-performance` | `model-performance -> multipanel-composer -> caption-alttext -> figure-auditor` |
 | boxplot, violin, forest, ROC | `statistical-plots` | `statistical-plots -> caption-alttext -> figure-auditor` |
 | clinical forest plot, Kaplan-Meier | `clinical-biomedical` | `clinical-biomedical -> journal-style-translator -> caption-alttext -> figure-auditor` |
@@ -15,4 +15,4 @@
 | caption or alt text | `caption-alttext` | `caption-alttext -> figure-auditor` |
 | audit or review | `figure-auditor` | `figure-auditor -> journal-style-translator if target journal is named` |
 | export or package | `export-packager` | `export-packager` |
-| colorbar-heavy multi-panel figure | `multipanel-composer` | `multipanel-composer -> fig-audit-multipanel-layout -> figure-auditor` |
+| colorbar-heavy multi-panel figure | `multipanel-composer` | `multipanel-composer -> fig-audit-multipanel-layout -> fig-audit-text-layout -> figure-auditor` |

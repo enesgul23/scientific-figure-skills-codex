@@ -1,7 +1,7 @@
 {
   "name": "scientific-figure-suite",
   "display_name": "Scientific Figure Suite",
-  "adapter_version": "0.7.0",
+  "adapter_version": "0.8.0",
   "kind": "codex_skill",
   "entrypoint": "SKILL.md",
   "internal_workflows": [
@@ -48,6 +48,8 @@
     "fig-render-template",
     "fig-audit-render",
     "fig-audit-multipanel-layout",
+    "fig-audit-text-layout",
+    "fig-repair-text-layout",
     "fig-plan-libraries",
     "fig-probe-environment",
     "fig-select-render-stack",
@@ -78,7 +80,8 @@
     "submission_memory_runtime",
     "figure_set_submission_runtime",
     "external_data_decision_protocol",
-    "multipanel_layout_quality_protocol"
+    "multipanel_layout_quality_protocol",
+    "text_layout_quality_protocol"
   ],
   "root_guides": [
     "MODE_REGISTRY.md",
@@ -119,6 +122,8 @@
     "style_token.schema.json",
     "visual_regression_report.schema.json",
     "multipanel_layout_audit.schema.json",
+    "text_layout_report.schema.json",
+    "text_style_profile.schema.json",
     "library_pool.schema.json",
     "dependency_plan.schema.json",
     "data_acquisition_plan.schema.json"
@@ -149,6 +154,7 @@
     "submission_readiness_report_template",
     "visual_regression_report_template",
     "multipanel_layout_audit_template",
+    "text_layout_report_template",
     "dependency_plan_template",
     "data_acquisition_plan_template"
   ],
@@ -199,6 +205,9 @@
     "validate_render_template_registry.py",
     "audit_render_quality.py",
     "audit_multipanel_layout.py",
+    "audit_text_layout.py",
+    "repair_text_layout.py",
+    "select_text_profile.py",
     "render_from_registry.py",
     "validate_library_pool.py",
     "probe_python_environment.py",
@@ -219,6 +228,7 @@
     "resume_figure_project.py",
     "append_figure_decision.py",
     "audit_multipanel_layout.py",
+    "audit_text_layout.py",
     "build_pipeline_dashboard.py",
     "build_dependency_plan.py",
     "plan_external_data.py"
@@ -278,7 +288,7 @@
       "reproducibility_packager_agent"
     ]
   },
-  "status": "multipanel-layout-qa-runtime",
+  "status": "text-layout-intelligence-runtime",
   "memory_policy": {
     "default_location": ".codex/scientific-figure-memory",
     "storage_boundary": "project_local_only",
@@ -294,6 +304,7 @@
       "figure_decision_log.jsonl",
       "visual_regression_history.jsonl",
       "multipanel_layout_history.jsonl",
+      "text_layout_history.jsonl",
       "dependency_plan_history.jsonl",
       "external_data_plan_history.jsonl"
     ],
@@ -310,6 +321,7 @@
     "Renderer registry entries must validate before registry-based rendering.",
     "Visual regression audits are render-quality checks, not proof of scientific correctness.",
     "Multi-panel layout audits check optical grid, colorbar spacing, semantic color mapping, and controlled direct labels.",
+    "Text layout audits check overlap, clipping, font size, axis bounds, colorbar title crowding, and bundled domain terminology.",
     "Library pool selection is plan-only and must not install packages automatically.",
     "External data acquisition is plan-only unless the user explicitly approves download with complete provenance."
   ]

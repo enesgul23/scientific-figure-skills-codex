@@ -6,8 +6,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from text_layout import apply_axis_text, configure_text_defaults
 
-plt.rcParams["svg.fonttype"] = "none"
+
+configure_text_defaults()
 
 
 def main() -> None:
@@ -30,8 +32,7 @@ def main() -> None:
     if args.lower and args.upper and args.lower in data and args.upper in data:
         ax.fill_between(x, data[args.lower].astype(float).to_numpy(), data[args.upper].astype(float).to_numpy(), color="#56B4E9", alpha=0.25, linewidth=0)
     ax.plot(x, data[args.value].astype(float).to_numpy(), color="#0072B2", linewidth=1.6)
-    ax.set_xlabel(args.time)
-    ax.set_ylabel(args.value)
+    apply_axis_text(ax, xlabel=args.time, ylabel=args.value)
     fig.autofmt_xdate(rotation=30, ha="right")
     fig.savefig(args.out, dpi=300, bbox_inches="tight", facecolor="white")
 

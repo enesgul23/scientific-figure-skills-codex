@@ -5,6 +5,8 @@ import argparse
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from text_layout import apply_axis_text, configure_text_defaults
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Forest plot template.")
@@ -15,6 +17,7 @@ def main() -> None:
     parser.add_argument("--upper", required=True)
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
+    configure_text_defaults()
 
     data = pd.read_csv(args.csv).iloc[::-1].reset_index(drop=True)
     y = range(len(data))
@@ -30,7 +33,7 @@ def main() -> None:
     )
     ax.axvline(1, color="0.5", linewidth=1, linestyle="--")
     ax.set_yticks(list(y), data[args.label])
-    ax.set_xlabel(args.estimate)
+    apply_axis_text(ax, xlabel=args.estimate)
     fig.savefig(args.out, dpi=300)
 
 

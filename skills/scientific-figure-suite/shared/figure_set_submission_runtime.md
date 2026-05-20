@@ -7,7 +7,8 @@ panel memory into a figure set, indexes exported package files, checks
 cross-figure consistency, and records a submission-readiness decision. v0.6
 adds render-quality, dependency-plan, and external-data decision evidence as
 readiness inputs. v0.7 adds multi-panel layout audit evidence for optical-grid,
-colorbar, semantic color, and direct-label risks.
+colorbar, semantic color, and direct-label risks. v0.8 adds text layout audit
+evidence for overlap, clipping, colorbar-title crowding, and terminology.
 
 ## Memory Files
 
@@ -21,6 +22,7 @@ Project-local files:
   submission_readiness_history.jsonl
   visual_regression_history.jsonl
   multipanel_layout_history.jsonl
+  text_layout_history.jsonl
   dependency_plan_history.jsonl
   external_data_plan_history.jsonl
 ```
@@ -38,8 +40,10 @@ installed skill directory.
 6. Audit render quality and visual regression for exported files when outputs exist.
 7. Audit multi-panel layout quality when figures include multiple panels,
    colorbars, map/scatter labels, or shared legends.
-8. Audit submission readiness.
-9. Append readiness decision to `submission_readiness_history.jsonl`.
+8. Audit text layout quality before final readiness when text layout artifacts
+   or exported SVG-derived text boxes are available.
+9. Audit submission readiness.
+10. Append readiness decision to `submission_readiness_history.jsonl`.
 
 ## Figure Set Manifest
 
@@ -71,6 +75,7 @@ Check:
 - captions, alt text, visual claims, and audit artifacts exist where required
 - latest render-quality audit has not failed
 - latest multi-panel layout audit has not failed when applicable
+- latest text layout audit has not failed when applicable
 
 ## Submission Package Index
 

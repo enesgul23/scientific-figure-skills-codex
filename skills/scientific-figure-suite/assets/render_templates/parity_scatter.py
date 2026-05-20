@@ -5,6 +5,8 @@ import argparse
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from text_layout import apply_axis_text, configure_text_defaults
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Observed-vs-predicted parity scatter template.")
@@ -13,6 +15,7 @@ def main() -> None:
     parser.add_argument("--predicted", required=True)
     parser.add_argument("--out", required=True)
     args = parser.parse_args()
+    configure_text_defaults()
 
     data = pd.read_csv(args.csv)
     fig, ax = plt.subplots(figsize=(3.5, 3.5), constrained_layout=True)
@@ -20,8 +23,7 @@ def main() -> None:
     lower = min(data[args.observed].min(), data[args.predicted].min())
     upper = max(data[args.observed].max(), data[args.predicted].max())
     ax.plot([lower, upper], [lower, upper], color="black", linewidth=1)
-    ax.set_xlabel(args.observed)
-    ax.set_ylabel(args.predicted)
+    apply_axis_text(ax, xlabel=args.observed, ylabel=args.predicted)
     ax.set_aspect("equal", adjustable="box")
     fig.savefig(args.out, dpi=300)
 

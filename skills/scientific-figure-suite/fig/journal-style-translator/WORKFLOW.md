@@ -43,9 +43,11 @@ journal_style:
 3. Load `references/journal_style_profiles.md` and relevant style token JSON when needed.
    Validate bundled or project style tokens with `scripts/validate_style_tokens.py`
    before treating them as renderer inputs.
-4. Apply fallback high-impact defaults when journal rules are unavailable.
-5. List unresolved requirements.
-6. Prevent false compliance language.
+4. Select bundled domain text profiles when labels, titles, or colorbar titles
+   need academic terminology guidance.
+5. Apply fallback high-impact defaults when journal rules are unavailable.
+6. List unresolved requirements.
+7. Prevent false compliance language.
 
 ## Quality Gates
 
@@ -54,6 +56,8 @@ journal_style:
 - unresolved requirements are listed for `ESTIMATED` or `UNVERIFIED`
 - no false compliance claim appears
 - target journal name is not used as a substitute for official guidance
+- text profile guidance is treated as terminology support, not verified journal
+  compliance
 
 ## Failure Modes
 
@@ -77,4 +81,6 @@ only when current official or user-provided guideline evidence is available.
 
 ## Handoff Rules
 
-Hand off to `multipanel-composer` for layout constraints, `export-packager` for file formats, and `figure-auditor` for final style-status checks.
+Hand off to `multipanel-composer` for layout constraints, `fig-audit-text-layout`
+when text layout evidence is available, `export-packager` for file formats, and
+`figure-auditor` for final style-status checks.

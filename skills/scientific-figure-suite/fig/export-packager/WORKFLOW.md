@@ -23,6 +23,7 @@ Use when the user asks to export, package, submit, produce PDF/SVG/EPS/TIFF/PNG 
 - data sources
 - quality report
 - visual regression/render-quality report
+- text layout report
 
 ## Output Contract
 
@@ -50,8 +51,10 @@ submission_manifest.json
 3. Check font embedding and avoid rasterized text for line art.
 4. Build manifest with code, data, captions, alt text, quality report, and style status.
 5. Run or require render-quality audit for exported files when preparing a final package.
-6. Use repository-relative paths in manifests.
-7. Mark unresolved journal requirements instead of claiming final submission readiness.
+6. Run or require text layout audit when title, label, tick, legend, colorbar,
+   direct-label, or annotation layout evidence is available.
+7. Use repository-relative paths in manifests.
+8. Mark unresolved journal requirements instead of claiming final submission readiness.
 
 ## Quality Gates
 
@@ -77,7 +80,8 @@ validate memory before export. Refuse submission-grade packaging when required
 figures or panels are stale, when journal status is incorrectly marked
 `VERIFIED`, when exported files lack visual audit artifacts, or when the latest
 visual regression report is `FAIL`. Update the Figure Passport and submission
-manifest with output hashes and unresolved requirements.
+manifest with output hashes and unresolved requirements. Refuse readiness
+wording when the latest text layout report is `FAIL`.
 
 ## v0.6 Dependency Planning
 
@@ -85,6 +89,12 @@ Before packaging registry-rendered outputs, check whether a dependency plan
 exists and whether any required library remained blocked at render time. If
 external data were used, the package must include source, license, citation,
 access date, hash, usage role, and approval status.
+
+## v0.8 Text Layout Readiness
+
+Before final packaging, check `text_layout_history.jsonl` when it exists. A
+failed text layout audit means exported figures are not ready until crowded,
+clipped, or vague labels are repaired and re-audited.
 
 ## Agent Role References
 

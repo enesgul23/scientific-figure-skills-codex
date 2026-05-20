@@ -154,6 +154,11 @@ def main() -> None:
                 "data": str(Path(args.data)),
                 "style_token": args.style_token or None,
                 "dependency_plan": dependency_context["path"] if dependency_context else None,
+                "text_profile_ids": entry.get("text_profile_ids", []),
+                "text_audit_hooks": entry.get("text_audit_hooks", []),
+                "colorbar_policy": entry.get("colorbar_policy"),
+                "axis_label_policy": entry.get("axis_label_policy"),
+                "post_render_text_audit": "Run audit_text_layout.py when a renderer supplies text bounding boxes or an SVG-derived text layout artifact.",
                 "columns": role_to_column,
                 "files": written,
             }

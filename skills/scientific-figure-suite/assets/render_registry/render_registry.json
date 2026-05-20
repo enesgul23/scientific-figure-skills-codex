@@ -1,6 +1,6 @@
 {
   "render_registry": {
-    "schema_version": "0.7.0",
+    "schema_version": "0.8.0",
     "templates": [
       {
         "chart_type": "parity_scatter",
@@ -16,7 +16,11 @@
         "optional_libraries": ["scikit-learn", "seaborn"],
         "unsupported_without": ["pandas", "numpy", "matplotlib"],
         "dependency_profile": "model_performance_static",
-        "external_data_roles": []
+        "external_data_roles": [],
+        "text_profile_ids": ["model_performance", "statistical_plots"],
+        "text_audit_hooks": ["audit_text_layout"],
+        "colorbar_policy": "none",
+        "axis_label_policy": "domain_profile_required_with_user_overrides"
       },
       {
         "chart_type": "roc_pr_curve",
@@ -32,7 +36,11 @@
         "optional_libraries": ["seaborn"],
         "unsupported_without": ["pandas", "numpy", "matplotlib", "scikit-learn"],
         "dependency_profile": "model_performance_static",
-        "external_data_roles": []
+        "external_data_roles": [],
+        "text_profile_ids": ["model_performance", "clinical_biomedical"],
+        "text_audit_hooks": ["audit_text_layout"],
+        "colorbar_policy": "none",
+        "axis_label_policy": "domain_profile_required_with_user_overrides"
       },
       {
         "chart_type": "bland_altman_plot",
@@ -48,7 +56,11 @@
         "optional_libraries": ["scipy", "statsmodels"],
         "unsupported_without": ["pandas", "numpy", "matplotlib"],
         "dependency_profile": "clinical_static",
-        "external_data_roles": []
+        "external_data_roles": [],
+        "text_profile_ids": ["clinical_biomedical", "statistical_plots"],
+        "text_audit_hooks": ["audit_text_layout"],
+        "colorbar_policy": "none",
+        "axis_label_policy": "domain_profile_required_with_user_overrides"
       },
       {
         "chart_type": "dose_response_curve",
@@ -64,7 +76,11 @@
         "optional_libraries": ["scipy", "statsmodels", "seaborn"],
         "unsupported_without": ["pandas", "numpy", "matplotlib"],
         "dependency_profile": "clinical_static",
-        "external_data_roles": []
+        "external_data_roles": [],
+        "text_profile_ids": ["clinical_biomedical", "statistical_plots"],
+        "text_audit_hooks": ["audit_text_layout"],
+        "colorbar_policy": "none",
+        "axis_label_policy": "domain_profile_required_with_user_overrides"
       },
       {
         "chart_type": "time_series_band",
@@ -80,7 +96,11 @@
         "optional_libraries": ["scipy", "polars", "duckdb", "datashader"],
         "unsupported_without": ["pandas", "numpy", "matplotlib"],
         "dependency_profile": "time_series_static",
-        "external_data_roles": []
+        "external_data_roles": [],
+        "text_profile_ids": ["hydrology_time_series", "statistical_plots", "model_performance"],
+        "text_audit_hooks": ["audit_text_layout"],
+        "colorbar_policy": "none",
+        "axis_label_policy": "domain_profile_required_with_user_overrides"
       },
       {
         "chart_type": "raincloud_plot",
@@ -96,7 +116,11 @@
         "optional_libraries": ["seaborn", "scipy"],
         "unsupported_without": ["pandas", "numpy", "matplotlib"],
         "dependency_profile": "distribution_static",
-        "external_data_roles": []
+        "external_data_roles": [],
+        "text_profile_ids": ["statistical_plots", "clinical_biomedical", "omics_bioinformatics"],
+        "text_audit_hooks": ["audit_text_layout"],
+        "colorbar_policy": "none",
+        "axis_label_policy": "domain_profile_required_with_user_overrides"
       },
       {
         "chart_type": "forest_plot",
@@ -112,7 +136,11 @@
         "optional_libraries": ["statsmodels", "scipy"],
         "unsupported_without": ["pandas", "numpy", "matplotlib"],
         "dependency_profile": "clinical_static",
-        "external_data_roles": []
+        "external_data_roles": [],
+        "text_profile_ids": ["clinical_biomedical", "statistical_plots"],
+        "text_audit_hooks": ["audit_text_layout"],
+        "colorbar_policy": "none",
+        "axis_label_policy": "domain_profile_required_with_user_overrides"
       }
     ]
   }

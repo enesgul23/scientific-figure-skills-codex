@@ -23,6 +23,7 @@ COMMANDS = [
     ["scripts/validate_library_pool.py"],
     ["scripts/validate_data_acquisition_plan.py", "templates/data_acquisition_plan_template.json"],
     ["scripts/audit_multipanel_layout.py", "--layout", "tests/sample_multipanel_layout.yaml"],
+    ["scripts/audit_text_layout.py", "--layout", "tests/sample_text_layout.yaml"],
     ["scripts/validate_memory.py", "--memory-dir", "tests/sample_memory/scientific-figure-memory"],
     ["scripts/audit_repro_lock.py", "--memory-dir", "tests/sample_memory/scientific-figure-memory"],
     ["scripts/build_pipeline_dashboard.py", "--memory-dir", "tests/sample_memory/scientific-figure-memory", "--no-update-manifest"],
@@ -159,12 +160,61 @@ def write_multipanel_layouts(temp_dir: Path) -> tuple[Path, Path]:
     return good_layout, bad_layout
 
 
+def write_text_layouts(temp_dir: Path) -> tuple[Path, Path, Path]:
+    good_layout = temp_dir / "text_layout_good.yaml"
+    bad_layout = temp_dir / "text_layout_bad.yaml"
+    repairable_layout = temp_dir / "text_layout_repairable.yaml"
+    good_layout.write_text(
+        (
+            "text_layout:\n"
+            "  figure_id: text_smoke_good\n"
+            "  terminology_profile_id: model_performance\n"
+            "  forbidden_vague_labels: [Result, Data, Output]\n"
+            "  text_elements:\n"
+            "    - {role: figure_title, panel_id: figure, text: Observed versus predicted discharge, bbox: {x0: 0.22, y0: 0.94, width: 0.56, height: 0.035}, font_size_pt: 10, rotation: 0, anchor: center, priority: 1, can_wrap: true, can_abbreviate: false, in_axes_bounds: true, overlap_checked: true}\n"
+            "    - {role: panel_title, panel_id: a, text: Model calibration, bbox: {x0: 0.15, y0: 0.86, width: 0.28, height: 0.028}, font_size_pt: 8, rotation: 0, anchor: center, priority: 2, can_wrap: true, can_abbreviate: false, in_axes_bounds: true, overlap_checked: true}\n"
+            "    - {role: x_label, panel_id: a, text: Observed discharge (m^3/s), bbox: {x0: 0.18, y0: 0.11, width: 0.25, height: 0.026}, font_size_pt: 8, rotation: 0, anchor: center, priority: 2, can_wrap: false, can_abbreviate: true, in_axes_bounds: true, overlap_checked: true}\n"
+            "    - {role: y_label, panel_id: a, text: Predicted discharge (m^3/s), bbox: {x0: 0.045, y0: 0.40, width: 0.026, height: 0.24}, font_size_pt: 8, rotation: 90, anchor: center, priority: 2, can_wrap: false, can_abbreviate: true, in_axes_bounds: true, overlap_checked: true}\n"
+            "    - {role: colorbar_title, panel_id: b, text: Error, bbox: {x0: 0.88, y0: 0.46, width: 0.055, height: 0.03}, font_size_pt: 8, rotation: 90, anchor: center, priority: 2, can_wrap: false, can_abbreviate: true, in_axes_bounds: true, overlap_checked: true, placement: right}\n"
+        ),
+        encoding="utf-8",
+    )
+    bad_layout.write_text(
+        (
+            "text_layout:\n"
+            "  figure_id: text_smoke_bad\n"
+            "  terminology_profile_id: model_performance\n"
+            "  forbidden_vague_labels: [Result, Data, Output]\n"
+            "  text_elements:\n"
+            "    - {role: figure_title, panel_id: figure, text: Result, bbox: {x0: 0.20, y0: 0.92, width: 0.55, height: 0.04}, font_size_pt: 5, rotation: 0, anchor: center, priority: 1, can_wrap: false, can_abbreviate: false, in_axes_bounds: true, overlap_checked: true}\n"
+            "    - {role: panel_title, panel_id: a, text: Crowded panel, bbox: {x0: 0.22, y0: 0.925, width: 0.36, height: 0.035}, font_size_pt: 8, rotation: 0, anchor: center, priority: 2, can_wrap: false, can_abbreviate: false, in_axes_bounds: true, overlap_checked: true}\n"
+            "    - {role: y_label, panel_id: a, text: Predicted discharge, bbox: {x0: -0.04, y0: 0.30, width: 0.03, height: 0.30}, font_size_pt: 8, rotation: 90, anchor: center, priority: 2, can_wrap: false, can_abbreviate: true, in_axes_bounds: false, overlap_checked: false}\n"
+            "    - {role: colorbar_title, panel_id: b, text: Very long hydrologic model residual colorbar label that should move to the caption, bbox: {x0: 0.96, y0: 0.32, width: 0.08, height: 0.25}, font_size_pt: 8, rotation: 90, anchor: center, priority: 2, can_wrap: false, can_abbreviate: false, in_axes_bounds: false, overlap_checked: false, placement: left}\n"
+        ),
+        encoding="utf-8",
+    )
+    repairable_layout.write_text(
+        (
+            "text_layout:\n"
+            "  figure_id: text_smoke_repairable\n"
+            "  terminology_profile_id: hydrology_time_series\n"
+            "  text_elements:\n"
+            "    - {role: figure_title, panel_id: figure, text: Observed and predicted discharge with uncertainty across multiple high-flow events during the calibration period, bbox: {x0: 0.12, y0: 0.93, width: 0.76, height: 0.05}, font_size_pt: 10, rotation: 0, anchor: center, priority: 1, can_wrap: false, can_abbreviate: false, in_axes_bounds: true, overlap_checked: true}\n"
+            "    - {role: colorbar_title, panel_id: b, text: Very long hydrologic model residual colorbar label that should move to the caption, bbox: {x0: 0.88, y0: 0.42, width: 0.06, height: 0.08}, font_size_pt: 8, rotation: 90, anchor: center, priority: 2, can_wrap: false, can_abbreviate: false, in_axes_bounds: true, overlap_checked: true, placement: right}\n"
+            "    - {role: tick_label, panel_id: a, text: 2026-05-20 08:30 UTC, bbox: {x0: 0.22, y0: 0.10, width: 0.13, height: 0.025}, font_size_pt: 7, rotation: 0, anchor: right, priority: 4, can_wrap: false, can_abbreviate: false, in_axes_bounds: true, overlap_checked: true}\n"
+        ),
+        encoding="utf-8",
+    )
+    return good_layout, bad_layout, repairable_layout
+
+
 def prepare_v04_memory_copy(source: Path, target: Path) -> None:
     shutil.copytree(source, target)
     for filename in [
         "figure_decision_log.jsonl",
         "visual_regression_history.jsonl",
         "multipanel_layout_history.jsonl",
+        "text_layout_history.jsonl",
         "dependency_plan_history.jsonl",
         "external_data_plan_history.jsonl",
     ]:
@@ -179,6 +229,7 @@ def prepare_v04_memory_copy(source: Path, target: Path) -> None:
     manifest["files"].pop("figure_decision_log", None)
     manifest["files"].pop("visual_regression_history", None)
     manifest["files"].pop("multipanel_layout_history", None)
+    manifest["files"].pop("text_layout_history", None)
     manifest["files"].pop("dependency_plan_history", None)
     manifest["files"].pop("external_data_plan_history", None)
     manifest_path.write_text(json.dumps(manifest_data, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -192,9 +243,19 @@ def run_runtime_smoke(env: dict[str, str]) -> int:
         parity_profile = temp_dir / "parity_profile.json"
         env_probe = temp_dir / "environment_probe.json"
         dependency_plan = temp_dir / "dependency_plan.json"
+        text_profile = temp_dir / "text_profile_selection.json"
 
         setup_commands = [
             ["scripts/inspect_dataset.py", "--input", str(fixture_csvs["parity_scatter"]), "--out", str(parity_profile)],
+            [
+                "scripts/select_text_profile.py",
+                "--domain",
+                "model-performance",
+                "--chart-type",
+                "roc_pr_curve",
+                "--out",
+                str(text_profile),
+            ],
             [
                 "scripts/probe_python_environment.py",
                 "--library",
@@ -303,6 +364,28 @@ def run_runtime_smoke(env: dict[str, str]) -> int:
             ["scripts/audit_render_quality.py", "--figure-id", "multipanel_layout_proof", "--file", str(layout_out / "smoke_multipanel_good.png")],
             env,
         )
+        failures += 0 if ok else 1
+
+        good_text_layout, bad_text_layout, repairable_text_layout = write_text_layouts(temp_dir)
+        ok, _ = run_command(
+            [
+                "scripts/audit_text_layout.py",
+                "--layout",
+                str(good_text_layout),
+                "--text-profile",
+                str(text_profile),
+                "--out",
+                str(temp_dir / "text_layout_report.json"),
+            ],
+            env,
+        )
+        failures += 0 if ok else 1
+        ok, _ = run_command(["scripts/audit_text_layout.py", "--layout", str(bad_text_layout)], env, expect_success=False)
+        failures += 0 if ok else 1
+        repaired_text_layout = temp_dir / "text_layout_repaired.yaml"
+        ok, _ = run_command(["scripts/repair_text_layout.py", "--layout", str(repairable_text_layout), "--out", str(repaired_text_layout)], env)
+        failures += 0 if ok else 1
+        ok, _ = run_command(["scripts/audit_text_layout.py", "--layout", str(repaired_text_layout)], env)
         failures += 0 if ok else 1
 
         external_plan = temp_dir / "external_data_plan.json"
@@ -441,6 +524,24 @@ def run_runtime_smoke(env: dict[str, str]) -> int:
             print("[PASS] readiness blocks on failed multipanel layout audit")
         else:
             print("[FAIL] readiness did not expose failed multipanel layout blocker", file=sys.stderr)
+            failures += 1
+        (memory_copy / "multipanel_layout_history.jsonl").write_text(
+            '{"multipanel_layout_audit":{"blockers":[],"checks":[],"colorbar_count":1,"created_at":"2026-05-20T08:31:00Z","layout_engine":"manual_axes","layout_name":"forced_pass","panel_count":2,"result":"PASS","warnings":[]}}\n',
+            encoding="utf-8",
+        )
+        (memory_copy / "text_layout_history.jsonl").write_text(
+            '{"text_layout_report":{"blockers":["forced text layout failure"],"checks":[],"colorbar_policy":"right_default_shared_group_when_audited","created_at":"2026-05-20T08:31:00Z","figure_id":"fig_01","repairs_suggested":[],"result":"FAIL","terminology_profile_id":"model_performance","text_element_count":1,"warnings":[]}}\n',
+            encoding="utf-8",
+        )
+        ok, output = run_command(
+            ["scripts/audit_submission_readiness.py", "--memory-dir", str(memory_copy), "--allow-unverified-journal"],
+            env,
+            expect_success=False,
+        )
+        if ok and "latest text layout audit failed" in output:
+            print("[PASS] readiness blocks on failed text layout audit")
+        else:
+            print("[FAIL] readiness did not expose failed text layout blocker", file=sys.stderr)
             failures += 1
     return failures
 

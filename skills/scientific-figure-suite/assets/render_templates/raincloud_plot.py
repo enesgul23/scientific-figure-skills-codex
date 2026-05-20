@@ -6,8 +6,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from text_layout import apply_axis_text, configure_text_defaults
 
-plt.rcParams["svg.fonttype"] = "none"
+
+configure_text_defaults()
 
 
 def main() -> None:
@@ -35,8 +37,7 @@ def main() -> None:
         jitter = rng.normal(0, 0.045, size=len(group_values))
         ax.scatter(np.full(len(group_values), position) + jitter, group_values, s=12, alpha=0.65, color="#0072B2", edgecolors="none")
     ax.set_xticks(positions, groups)
-    ax.set_xlabel(args.group)
-    ax.set_ylabel(args.value)
+    apply_axis_text(ax, xlabel=args.group, ylabel=args.value)
     fig.savefig(args.out, dpi=300, bbox_inches="tight", facecolor="white")
 
 

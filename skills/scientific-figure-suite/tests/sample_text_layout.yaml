@@ -1,0 +1,119 @@
+text_layout:
+  figure_id: fig_01
+  terminology_profile_id: model_performance
+  colorbar_policy: right_default_shared_group_when_audited
+  forbidden_vague_labels:
+    - Result
+    - Data
+    - Output
+  text_elements:
+    - role: figure_title
+      panel_id: figure
+      text: Observed versus predicted discharge
+      bbox: {x0: 0.24, y0: 0.94, width: 0.52, height: 0.035}
+      font_size_pt: 10
+      rotation: 0
+      anchor: center
+      priority: 1
+      can_wrap: true
+      can_abbreviate: false
+      in_axes_bounds: true
+      overlap_checked: true
+    - role: panel_label
+      panel_id: a
+      text: a
+      bbox: {x0: 0.045, y0: 0.885, width: 0.025, height: 0.025}
+      font_size_pt: 9
+      rotation: 0
+      anchor: left
+      priority: 1
+      can_wrap: false
+      can_abbreviate: false
+      in_axes_bounds: true
+      overlap_checked: true
+    - role: panel_title
+      panel_id: a
+      text: Model calibration
+      bbox: {x0: 0.12, y0: 0.88, width: 0.25, height: 0.028}
+      font_size_pt: 8
+      rotation: 0
+      anchor: center
+      priority: 2
+      can_wrap: true
+      can_abbreviate: false
+      in_axes_bounds: true
+      overlap_checked: true
+    - role: x_label
+      panel_id: a
+      text: Observed discharge (m^3/s)
+      bbox: {x0: 0.15, y0: 0.505, width: 0.24, height: 0.026}
+      font_size_pt: 8
+      rotation: 0
+      anchor: center
+      priority: 2
+      can_wrap: false
+      can_abbreviate: true
+      in_axes_bounds: true
+      overlap_checked: true
+    - role: y_label
+      panel_id: a
+      text: Predicted discharge (m^3/s)
+      bbox: {x0: 0.035, y0: 0.62, width: 0.026, height: 0.20}
+      font_size_pt: 8
+      rotation: 90
+      anchor: center
+      priority: 2
+      can_wrap: false
+      can_abbreviate: true
+      in_axes_bounds: true
+      overlap_checked: true
+    - role: tick_label
+      panel_id: a
+      text: 100
+      bbox: {x0: 0.24, y0: 0.535, width: 0.035, height: 0.018}
+      font_size_pt: 7
+      rotation: 0
+      anchor: center
+      priority: 4
+      can_wrap: false
+      can_abbreviate: false
+      in_axes_bounds: true
+      overlap_checked: true
+    - role: legend_label
+      panel_id: a
+      text: Groundwater-aware model
+      bbox: {x0: 0.17, y0: 0.825, width: 0.20, height: 0.025}
+      font_size_pt: 7
+      rotation: 0
+      anchor: left
+      priority: 3
+      can_wrap: false
+      can_abbreviate: true
+      in_axes_bounds: true
+      overlap_checked: true
+    - role: colorbar_title
+      panel_id: b
+      text: Error
+      bbox: {x0: 0.895, y0: 0.71, width: 0.055, height: 0.03}
+      font_size_pt: 8
+      rotation: 90
+      anchor: center
+      priority: 2
+      can_wrap: false
+      can_abbreviate: true
+      in_axes_bounds: true
+      overlap_checked: true
+      placement: right
+    - role: direct_label
+      panel_id: b
+      text: Gauge 03
+      bbox: {x0: 0.63, y0: 0.70, width: 0.065, height: 0.022}
+      font_size_pt: 7
+      rotation: 0
+      anchor: left
+      priority: 3
+      can_wrap: false
+      can_abbreviate: true
+      in_axes_bounds: true
+      overlap_checked: true
+      collision_checked: true

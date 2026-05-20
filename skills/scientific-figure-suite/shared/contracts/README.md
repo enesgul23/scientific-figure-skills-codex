@@ -16,6 +16,9 @@ packages or download external data.
 v0.7 contracts add multi-panel layout audit artifacts for optical-grid,
 colorbar, semantic color, and direct-label checks.
 
+v0.8 contracts add text layout reports and bundled domain text profiles for
+overlap, clipping, colorbar-title, direct-label, and terminology checks.
+
 Use with:
 
 ```powershell

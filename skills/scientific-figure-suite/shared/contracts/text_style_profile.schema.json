@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scientific Figure Text Style Profiles",
+  "type": "object",
+  "required": ["text_style_profiles"],
+  "properties": {
+    "text_style_profiles": {
+      "type": "object",
+      "required": ["schema_version", "profiles"],
+      "properties": {
+        "schema_version": {"type": "string"},
+        "source": {"type": "string"},
+        "live_web_required": {"type": "boolean"},
+        "profiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "profile_id",
+              "domains",
+              "chart_types",
+              "canonical_axis_labels",
+              "title_patterns",
+              "unit_formatting",
+              "abbreviation_rules",
+              "forbidden_vague_labels",
+              "caption_expansion_suggestions"
+            ],
+            "properties": {
+              "profile_id": {"type": "string"},
+              "domains": {"type": "array", "items": {"type": "string"}},
+              "chart_types": {"type": "array", "items": {"type": "string"}},
+              "canonical_axis_labels": {"type": "object"},
+              "title_patterns": {"type": "array", "items": {"type": "string"}},
+              "unit_formatting": {"type": "object"},
+              "abbreviation_rules": {"type": "array"},
+              "forbidden_vague_labels": {"type": "array", "items": {"type": "string"}},
+              "caption_expansion_suggestions": {"type": "array", "items": {"type": "string"}}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

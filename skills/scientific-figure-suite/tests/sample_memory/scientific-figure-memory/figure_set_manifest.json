@@ -30,7 +30,7 @@
     ],
     "project_id": "flood-gnn-paper-2026",
     "readiness_status": "NOT_RUN",
-    "schema_version": "0.7.0",
+    "schema_version": "0.8.0",
     "style_consistency_status": "NOT_RUN",
     "unresolved_requirements": [],
     "updated_at": "2026-05-19T16:30:00Z"

@@ -42,6 +42,7 @@ project-root/
     figure_decision_log.jsonl
     visual_regression_history.jsonl
     multipanel_layout_history.jsonl
+    text_layout_history.jsonl
     dependency_plan_history.jsonl
     external_data_plan_history.jsonl
     author_visual_style_profile.json
@@ -62,9 +63,10 @@ project-root/
 11. `assets/render_registry/render_registry.json` maps chart types to reusable renderer templates, expected columns, and dependencies.
 12. `scripts/audit_render_quality.py` records visual regression and render-quality evidence.
 13. `scripts/audit_multipanel_layout.py` records optical-grid, colorbar, semantic color, and direct-label layout evidence.
-14. `scripts/build_pipeline_dashboard.py` summarizes active stage, blockers, latest artifacts, and next actions.
-15. `figure-auditor` and shared compliance checks gate final packaging.
-16. `export-packager` creates or describes files and manifest.
+14. `scripts/select_text_profile.py`, `scripts/audit_text_layout.py`, and `scripts/repair_text_layout.py` select domain terminology, audit text geometry, and repair crowded labels.
+15. `scripts/build_pipeline_dashboard.py` summarizes active stage, blockers, latest artifacts, and next actions.
+16. `figure-auditor` and shared compliance checks gate final packaging.
+17. `export-packager` creates or describes files and manifest.
 
 ## Library Intelligence Runtime
 
@@ -94,6 +96,17 @@ must not rely only on automatic layout. Layout specs should include panel boxes,
 colorbar boxes, semantic color maps, and direct-label policies so
 `scripts/audit_multipanel_layout.py` can block collisions, inconsistent colors,
 and uneven row bounds before submission-readiness checks.
+
+## Text Layout Intelligence Runtime
+
+v0.8.0 adds text layout review and deterministic repair. Figure title, panel
+title, axis label, tick label, legend text, colorbar title, direct label, and
+annotation artifacts should expose text roles, bounding boxes, font size,
+rotation, priority, wrapping, abbreviation, and overlap status when available.
+`scripts/audit_text_layout.py` blocks overlap, clipping, unreadable text,
+colorbar-title crowding, direct-label density, and vague terminology.
+`scripts/repair_text_layout.py` may wrap, shorten, rotate, reserve margins, or
+hide low-priority direct labels, but it must not rewrite scientific meaning.
 
 ## Non-Runtime Materials
 

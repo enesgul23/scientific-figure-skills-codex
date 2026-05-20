@@ -6,8 +6,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
+from text_layout import apply_axis_text, configure_text_defaults
 
-plt.rcParams["svg.fonttype"] = "none"
+
+configure_text_defaults()
 
 
 def curve_points(labels: np.ndarray, scores: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
@@ -49,16 +51,12 @@ def main() -> None:
     fig, axes = plt.subplots(1, 2, figsize=(6.4, 3.1), constrained_layout=True)
     axes[0].plot(fpr, tpr, color="#0072B2", linewidth=1.6)
     axes[0].plot([0, 1], [0, 1], color="0.65", linewidth=1, linestyle="--")
-    axes[0].set_xlabel("False positive rate")
-    axes[0].set_ylabel("True positive rate")
-    axes[0].set_title(f"ROC AUC = {roc_auc:.2f}")
+    apply_axis_text(axes[0], xlabel="False positive rate", ylabel="True positive rate", title=f"ROC AUC = {roc_auc:.2f}")
     axes[0].set_xlim(0, 1)
     axes[0].set_ylim(0, 1)
 
     axes[1].plot(recall, precision, color="#D55E00", linewidth=1.6)
-    axes[1].set_xlabel("Recall")
-    axes[1].set_ylabel("Precision")
-    axes[1].set_title("Precision-recall")
+    apply_axis_text(axes[1], xlabel="Recall", ylabel="Precision", title="Precision-recall")
     axes[1].set_xlim(0, 1)
     axes[1].set_ylim(0, 1)
     fig.savefig(args.out, dpi=300, bbox_inches="tight", facecolor="white")

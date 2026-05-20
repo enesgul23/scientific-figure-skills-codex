@@ -1,0 +1,191 @@
+{
+  "text_style_profiles": {
+    "schema_version": "0.8.0",
+    "source": "bundled_domain_profiles",
+    "live_web_required": false,
+    "profiles": [
+      {
+        "profile_id": "statistical_plots",
+        "domains": ["statistical-plots", "statistics"],
+        "chart_types": ["raincloud_plot", "forest_plot", "bland_altman_plot", "dose_response_curve"],
+        "canonical_axis_labels": {
+          "group": "Group",
+          "value": "Value",
+          "estimate": "Estimate",
+          "confidence_interval": "95% confidence interval",
+          "difference": "Difference",
+          "mean": "Mean"
+        },
+        "title_patterns": [
+          "Distribution of {measure} by {group}",
+          "Estimated effect with 95% confidence interval",
+          "Agreement between {method_a} and {method_b}"
+        ],
+        "unit_formatting": {
+          "rule": "Place units in parentheses after the measurement name.",
+          "examples": ["Value (unit)", "Difference (unit)"]
+        },
+        "abbreviation_rules": [
+          {"long": "confidence interval", "short": "CI", "allowed_roles": ["legend_label", "annotation", "colorbar_title"]},
+          {"long": "standard deviation", "short": "SD", "allowed_roles": ["legend_label", "annotation"]}
+        ],
+        "forbidden_vague_labels": ["Result", "Data", "Effect", "Output"],
+        "caption_expansion_suggestions": [
+          "Define the measurement, denominator, and uncertainty interval in the caption when the axis label must stay compact."
+        ]
+      },
+      {
+        "profile_id": "model_performance",
+        "domains": ["model-performance", "diagnostic-performance", "machine-learning"],
+        "chart_types": ["parity_scatter", "roc_pr_curve", "calibration_plot", "residual_diagnostic_panel"],
+        "canonical_axis_labels": {
+          "observed": "Observed value",
+          "predicted": "Predicted value",
+          "false_positive_rate": "False positive rate",
+          "true_positive_rate": "True positive rate",
+          "recall": "Recall",
+          "precision": "Precision",
+          "residual": "Residual",
+          "calibration": "Predicted probability"
+        },
+        "title_patterns": [
+          "Observed versus predicted values",
+          "Receiver operating characteristic",
+          "Precision-recall performance",
+          "Calibration of predicted probabilities"
+        ],
+        "unit_formatting": {
+          "rule": "Keep metric names unitless unless the plotted value is a measured quantity.",
+          "examples": ["Observed discharge (m^3/s)", "Predicted probability"]
+        },
+        "abbreviation_rules": [
+          {"long": "receiver operating characteristic", "short": "ROC", "allowed_roles": ["panel_title", "legend_title", "annotation"]},
+          {"long": "area under the receiver operating characteristic curve", "short": "ROC AUC", "allowed_roles": ["panel_title", "annotation"]},
+          {"long": "precision-recall", "short": "PR", "allowed_roles": ["panel_title", "legend_title"]}
+        ],
+        "forbidden_vague_labels": ["Score", "Performance", "Result", "Output"],
+        "caption_expansion_suggestions": [
+          "State the positive class, evaluation split, and metric definition in the caption."
+        ]
+      },
+      {
+        "profile_id": "clinical_biomedical",
+        "domains": ["clinical-biomedical", "clinical", "biomedical"],
+        "chart_types": ["forest_plot", "survival_plot", "dose_response_curve", "roc_pr_curve"],
+        "canonical_axis_labels": {
+          "time": "Time since baseline",
+          "hazard_ratio": "Hazard ratio",
+          "risk_difference": "Risk difference",
+          "dose": "Dose",
+          "response": "Response",
+          "survival_probability": "Survival probability"
+        },
+        "title_patterns": [
+          "Treatment effect by subgroup",
+          "Time-to-event outcome",
+          "Dose-response relationship"
+        ],
+        "unit_formatting": {
+          "rule": "Include denominator, time horizon, and units where clinically material.",
+          "examples": ["Time since baseline (months)", "Dose (mg/kg)", "Events per 100 person-years"]
+        },
+        "abbreviation_rules": [
+          {"long": "confidence interval", "short": "CI", "allowed_roles": ["legend_label", "annotation", "colorbar_title"]},
+          {"long": "hazard ratio", "short": "HR", "allowed_roles": ["panel_title", "annotation"]}
+        ],
+        "forbidden_vague_labels": ["Outcome", "Response", "Cases", "Rate"],
+        "caption_expansion_suggestions": [
+          "Define endpoint, denominator, censoring, and subgroup denominators in the caption."
+        ]
+      },
+      {
+        "profile_id": "geospatial_maps",
+        "domains": ["geospatial-maps", "geospatial", "cartography", "hydrology"],
+        "chart_types": ["geospatial_map", "geospatial_choropleth", "station_map"],
+        "canonical_axis_labels": {
+          "longitude": "Longitude",
+          "latitude": "Latitude",
+          "elevation": "Elevation",
+          "model_error": "Model error",
+          "discharge": "Discharge"
+        },
+        "title_patterns": [
+          "Spatial distribution of {measure}",
+          "Study area and monitoring stations",
+          "Model error by location"
+        ],
+        "unit_formatting": {
+          "rule": "Use coordinate labels only when axes are visible; keep map colorbar titles short.",
+          "examples": ["Longitude", "Latitude", "Error (m^3/s)"]
+        },
+        "abbreviation_rules": [
+          {"long": "root mean square error", "short": "RMSE", "allowed_roles": ["colorbar_title", "legend_label", "annotation"]},
+          {"long": "discharge", "short": "Q", "allowed_roles": ["annotation", "colorbar_title"]}
+        ],
+        "forbidden_vague_labels": ["Map", "Spatial", "Value", "Index"],
+        "caption_expansion_suggestions": [
+          "Move long basemap, projection, and station-selection details into the caption."
+        ]
+      },
+      {
+        "profile_id": "omics_bioinformatics",
+        "domains": ["omics-bioinformatics", "omics", "bioinformatics"],
+        "chart_types": ["volcano_plot", "heatmap", "umap", "raincloud_plot"],
+        "canonical_axis_labels": {
+          "log2_fold_change": "log2 fold change",
+          "adjusted_p_value": "Adjusted P value",
+          "expression": "Expression",
+          "component_1": "UMAP 1",
+          "component_2": "UMAP 2",
+          "gene": "Gene"
+        },
+        "title_patterns": [
+          "Differential abundance by condition",
+          "Expression profile of selected features",
+          "Low-dimensional embedding by annotation"
+        ],
+        "unit_formatting": {
+          "rule": "Use established omics notation and keep feature labels sparse.",
+          "examples": ["log2 fold change", "-log10 adjusted P value"]
+        },
+        "abbreviation_rules": [
+          {"long": "adjusted P value", "short": "adj. P", "allowed_roles": ["colorbar_title", "annotation"]},
+          {"long": "false discovery rate", "short": "FDR", "allowed_roles": ["legend_label", "annotation"]}
+        ],
+        "forbidden_vague_labels": ["Genes", "Signal", "Expression level", "Significance"],
+        "caption_expansion_suggestions": [
+          "Define multiple-testing correction, feature-selection rule, and label-selection rule in the caption."
+        ]
+      },
+      {
+        "profile_id": "hydrology_time_series",
+        "domains": ["hydrology-time-series", "hydrology", "time-series"],
+        "chart_types": ["time_series_band", "hydrograph", "forecast_band"],
+        "canonical_axis_labels": {
+          "time": "Time",
+          "discharge": "Discharge",
+          "stage": "Water level",
+          "precipitation": "Precipitation",
+          "uncertainty": "Prediction interval"
+        },
+        "title_patterns": [
+          "Observed and predicted discharge",
+          "Hydrograph with prediction interval",
+          "Forecast error over time"
+        ],
+        "unit_formatting": {
+          "rule": "Use hydrologic units explicitly and keep time-zone information in the caption when needed.",
+          "examples": ["Discharge (m^3/s)", "Precipitation (mm)", "Water level (m)"]
+        },
+        "abbreviation_rules": [
+          {"long": "discharge", "short": "Q", "allowed_roles": ["legend_label", "annotation", "colorbar_title"]},
+          {"long": "prediction interval", "short": "PI", "allowed_roles": ["legend_label", "annotation"]}
+        ],
+        "forbidden_vague_labels": ["Flow", "Level", "Prediction", "Time series"],
+        "caption_expansion_suggestions": [
+          "State gauge, time zone, aggregation interval, and whether uncertainty is pointwise or simultaneous."
+        ]
+      }
+    ]
+  }
+}

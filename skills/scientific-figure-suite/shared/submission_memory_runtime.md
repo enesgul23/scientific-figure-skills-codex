@@ -5,7 +5,8 @@
 Defines the v0.3 submission-grade runtime layer. Figure memory is no longer only
 an optional project notebook; it participates in workflow entry, figure updates,
 quality audits, export packaging, stale detection, resume boundaries, pipeline
-status dashboards, render-quality evidence, and multi-panel layout evidence.
+status dashboards, render-quality evidence, multi-panel layout evidence, and
+text layout evidence.
 
 ## Workflow Integration
 
@@ -20,7 +21,8 @@ user asks to continue a project:
    stale by repro-lock.
 5. After producing or auditing work, update the Figure Passport and append
    audit, claim, journal verification, visual artifact, decision, visual
-   regression, multipanel-layout, dependency-plan, or external-data-plan ledger
+   regression, multipanel-layout, text-layout, dependency-plan, or
+   external-data-plan ledger
    entries.
 6. If pausing or moving to another session, create a Figure Passport reset
    boundary.
@@ -117,6 +119,19 @@ Use `multipanel_layout_history.jsonl` for layout evidence:
 This ledger answers whether the optical grid is credible. It does not replace
 render-quality, statistical, scientific, journal, or caption review.
 
+## Text Layout Ledger
+
+Use `text_layout_history.jsonl` for text layout evidence:
+
+- text-text overlap and minimum spacing
+- text overflow beyond figure or axes bounds
+- minimum font size and excessive rotation
+- colorbar title length, placement, and crowding
+- direct-label density and collision control
+- bundled domain terminology and vague-label checks
+
+`FAIL` blocks readiness until text layout is repaired and re-audited.
+
 ## Dependency Plan Ledger
 
 Use `dependency_plan_history.jsonl` when a figure uses or plans a render stack.
@@ -143,6 +158,7 @@ A submission-grade package should have:
 - latest visual regression/render-quality audit not failed
 - latest multi-panel layout audit not failed when multi-panel figures,
   colorbars, maps, scatter labels, or shared legends are present
+- latest text layout audit not failed when text layout evidence is available
 - latest dependency plan has no unresolved required-library blockers for rendered outputs
 - external data plans are either `NOT_REQUIRED` or have complete provenance and user approval
 - quality audit history with latest gate results

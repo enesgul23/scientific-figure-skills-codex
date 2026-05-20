@@ -22,6 +22,8 @@ Use when the user asks to audit, check, review, validate, quality-control, prepa
 - article type
 - export files
 - baseline render files for visual regression checks
+- text layout report or layout artifact when text crowding, clipping, or
+  terminology is in scope
 
 ## Output Contract
 
@@ -49,14 +51,16 @@ Data status:
 2. Check visual claim ledger alignment.
 3. Check chart appropriateness and statistical honesty.
 4. Check axes, units, scales, legends, colorbars, panel labels, panel box
-   alignment, and optical-grid quality.
+   alignment, optical-grid quality, and text layout quality.
 5. Check accessibility: color, contrast, minimum text size, redundancy, alt text.
 6. Check journal style status without claiming unverified compliance.
 7. Check export readiness.
 8. Check render-quality evidence for blank outputs, dimensions, expected formats, and SVG text/title presence when exported files are supplied.
 9. Check multi-panel layout evidence for colorbar spacing, semantic color
    consistency, same-row panel bounds, and controlled direct labels when supplied.
-10. Check image integrity for microscopy, gel/blot, radiology, or other scientific images when applicable.
+10. Check text layout evidence for overlap, clipping, font size, colorbar-title
+    crowding, and bundled domain terminology when supplied.
+11. Check image integrity for microscopy, gel/blot, radiology, or other scientific images when applicable.
 
 ## Quality Gates
 
@@ -81,7 +85,9 @@ validate memory before audit. Run repro-lock stale checks when Figure Passport
 entries include stored hashes. Append quality gate results to
 `quality_audit_history.jsonl`, file-level audit artifacts to
 `visual_audit_artifact.jsonl`, and render-quality reports to
-`visual_regression_history.jsonl` for checked outputs.
+`visual_regression_history.jsonl` for checked outputs. Append text layout
+reports to `text_layout_history.jsonl` when the audit includes text layout
+evidence.
 
 ## Agent Role References
 
@@ -91,4 +97,6 @@ entries include stored hashes. Append quality gate results to
 
 ## Handoff Rules
 
-Hand off to `caption-alttext` when text needs repair and to `export-packager` after `PASS` or `PASS_WITH_WARNINGS`.
+Hand off to `fig-repair-text-layout` when layout text needs deterministic
+repair, to `caption-alttext` when wording or caption expansion is needed, and
+to `export-packager` after `PASS` or `PASS_WITH_WARNINGS`.

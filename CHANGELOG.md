@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.8.0 - 2026-05-20
+
+- Added Text Layout Intelligence Runtime for text overlap, clipping, axis-bound, colorbar-title, direct-label, font-size, and terminology audits.
+- Added `fig-audit-text-layout` and `fig-repair-text-layout` command recipes.
+- Added bundled domain text profiles for statistical, model-performance, clinical, geospatial, omics, and hydrology figures.
+- Added `audit_text_layout.py`, `repair_text_layout.py`, and `select_text_profile.py`.
+- Added `text_layout_history.jsonl` project-memory ledger and readiness/dashboard integration.
+- Extended render registry entries with text profile, text audit hook, colorbar policy, and axis-label policy metadata.
+- Added shared text layout protocol, report/profile schemas, report template, validation fixtures, and smoke tests.
+- Updated README, architecture, validation, mode registry, quality gates, and citation metadata for v0.8.0.
+
 ## 0.7.0 - 2026-05-20
 
 - Added Multi-panel Layout Quality Runtime for optical-grid and colorbar layout audits.

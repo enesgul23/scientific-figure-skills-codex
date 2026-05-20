@@ -11,6 +11,8 @@ Use these modes in command recipes and workflow handoffs.
 | `audit` | Review figure/spec/caption/package for gates | `fig-audit` |
 | `render-audit` | Check rendered files for visual QA/regression sanity | `fig-audit-render` |
 | `multipanel-layout-audit` | Check optical grid, colorbars, semantic colors, and direct labels | `fig-audit-multipanel-layout` |
+| `text-layout-audit` | Check text overlap, clipping, axis bounds, colorbar titles, and terminology | `fig-audit-text-layout` |
+| `text-layout-repair` | Repair crowded text layout without changing scientific meaning | `fig-repair-text-layout` |
 | `caption` | Write caption, note, legend, and alt text | `fig-caption` |
 | `style` | Translate target journal style and status | `fig-style` |
 | `export` | Build export package and manifest | `fig-export` |
@@ -46,6 +48,8 @@ Use these modes in command recipes and workflow handoffs.
 - `audit` may run with partial materials, but must mark unverifiable gates.
 - `render-audit` checks rendered files, not scientific truth.
 - `multipanel-layout-audit` checks whether the optical grid and colorbar/direct-label layout are fit for manuscript use.
+- `text-layout-audit` blocks readiness when text overlap, clipping, unreadable fonts, or invalid terminology fails.
+- `text-layout-repair` must be followed by a fresh `text-layout-audit`.
 - `style` can be verified only with current official or user-provided guidance.
 - `full` must include audit before export.
 - Memory modes use project-local `.codex/scientific-figure-memory/` storage and must not write project memory inside the installed skill folder.

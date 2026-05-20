@@ -5,8 +5,10 @@ import argparse
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from text_layout import apply_axis_text, configure_text_defaults
 
-plt.rcParams["svg.fonttype"] = "none"
+
+configure_text_defaults()
 
 
 def main() -> None:
@@ -30,8 +32,7 @@ def main() -> None:
     ax.axhline(bias, color="black", linewidth=1.2, label="Bias")
     ax.axhline(upper, color="#D55E00", linewidth=1, linestyle="--", label="95% limits")
     ax.axhline(lower, color="#D55E00", linewidth=1, linestyle="--")
-    ax.set_xlabel("Mean of methods")
-    ax.set_ylabel("Difference between methods")
+    apply_axis_text(ax, xlabel="Mean of methods", ylabel="Difference between methods")
     ax.legend(frameon=False, loc="best")
     fig.savefig(args.out, dpi=300, bbox_inches="tight", facecolor="white")
 

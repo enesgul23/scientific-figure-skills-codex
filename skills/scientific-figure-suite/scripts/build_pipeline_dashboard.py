@@ -72,6 +72,7 @@ def build_dashboard(memory_dir: Path, check_paths: bool = False) -> dict[str, An
     latest_readiness = latest_report_result(memory_dir, "submission_readiness_history.jsonl", "submission_readiness_report")
     latest_regression = latest_report_result(memory_dir, "visual_regression_history.jsonl", "visual_regression_report")
     latest_multipanel_layout = latest_report_result(memory_dir, "multipanel_layout_history.jsonl", "multipanel_layout_audit")
+    latest_text_layout = latest_report_result(memory_dir, "text_layout_history.jsonl", "text_layout_report")
     dependency_blockers = latest_dependency_blockers(memory_dir)
     external_data_decision = latest_external_data_decision(memory_dir)
 
@@ -86,6 +87,8 @@ def build_dashboard(memory_dir: Path, check_paths: bool = False) -> dict[str, An
         blockers.append("latest visual regression audit failed")
     if latest_multipanel_layout == "FAIL":
         blockers.append("latest multipanel layout audit failed")
+    if latest_text_layout == "FAIL":
+        blockers.append("latest text layout audit failed")
     if dependency_blockers:
         blockers.append("latest dependency plan has missing required libraries: " + ", ".join(dependency_blockers))
     if external_data_decision == "BLOCKED_PENDING_SOURCE":
@@ -108,6 +111,10 @@ def build_dashboard(memory_dir: Path, check_paths: bool = False) -> dict[str, An
         next_actions.append("Run fig-audit-render on exported figure files.")
     if latest_multipanel_layout is None and figure_set.get("figures"):
         next_actions.append("Run fig-audit-multipanel-layout for multi-panel figures before readiness.")
+    if latest_text_layout is None and figure_set.get("figures"):
+        next_actions.append("Run fig-audit-text-layout before final export or readiness.")
+    elif latest_text_layout == "PASS_WITH_WARNINGS":
+        next_actions.append("Review text layout warnings and rerun fig-repair-text-layout if labels are still crowded.")
     if dependency_blockers:
         next_actions.append("Install required libraries only if approved, or select a fallback render stack.")
     if external_data_decision == "BLOCKED_PENDING_SOURCE":
@@ -122,6 +129,8 @@ def build_dashboard(memory_dir: Path, check_paths: bool = False) -> dict[str, An
         completed_stages.extend(["INTAKE", "DOMAIN_DESIGN"])
     if figure_set.get("figures"):
         completed_stages.append("COMPOSITION")
+    if latest_text_layout in {"PASS", "PASS_WITH_WARNINGS"}:
+        completed_stages.append("TEXT")
     if latest_consistency in {"PASS", "PASS_WITH_WARNINGS"}:
         completed_stages.append("AUDIT")
     if package_index.get("files"):
@@ -132,7 +141,9 @@ def build_dashboard(memory_dir: Path, check_paths: bool = False) -> dict[str, An
     blocked_stages = []
     if errors:
         blocked_stages.append("INTAKE")
-    if stale_figures or latest_consistency == "FAIL" or latest_regression == "FAIL" or latest_multipanel_layout == "FAIL":
+    if latest_text_layout == "FAIL":
+        blocked_stages.append("TEXT")
+    if stale_figures or latest_consistency == "FAIL" or latest_regression == "FAIL" or latest_multipanel_layout == "FAIL" or latest_text_layout == "FAIL":
         blocked_stages.append("AUDIT")
     if not package_index.get("files"):
         blocked_stages.append("EXPORT")
@@ -161,6 +172,7 @@ def build_dashboard(memory_dir: Path, check_paths: bool = False) -> dict[str, An
                 "latest_consistency": latest_consistency or "NOT_RUN",
                 "latest_visual_regression": latest_regression or "NOT_RUN",
                 "latest_multipanel_layout": latest_multipanel_layout or "NOT_RUN",
+                "latest_text_layout": latest_text_layout or "NOT_RUN",
                 "latest_dependency_blockers": dependency_blockers,
                 "latest_external_data_decision": external_data_decision or "NOT_RUN",
                 "latest_readiness": latest_readiness or "NOT_RUN",

@@ -23,6 +23,10 @@ REQUIRED_FIELDS = {
     "unsupported_without",
     "dependency_profile",
     "external_data_roles",
+    "text_profile_ids",
+    "text_audit_hooks",
+    "colorbar_policy",
+    "axis_label_policy",
 }
 
 
@@ -66,6 +70,8 @@ def validate(skill_dir: Path, registry_path: Path) -> tuple[list[str], list[str]
             "optional_libraries",
             "unsupported_without",
             "external_data_roles",
+            "text_profile_ids",
+            "text_audit_hooks",
         ]:
             if not isinstance(entry.get(list_field), list):
                 errors.append(f"{chart_type}: {list_field} must be a list")
@@ -75,6 +81,14 @@ def validate(skill_dir: Path, registry_path: Path) -> tuple[list[str], list[str]
             errors.append(f"{chart_type}: library_stack_ids must be non-empty")
         if not isinstance(entry.get("dependency_profile"), str) or not entry.get("dependency_profile"):
             errors.append(f"{chart_type}: dependency_profile must be a non-empty string")
+        if not isinstance(entry.get("colorbar_policy"), str) or not entry.get("colorbar_policy"):
+            errors.append(f"{chart_type}: colorbar_policy must be a non-empty string")
+        if not isinstance(entry.get("axis_label_policy"), str) or not entry.get("axis_label_policy"):
+            errors.append(f"{chart_type}: axis_label_policy must be a non-empty string")
+        if not entry.get("text_profile_ids"):
+            errors.append(f"{chart_type}: text_profile_ids must be non-empty")
+        if "audit_text_layout" not in entry.get("text_audit_hooks", []):
+            warnings.append(f"{chart_type}: text_audit_hooks should include audit_text_layout")
         unsupported = set(str(item) for item in entry.get("unsupported_without", []))
         required = set(str(item) for item in entry.get("required_libraries", []))
         if not unsupported.issubset(required):

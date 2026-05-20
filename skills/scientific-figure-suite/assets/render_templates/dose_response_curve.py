@@ -5,8 +5,10 @@ import argparse
 import matplotlib.pyplot as plt
 import pandas as pd
 
+from text_layout import apply_axis_text, configure_text_defaults
 
-plt.rcParams["svg.fonttype"] = "none"
+
+configure_text_defaults()
 
 
 def main() -> None:
@@ -29,8 +31,7 @@ def main() -> None:
         ordered = data.sort_values(args.dose)
         ax.plot(ordered[args.dose], ordered[args.response], marker="o", linewidth=1.4, markersize=4, color="#0072B2")
     ax.set_xscale("log" if (data[args.dose] > 0).all() else "linear")
-    ax.set_xlabel(args.dose)
-    ax.set_ylabel(args.response)
+    apply_axis_text(ax, xlabel=args.dose, ylabel=args.response)
     fig.savefig(args.out, dpi=300, bbox_inches="tight", facecolor="white")
 
 

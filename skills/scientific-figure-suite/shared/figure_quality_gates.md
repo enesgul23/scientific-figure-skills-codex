@@ -38,6 +38,7 @@ Use:
 | G15 Model validation | Model performance is shown | Splits, metrics, calibration/uncertainty, and leakage risk are addressed. |
 | G16 Mechanism status | Schematics imply mechanisms | Evidence/hypothesis status is labeled. |
 | G17 Multi-panel layout integrity | Multi-panel figures, colorbars, maps, scatter panels, or direct labels are used | Optical grid, same-row panel bounds, colorbar spacing, semantic color mapping, and controlled direct labels are audited. |
+| G18 Text layout and terminology integrity | Titles, labels, tick text, legends, colorbars, direct labels, or annotations are used | Text overlap, clipping, axis bounds, font size, colorbar-title crowding, and domain terminology are audited. |
 
 ## Blocking Conditions
 
@@ -55,6 +56,8 @@ Return `FAIL` when:
 - the same semantic category changes color across panels without an explicit,
   captioned reason
 - map or scatter station labels overlap, crowd the evidence, or lack a controlled label policy
+- figure text overlaps, clips outside the figure or axes, uses unreadable font
+  sizes, or fails the domain terminology profile without explicit waiver
 
 ## Report Format
 

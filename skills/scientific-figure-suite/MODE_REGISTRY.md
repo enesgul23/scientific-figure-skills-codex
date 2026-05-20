@@ -14,6 +14,8 @@ adding command aliases, workflow modes, or validator expectations.
 | `audit` | Fidelity | Quality report with gates and fixes | Medium | `fig-audit`, "review/check this figure" |
 | `render-audit` | Fidelity | Visual QA and regression sanity report | Medium | `fig-audit-render` |
 | `multipanel-layout-audit` | Fidelity | Optical-grid, colorbar, semantic color, and direct-label layout audit | High | `fig-audit-multipanel-layout` |
+| `text-layout-audit` | Fidelity | Text overlap, clipping, axis-bound, colorbar-title, and terminology audit | High | `fig-audit-text-layout` |
+| `text-layout-repair` | Balanced | Deterministic text wrapping, shortening, margin reservation, tick rotation, and direct-label pruning | High | `fig-repair-text-layout` |
 | `caption` | Fidelity | Caption, note, in-text reference, alt text | Medium | `fig-caption`, "write caption" |
 | `style` | Fidelity | Journal style report and token decisions | Medium | `fig-style`, "Nature-style", "journal-ready" |
 | `export` | Fidelity | Export package and manifest | Low | `fig-export`, "PDF/SVG/TIFF package" |
@@ -50,6 +52,10 @@ adding command aliases, workflow modes, or validator expectations.
 - `render-audit` checks output-file quality only; it does not prove scientific correctness.
 - `multipanel-layout-audit` must not accept automatic layout alone when colorbars
   or direct labels create spacing/collision risks.
+- `text-layout-audit` must run before readiness when figure text layout evidence
+  is available; `FAIL` blocks readiness.
+- `text-layout-repair` may shorten, wrap, rotate, reserve margins, or hide
+  low-priority direct labels, but must not rewrite scientific meaning.
 - `style` can be `VERIFIED` only with current official or user-provided guidance.
 - `full` must include `figure-auditor` before `export-packager`.
 - Memory modes must use project-local `.codex/scientific-figure-memory/` files and must not store project memory in the installed skill folder.
@@ -59,6 +65,6 @@ adding command aliases, workflow modes, or validator expectations.
 
 | Spectrum | Modes |
 |---|---|
-| Fidelity | audit, render-audit, multipanel-layout-audit, caption, style, export, memory-init, memory-load, memory-update, memory-forget, memory-resume, memory-migrate, repro-lock-audit, journal-verify, visual-artifact-audit, figure-set-build, figure-set-audit, submission-package-build, submission-readiness, pipeline-status, library-planning, environment-probe, render-stack-selection, external-data-planning |
-| Balanced | render, registry-render, revision, full |
+| Fidelity | audit, render-audit, multipanel-layout-audit, text-layout-audit, caption, style, export, memory-init, memory-load, memory-update, memory-forget, memory-resume, memory-migrate, repro-lock-audit, journal-verify, visual-artifact-audit, figure-set-build, figure-set-audit, submission-package-build, submission-readiness, pipeline-status, library-planning, environment-probe, render-stack-selection, external-data-planning |
+| Balanced | render, registry-render, text-layout-repair, revision, full |
 | Originality | planning, scoping |

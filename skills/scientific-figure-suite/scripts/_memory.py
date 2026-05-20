@@ -9,7 +9,7 @@ from typing import Any
 
 
 DEFAULT_MEMORY_REL = Path(".codex") / "scientific-figure-memory"
-SCHEMA_VERSION = "0.7.0"
+SCHEMA_VERSION = "0.8.0"
 BOUNDARY_HASH_PLACEHOLDER = "000000000000"
 BOUNDARY_HASH_MODE = "SFS_CANONICAL_V1"
 
@@ -35,6 +35,7 @@ REQUIRED_JSONL_FILES = [
     "figure_decision_log.jsonl",
     "visual_regression_history.jsonl",
     "multipanel_layout_history.jsonl",
+    "text_layout_history.jsonl",
     "dependency_plan_history.jsonl",
     "external_data_plan_history.jsonl",
 ]
@@ -202,6 +203,7 @@ def initial_memory_files(
                     "figure_decision_log": "figure_decision_log.jsonl",
                     "visual_regression_history": "visual_regression_history.jsonl",
                     "multipanel_layout_history": "multipanel_layout_history.jsonl",
+                    "text_layout_history": "text_layout_history.jsonl",
                     "dependency_plan_history": "dependency_plan_history.jsonl",
                     "external_data_plan_history": "external_data_plan_history.jsonl",
                     "author_visual_style_profile": "author_visual_style_profile.json",

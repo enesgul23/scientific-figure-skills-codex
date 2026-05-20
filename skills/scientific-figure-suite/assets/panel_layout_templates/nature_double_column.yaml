@@ -21,7 +21,9 @@ layout_quality:
   colorbar_label_collision_check: true
   semantic_colors_global: true
   direct_labels_controlled_only: true
-  run_before_readiness: fig-audit-multipanel-layout
+  run_before_readiness:
+    - fig-audit-multipanel-layout
+    - fig-audit-text-layout
 export:
   vector: [pdf, svg]
   raster_review: png

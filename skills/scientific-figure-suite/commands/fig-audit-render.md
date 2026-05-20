@@ -17,3 +17,6 @@ baseline differences.
 
 For multi-panel optical-grid, colorbar, semantic color, or direct station-label
 issues, run `fig-audit-multipanel-layout` as a separate layout audit.
+For crowded, clipped, vague, or misaligned titles, axis labels, tick labels,
+legend text, colorbar titles, direct labels, or annotations, run
+`fig-audit-text-layout` and repair with `fig-repair-text-layout` before export.

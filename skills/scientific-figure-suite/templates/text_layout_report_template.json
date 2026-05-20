@@ -1,0 +1,16 @@
+{
+  "text_layout_report": {
+    "created_at": "2026-05-20T00:00:00Z",
+    "figure_id": "fig_01",
+    "result": "PASS_WITH_WARNINGS",
+    "terminology_profile_id": "model_performance",
+    "colorbar_policy": "right_default_shared_group_when_audited",
+    "text_element_count": 0,
+    "checks": [],
+    "blockers": [],
+    "warnings": [
+      "Template report only; run audit_text_layout.py on a concrete layout artifact."
+    ],
+    "repairs_suggested": []
+  }
+}

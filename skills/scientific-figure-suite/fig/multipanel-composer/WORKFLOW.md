@@ -25,12 +25,16 @@ Use when the user asks for a multi-panel figure, panel arrangement, Nature-style
 - desired final formats
 - semantic color map for repeated groups, models, station classes, or risk levels
 - direct station/point label policy for maps or scatter panels
+- text layout artifact or expected text roles when titles, labels, legends,
+  annotations, or colorbar titles are dense
 
 ## Output Contract
 
 Produce layout specification, panel map, label plan, legend and colorbar plan,
 semantic color map, dimensions, optical-grid audit requirements, and export
-implications.
+implications. When text is material to the layout, include `text_elements`
+with roles, bounding boxes, priority, wrapping, abbreviation, and overlap-check
+status.
 
 ## Procedure
 
@@ -46,6 +50,8 @@ implications.
 8. Minimize whitespace without crowding text, labels, colorbars, or data.
 9. If automatic layout gives an uneven optical grid, switch to manual axes boxes
    or an audited panel layout template.
+10. Hand long colorbar titles to the Text Layout Intelligence Runtime so the
+    colorbar can keep a short title and move detail to the caption.
 
 ## Quality Gates
 
@@ -60,6 +66,8 @@ implications.
 - same-row panel boxes share top and bottom bounds within tolerance
 - repeated semantic categories keep the same colors across panels
 - map/scatter station labels are controlled, sparse, and collision-checked
+- text layout audit passes for titles, tick labels, axis labels, colorbar
+  titles, direct labels, and annotations
 - visual review includes optical grid quality, not only successful code execution
 
 ## Failure Modes
@@ -73,6 +81,8 @@ implications.
 - the same category changes color across panels
 - direct station labels clutter map/scatter panels
 - automatic layout creates visibly uneven panel bounds
+- title, axis-label, tick-label, legend, annotation, or colorbar text overlaps
+  or clips outside the figure/axes bounds
 
 ## Memory Integration
 
@@ -89,6 +99,7 @@ Do not package a composed figure as current when any required panel is stale.
 ## Handoff Rules
 
 Hand off to `fig-audit-multipanel-layout` before final audit when the figure has
-multiple panels, colorbars, maps, scatter panels, or direct labels. Then hand off
-to `journal-style-translator` for sizing, `caption-alttext` for panel legend
-text, `figure-auditor` for layout review, and `export-packager` for final files.
+multiple panels, colorbars, maps, scatter panels, or direct labels. Then run
+`fig-audit-text-layout` when text layout artifacts are available. Hand off to
+`journal-style-translator` for sizing, `caption-alttext` for panel legend text,
+`figure-auditor` for layout review, and `export-packager` for final files.

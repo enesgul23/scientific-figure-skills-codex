@@ -16,7 +16,8 @@ description: >
   dashboards, renderer registries, style-token validation, visual regression
   checks, render-quality audits, multi-panel optical-grid audits, colorbar
   layout checks, semantic color consistency checks, controlled station-label
-  audits, library-pool planning, dependency selection,
+  audits, text layout overlap checks, label clipping repair, colorbar-title
+  repair, domain terminology profiles, library-pool planning, dependency selection,
   Python environment probing, and external-data acquisition decisions. Use when the user asks for scientific charts, research figures,
   journal-ready plots, Nature-style figures, Science-style figures,
   Lancet-style figures, graphical abstracts, figure audits, caption writing,
@@ -30,7 +31,8 @@ description: >
   fig-audit-repro-lock, fig-verify-journal, fig-audit-visual-artifact,
   fig-build-figure-set, fig-audit-figure-set, fig-build-submission-package,
   fig-audit-readiness, fig-scope, fig-status, fig-render-template,
-  fig-audit-render, fig-audit-multipanel-layout, fig-plan-libraries,
+  fig-audit-render, fig-audit-multipanel-layout, fig-audit-text-layout,
+  fig-repair-text-layout, fig-plan-libraries,
   fig-probe-environment, fig-select-render-stack, or fig-plan-external-data.
 ---
 
@@ -43,7 +45,7 @@ task.
 
 ## Versioning
 
-This package is version `0.7.0`. Keep repo-root `VERSION` and
+This package is version `0.8.0`. Keep repo-root `VERSION` and
 `manifest.json` `adapter_version` synchronized. Keep `SKILL.md` frontmatter
 minimal so Codex skill discovery remains stable.
 
@@ -158,6 +160,8 @@ below.
 | `/fig-render-template`, `fig-render-template` | `commands/fig-render-template.md` | render registry |
 | `/fig-audit-render`, `fig-audit-render` | `commands/fig-audit-render.md` | render-quality audit |
 | `/fig-audit-multipanel-layout`, `fig-audit-multipanel-layout` | `commands/fig-audit-multipanel-layout.md` | multi-panel layout quality audit |
+| `/fig-audit-text-layout`, `fig-audit-text-layout` | `commands/fig-audit-text-layout.md` | text overlap, clipping, colorbar-title, and terminology audit |
+| `/fig-repair-text-layout`, `fig-repair-text-layout` | `commands/fig-repair-text-layout.md` | deterministic text layout repair before re-audit |
 | `/fig-plan-libraries`, `fig-plan-libraries` | `commands/fig-plan-libraries.md` | library-pool dependency planning |
 | `/fig-probe-environment`, `fig-probe-environment` | `commands/fig-probe-environment.md` | Python environment probe |
 | `/fig-select-render-stack`, `fig-select-render-stack` | `commands/fig-select-render-stack.md` | renderer dependency stack selection |
@@ -206,6 +210,7 @@ Memory files:
 - `figure_decision_log.jsonl`: append-style scoping, waiver, mockup, and style decisions.
 - `visual_regression_history.jsonl`: append-style render-quality and visual regression results.
 - `multipanel_layout_history.jsonl`: append-style multi-panel optical-grid, colorbar, semantic color, and direct-label layout audits.
+- `text_layout_history.jsonl`: append-style text overlap, clipping, font-size, colorbar-title, direct-label, and terminology audits.
 - `dependency_plan_history.jsonl`: append-style dependency plans and library stack decisions.
 - `external_data_plan_history.jsonl`: append-style external data acquisition decisions.
 - `author_visual_style_profile.json`: optional visual style memory from
@@ -232,7 +237,7 @@ Memory rules:
 For a journal-ready multi-panel figure:
 
 ```text
-intake-design -> domain workflow -> multipanel-composer -> fig-audit-multipanel-layout -> journal-style-translator -> caption-alttext -> figure-auditor -> export-packager
+intake-design -> domain workflow -> multipanel-composer -> fig-audit-multipanel-layout -> fig-audit-text-layout -> journal-style-translator -> caption-alttext -> figure-auditor -> export-packager
 ```
 
 For a graphical abstract:
@@ -250,7 +255,7 @@ figure-auditor -> journal-style-translator if target journal is named -> caption
 For a full figure-package request:
 
 ```text
-intake-design -> domain workflow -> multipanel-composer if needed -> journal-style-translator -> caption-alttext -> figure-auditor -> export-packager
+intake-design -> domain workflow -> multipanel-composer if needed -> fig-audit-text-layout -> journal-style-translator -> caption-alttext -> figure-auditor -> export-packager
 ```
 
 ## Codex Runtime Mapping
@@ -266,6 +271,7 @@ Apply these mappings when workflow or command files use suite terminology:
 | generate final data figure | Generate only from supplied data or code. If data are missing, produce `NON_DATA_MOCKUP` or ask for inputs. |
 | choose plotting libraries | Use the library pool, dataset inspection, render registry, and environment probe. Do not install packages automatically. |
 | download external data | Plan only unless the user explicitly approves download and provenance is complete. |
+| repair crowded figure text | Use the Text Layout Intelligence Runtime; wrap, shorten, rotate, reserve margins, or hide only low-priority direct labels, then re-audit. |
 | memory, passport, visual passport | Use project-local `.codex/scientific-figure-memory/` files and the memory scripts; never write project memory into the skill folder. |
 | Bash, Python, script | Treat as available local tooling subject to Codex filesystem and safety rules. |
 
@@ -357,11 +363,15 @@ Use `shared/` for cross-workflow contracts and gates:
 - `shared/figure_set_submission_runtime.md` defines v0.4 figure set manifests, package indexing, cross-figure consistency, and readiness gates.
 - `shared/external_data_decision_protocol.md` defines when external data can be proposed and what provenance is required.
 - `shared/multipanel_layout_quality_protocol.md` defines v0.7 optical-grid, colorbar, semantic color, and direct-label layout rules.
+- `shared/text_layout_quality_protocol.md` defines v0.8 text overlap, clipping, colorbar-title, and terminology layout rules.
 - `assets/render_registry/render_registry.json` defines chart-type to renderer and dependency mappings.
 - `assets/library_pool/library_pool.json` defines the Python-first library metadata pool.
+- `assets/text_profiles/domain_text_profiles.json` defines bundled domain terminology and label profiles.
 - `shared/contracts/style_token.schema.json` defines style-token validation shape.
 - `shared/contracts/visual_regression_report.schema.json` defines render-quality report shape.
 - `shared/contracts/multipanel_layout_audit.schema.json` defines multi-panel layout audit shape.
+- `shared/contracts/text_layout_report.schema.json` defines text layout audit report shape.
+- `shared/contracts/text_style_profile.schema.json` defines bundled text profile shape.
 - `shared/contracts/library_pool.schema.json` defines library-pool metadata shape.
 - `shared/contracts/dependency_plan.schema.json` defines dependency-plan output shape.
 - `shared/contracts/data_acquisition_plan.schema.json` defines external-data plan output shape.

@@ -112,3 +112,15 @@ Expected:
 - require same-row panel top/bottom alignment
 - require consistent semantic colors across panels
 - require controlled, collision-checked station labels
+
+## 10. Text Layout Audit
+
+```text
+Use $scientific-figure-suite fig-audit-text-layout for a figure with crowded tick labels, a long colorbar title, and direct labels.
+```
+
+Expected:
+
+- detect text overlap, clipping, font-size, and colorbar-title crowding
+- use bundled domain terminology profiles without live web lookup
+- recommend `fig-repair-text-layout` for deterministic repair before export

@@ -494,3 +494,26 @@ Required fields:
 The audit must explicitly cover panel-box geometry, same-row top/bottom
 alignment, colorbar layout control, semantic color consistency, controlled
 map/scatter direct labels, and manual fallback for poor automatic layout.
+
+## Schema 22: Text Layout Report
+
+Producer: `fig-audit-text-layout`.
+
+Consumer: `figure-auditor`, `journal-style-translator`, `export-packager`,
+`fig-audit-readiness`, user.
+
+Required fields:
+
+- `created_at`
+- `figure_id`
+- `result`
+- `text_element_count`
+- `checks`
+- `blockers`
+- `warnings`
+- `repairs_suggested`
+
+The audit must cover text overlap, figure and axes bounds, minimum font size,
+excessive rotation, title wrapping, colorbar-title crowding, direct-label
+control, and bundled domain terminology. A failed report blocks submission
+readiness until repaired and re-audited.

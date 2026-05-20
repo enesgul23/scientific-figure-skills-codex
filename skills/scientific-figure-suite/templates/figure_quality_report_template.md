@@ -21,6 +21,7 @@ Overall integrity status:
 | G9 Export readiness |  |  |  |
 | G10 Reproducibility |  |  |  |
 | G17 Multi-panel layout integrity |  |  |  |
+| G18 Text layout and terminology integrity |  |  |  |
 
 ## Blocking Issues
 
